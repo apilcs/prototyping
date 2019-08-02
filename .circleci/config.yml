@@ -1,0 +1,55 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8
+
+    working_directory: ~/repo
+
+    environment:
+      GH_EMAIL: apilcsjournal@gmail.com
+      GH_NAME: CircleCI
+
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "0c:2e:71:d0:3f:43:31:f7:1a:f4:07:00:c8:e5:e6:7d"
+
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run: yarn test
+
+      - run: yarn build
+
+      - run:
+          name: Deploy
+          command: |
+            git config user.email $GH_EMAIL
+            git config user.name $GH_NAME
+            # surely this shouldn't be necessary?
+            ssh-add -D
+            ssh-add $HOME/.ssh/id_rsa_0c2e71d03f4331f71af40700c8e5e67d
+
+            yarn deploy:gh-pages
+
+workflows:
+  version: 2
+  deploy_to_gh_pages:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
