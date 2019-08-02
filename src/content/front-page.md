@@ -2,7 +2,7 @@
 title: Index Page
 ---
 
-The "Asian-Pacific Island and Littoral Culture Studies" (APILCS) is an open-access online journal, which aims to promote knowledge on the islands and litorals of the Asia-Pacific regions in all areas that relate to the Humanities and Social Sciences. Papers submitted can fall into the academic fields of Anthropology, Sociology, Linguistics, Literature, History, and Human Geography, provided that they have a direct relations with the islands or littorals of the Asia-Pacific Region.
+The "Asian-Pacific Island and Littoral Studies" (APILS) is an open-access online journal, which aims to promote knowledge on the islands and litorals of the Asia-Pacific regions in all areas that relate to the Humanities and Social Sciences. Papers submitted can fall into the academic fields of Anthropology, Sociology, Linguistics, Literature, History, and Human Geography, provided that they have a direct relations with the islands or littorals of the Asia-Pacific Region.
 
 亞太島嶼與沿海文化研究期刊 (APILCS)，是為促進亞太沿岸各島間的知識以及相關人文社科研究而發行的線上開放瀏覽期刊。刊行的論文可歸入人類學、社會學、語言學、文學、歷史與人文地理學的學術領域，只需所發表內容與亞太島嶼或沿岸有直接相關。
 
