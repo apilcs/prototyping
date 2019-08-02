@@ -38,11 +38,10 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.3",
     "gatsby-plugin-eslint": "^2.0.5",
+    "gh-pages": "^2.1.0",
     "prettier": "^1.18.2"
   },
-  "keywords": [
-    "apils"
-  ],
+  "keywords": ["apils"],
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
@@ -50,7 +49,8 @@
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
+    "deploy:gh-pages": "gatsby build && gh-pages -d public -b master -r https://github.com/apilcs/apilcs.github.io"
   },
   "repository": {
     "type": "git",
