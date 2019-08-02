@@ -1,7 +1,16 @@
 {
   "endOfLine": "lf",
-  "semi": false,
-  "singleQuote": false,
+  "useTabs": false,
+  "printWidth": 100,
   "tabWidth": 2,
-  "trailingComma": "es5"
+  "singleQuote": false,
+  "trailingComma": "none",
+  "jsxBracketSameLine": true,
+  "semi": true,
+  "overrides": [
+    {
+      "files": "*.json",
+      "options": { "parser": "json" }
+    }
+  ]
 }

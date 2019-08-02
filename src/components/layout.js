@@ -5,12 +5,80 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import React from "react";
+import PropTypes from "prop-types";
+import Helmet from "react-helmet";
+import { Link, useStaticQuery, graphql } from "gatsby";
+import styled, { ThemeProvider } from "styled-components";
 
-import Header from "./header"
-import "./layout.css"
+import ApilsTheme from "../theme/apils-theme";
+import GlobalStyle from "../theme/global-style";
+
+import ApilsLogo from "../images/apilcs_trsp_202x202.png";
+
+const Container = styled.div`
+  background: ${props => props.theme.pageBg};
+  background-image: url("https://www.transparenttextures.com/patterns/simple-horizontal-light.png");
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1024px;
+  padding: 10px;
+  position: relative;
+
+  &::before,
+  &::after {
+    border-radius: 100px / 10px;
+    bottom: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    z-index: -1;
+  }
+
+  &::after {
+    left: auto;
+    right: 10px;
+    transform: skew(8deg) rotate(3deg);
+  }
+
+  main {
+    flex-grow: 1;
+  }
+`;
+
+const Header = styled.header`
+  border-bottom: 1px solid ${props => props.theme.main};
+  display: flex;
+  flex-direction: row-reverse;
+
+  > div {
+    flex-grow: 1;
+  }
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin-top: 0.375rem;
+  }
+
+  img {
+    height: 120px;
+    margin: 5px 20px 5px 0;
+  }
+`;
+
+const Footer = styled.footer`
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 1%;
+`;
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -21,32 +89,37 @@ const Layout = ({ children }) => {
         }
       }
     }
-  `)
+  `);
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0px 1.0875rem 1.45rem`,
-          paddingTop: 0,
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
+      <Helmet>
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin />
+      </Helmet>
+      <ThemeProvider theme={ApilsTheme}>
+        <>
+          <GlobalStyle />
+          <Container>
+            <Header>
+              <div>
+                <h1>
+                  <Link to="/">{data.site.siteMetadata.title}</Link>
+                </h1>
+                <h2>亞太島嶼與沿海研究期刊</h2>
+              </div>
+              <img src={ApilsLogo} alt="APILS Logo" />
+            </Header>
+            <main>{children}</main>
+            <Footer>© {new Date().getFullYear()}, APILS</Footer>
+          </Container>
+        </>
+      </ThemeProvider>
     </>
-  )
-}
+  );
+};
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
+  children: PropTypes.node.isRequired
+};
 
-export default Layout
+export default Layout;

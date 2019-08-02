@@ -1,21 +1,33 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from "react";
+import PropTypes from "prop-types";
+import { graphql } from "gatsby";
+import styled from "styled-components";
+import Parser from "html-react-parser";
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import Layout from "../components/layout";
+import SEO from "../components/seo";
 
-const IndexPage = () => (
+export const query = graphql`
+  query {
+    markdownRemark(fileAbsolutePath: { regex: "/.*/content/front-page.md/" }) {
+      html
+    }
+  }
+`;
+
+const Padded = styled.div`
+  padding: 20px 10px;
+`;
+
+const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
+    <Padded>{Parser(data.markdownRemark.html)}</Padded>
   </Layout>
-)
+);
 
-export default IndexPage
+IndexPage.propTypes = {
+  data: PropTypes.shape({ markdownRemark: PropTypes.object.isRequired }).isRequired
+};
+
+export default IndexPage;
