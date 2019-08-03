@@ -2,11 +2,11 @@
 title: Index Page
 ---
 
-The *Asian-Pacific Island and Littoral Studies* (APILS) is an open-access online journal, which aims to promote knowledge on the islands and litorals of the Asia-Pacific regions in all areas that relate to the Humanities and Social Sciences. Papers submitted can fall into the academic fields of Anthropology, Sociology, Linguistics, Literature, History, and Human Geography, provided that they have a direct relations with the islands or littorals of the Asia-Pacific Region.
+*Asian-Pacific Island and Littoral Studies* (APILS) is a peer-reviewed, online, open-access journal, which aims to promote knowledge on the islands and litorals of the Asia-Pacific regions in all areas that relate to the Humanities and Social Sciences. Papers submitted can fall into the academic fields of Anthropology, Sociology, Linguistics, Literature, History, and Human Geography, provided that they have a direct relations with the islands or littorals of the Asia-Pacific Region.
 
 亞太島嶼與沿海文化研究期刊 (APILCS)，是為促進亞太沿岸各島間的知識以及相關人文社科研究而發行的線上開放瀏覽期刊。刊行的論文可歸入人類學、社會學、語言學、文學、歷史與人文地理學的學術領域，只需所發表內容與亞太島嶼或沿岸有直接相關。
 
-*Asian-Pacific Island and Littoral Studies* is an online open access journal. Besides publishing cutting edge research on islands in the Asia-Pacific, we strive to advance the way that scientific information is communicated by exploring new techniques in the dynamic design of web-pages, which include digital maps, timelines, interactive graphs, cross-references among papers and data deposits. Helping readers and authors to synthesize the collected material, ideas and insights, APILS is not the end-point of scientific effort, but an incubator where new ideas can directly be build on previously shared insights and data.
+Besides publishing cutting edge research on islands in the Asia-Pacific, we strive to advance the way that scientific information is communicated by exploring new techniques in the dynamic design of web-pages, which include digital maps, timelines, interactive graphs, cross-references among papers and data deposits. Helping readers and authors to synthesize the collected material, ideas and insights, APILS is not the end-point of scientific effort, but an incubator where new ideas can directly be build on previously shared insights and data.
 
 本期刊不僅開放線上瀏覽，並試圖透過動態網頁設計的新技術：包含數位地圖、時間軸、交互式圖表與相互連結參考的方式來提升論文與數據儲存間的社科相關資訊。
 
