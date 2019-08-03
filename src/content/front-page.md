@@ -2,18 +2,17 @@
 title: Index Page
 ---
 
-The "Asian-Pacific Island and Littoral Studies" (APILS) is an open-access online journal, which aims to promote knowledge on the islands and litorals of the Asia-Pacific regions in all areas that relate to the Humanities and Social Sciences. Papers submitted can fall into the academic fields of Anthropology, Sociology, Linguistics, Literature, History, and Human Geography, provided that they have a direct relations with the islands or littorals of the Asia-Pacific Region.
+The *Asian-Pacific Island and Littoral Studies* (APILS) is an open-access online journal, which aims to promote knowledge on the islands and litorals of the Asia-Pacific regions in all areas that relate to the Humanities and Social Sciences. Papers submitted can fall into the academic fields of Anthropology, Sociology, Linguistics, Literature, History, and Human Geography, provided that they have a direct relations with the islands or littorals of the Asia-Pacific Region.
 
 亞太島嶼與沿海文化研究期刊 (APILCS)，是為促進亞太沿岸各島間的知識以及相關人文社科研究而發行的線上開放瀏覽期刊。刊行的論文可歸入人類學、社會學、語言學、文學、歷史與人文地理學的學術領域，只需所發表內容與亞太島嶼或沿岸有直接相關。
 
-More than being a journal that can be accessed online, this journal tries to advance the way that scientific and socially relevant information is communicated by exploring new techniques in the dynamic design of web-pages, which include digital maps, timelines, interactive graphs, cross-references among papers and data deposits. Helping readers and authors to synthesize the collected material, ideas and insights, the journal should not be the end-point of a scientific endeavors, but an incubation center where new ideas can directly be build on previously shared insights and data.
+*Asian-Pacific Island and Littoral Studies* is an online open access journal. Besides publishing cutting edge research on islands in the Asia-Pacific, we strive to advance the way that scientific information is communicated by exploring new techniques in the dynamic design of web-pages, which include digital maps, timelines, interactive graphs, cross-references among papers and data deposits. Helping readers and authors to synthesize the collected material, ideas and insights, APILS is not the end-point of scientific effort, but an incubator where new ideas can directly be build on previously shared insights and data.
 
 本期刊不僅開放線上瀏覽，並試圖透過動態網頁設計的新技術：包含數位地圖、時間軸、交互式圖表與相互連結參考的方式來提升論文與數據儲存間的社科相關資訊。
 
-We thus require that digital data used to build graphs or models are shared with the paper.
-These data deposits are uploaded with the paper and should at least all data that have been used in the development of the paper. They are available for reviewers and general readership, and must be provided under an open access license, such as Creative Commons. Data deposits will receive a DOI, can be cited, and must include metadata. Simple text-based data formats are prefered. Comma-separated-value (CSV) files or JavaScript Object Notation (JSON) files are good examples for generally accessible formats for text-based data files.
+We require that submissions, wherever possible, include the data used to build graphs or models. Data deposits are uploaded in conjunction with the paper and should include all data that was used in the development of the paper. They will be available for reviewers and end-users, and must be provided under an open access license, such as Creative Commons.
 
-數據存交意指與該論文一同上傳的數據集與元數據。該數據內容可供審稿人與一般讀者獲取，並且在開放原始碼（例如創用CC）下提供。數據存交將獲得DOI，使該論文能被引用。
+數據存交意指與該論文一同上傳的數據集與元數據。該數據內容可供審稿人與一般讀者獲取，並且在開放原始碼（例如創用CC）下提供。
 
 After the review process, editors and authors will closely collaborate to prepare the digital edition. This includes the extraction of relevant spatial and temporal information and to represent this in interactive maps, timelines and other kinds of graphs. These maps and graphs can be accessed from within the article and read in parallel to the text of the article in a way that the synthetic view of text and maps and graphs can help to create new meanings or to easily convey the intended meaning.
 
