@@ -14,7 +14,7 @@ export default {
   },
 
   contentMaxWidth: "960px",
-  headerOverhang: "20px",
+  contentOverhang: "20px",
 
   pageShadow: `
     position: relative;

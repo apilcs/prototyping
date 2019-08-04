@@ -20,13 +20,15 @@ import bgImage from "../images/simple-horizontal-light.png";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+    min-height: 100%;
 
   main {
     ${props => props.theme.pageShadow}
     background-image: url(${bgImage});
     background: ${props => props.theme.colors.pageBg};
+    border-radius: 0 0 8px 0;
     flex-grow: 1;
-    margin: ${props => `-${props.theme.headerOverhang}`} auto 0;
+    margin: ${props => `-${props.theme.contentOverhang}`} auto 0;
     max-width: ${props => props.theme.contentMaxWidth};
     padding: 60px 120px 20px;
     width: 100%;
@@ -37,7 +39,7 @@ const Header = styled.header`
   background: rgba(0, 0, 0, 0.7);
   border-bottom: 1px solid ${props => props.theme.colors.main};
   display: flex;
-  padding-bottom: ${props => props.theme.headerOverhang};
+  padding-bottom: ${props => props.theme.contentOverhang};
 
   > div {
     flex-grow: 1;
@@ -104,9 +106,17 @@ const Naivgation = styled.nav`
 `;
 
 const Footer = styled.footer`
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 1%;
+  background: rgba(0, 0, 0, 0.7);
+  color: ${props => props.theme.colors.mainAlt};
+  padding-top: ${props => props.theme.contentOverhang};
+  margin-top: -${props => props.theme.contentOverhang};
+
+  > div {
+    margin: 0 auto;
+    max-width: ${props => props.theme.contentMaxWidth};
+    line-height: 50px;
+    text-align: right;
+  }
 `;
 
 const Layout = ({ children }) => {
@@ -162,7 +172,9 @@ const Layout = ({ children }) => {
               </div>
             </Header>
             <main>{children}</main>
-            <Footer>© {new Date().getFullYear()}, APILS</Footer>
+            <Footer>
+              <div>© {new Date().getFullYear()}, APILS</div>
+            </Footer>
           </Container>
         </>
       </ThemeProvider>
