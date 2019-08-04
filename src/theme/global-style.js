@@ -32,6 +32,6 @@ export default createGlobalStyle`
   }
 
   a {
-    color: ${props => props.theme.main};
+    color: ${props => props.theme.colors.main};
   }
 `;

@@ -18,26 +18,38 @@ import ApilsLogo from "../images/apilcs_trsp_202x202.png";
 import bgImage from "../images/simple-horizontal-light.png";
 
 const Container = styled.div`
-  background: ${props => props.theme.pageBg};
-  background-image: url(${bgImage});
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
-  max-width: 1024px;
-  padding: 10px;
-  position: relative;
-
-  ${props => props.theme.pageShadow}
 
   main {
+    ${props => props.theme.pageShadow}
+    background-image: url(${bgImage});
+    background: ${props => props.theme.colors.pageBg};
     flex-grow: 1;
+    margin: ${props => `-${props.theme.headerOverhang}`} auto 0;
+    max-width: ${props => props.theme.contentMaxWidth};
+    padding: 60px 120px 20px;
+    width: 100%;
   }
 `;
 
 const Header = styled.header`
-  border-bottom: 1px solid ${props => props.theme.main};
+  background: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid ${props => props.theme.colors.main};
+  display: flex;
+  padding-bottom: ${props => props.theme.headerOverhang};
+
+  > div {
+    flex-grow: 1;
+    margin: 0 auto;
+    max-width: ${props => props.theme.contentMaxWidth};
+  }
+`;
+
+const Branding = styled.div`
   display: flex;
   flex-direction: row-reverse;
+  margin-bottom: 10px;
 
   > div {
     flex-grow: 1;
@@ -48,13 +60,46 @@ const Header = styled.header`
   }
 
   h2 {
-    font-size: 1.2rem;
+    color: ${props => props.theme.colors.mainAlt};
+    font-size: 1.4rem;
     margin-top: 0.375rem;
   }
 
   img {
     height: 120px;
     margin: 5px 20px 5px 0;
+  }
+`;
+
+const Naivgation = styled.nav`
+  ${props => props.theme.pageShadow}
+  background: ${props => props.theme.colors.main};
+  border-radius: 0 8px 0 0;
+  color: ${props => props.theme.colors.mainAlt};
+  font-family: ${props => props.theme.fonts.header};
+
+  ul {
+    display: flex;
+    margin: 0;
+  }
+  li {
+    border-right: 1px solid rgba(255, 255, 255, 0.07);
+    display: inline-block;
+    list-style: none;
+    margin-bottom: 0;
+    text-align: center;
+
+    a {
+      color: ${props => props.theme.colors.mainAlt};
+      display: inline-block;
+      padding: 4px 10px;
+      transition: background-color 0.25s ease;
+
+      &:hover, &.active {
+        background-color: rgba(255, 255, 255, 0.2);
+        box-shadow: none;
+      }
+    }
   }
 `;
 
@@ -86,12 +131,35 @@ const Layout = ({ children }) => {
           <Container>
             <Header>
               <div>
-                <h1>
-                  <Link to="/">{data.site.siteMetadata.title}</Link>
-                </h1>
-                <h2>亞太島嶼與沿海研究期刊</h2>
+                <Branding>
+                  <div>
+                    <h1>
+                      <Link to="/">{data.site.siteMetadata.title}</Link>
+                    </h1>
+                    <h2>亞太島嶼與沿海研究期刊</h2>
+                  </div>
+                  <img src={ApilsLogo} alt="APILS Logo" />
+                </Branding>
+                <Naivgation>
+                  <ul>
+                    <li>
+                      <Link to="/about/" activeClassName="active">
+                        About
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/volumes/" activeClassName="active">
+                        Volumes
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/submissions/" activeClassName="active">
+                        Submissions
+                      </Link>
+                    </li>
+                  </ul>
+                </Naivgation>
               </div>
-              <img src={ApilsLogo} alt="APILS Logo" />
             </Header>
             <main>{children}</main>
             <Footer>© {new Date().getFullYear()}, APILS</Footer>

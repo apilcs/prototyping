@@ -1,7 +1,20 @@
+import { options } from "./typography";
+
 export default {
   // main: "hsl(230, 55%, 58%)"
-  main: "#508084",
-  pageBg: "white",
+  colors: {
+    main: "#508084",
+    mainAlt: "ghostwhite",
+    pageBg: "white"
+  },
+
+  fonts: {
+    body: options.bodyFontFamily.map(typeface => `"${typeface}"`).join(","),
+    header: options.headerFontFamily.map(typeface => `"${typeface}"`).join(",")
+  },
+
+  contentMaxWidth: "960px",
+  headerOverhang: "20px",
 
   pageShadow: `
     position: relative;
