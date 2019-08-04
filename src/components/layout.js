@@ -15,10 +15,11 @@ import ApilsTheme from "../theme/apils-theme";
 import GlobalStyle from "../theme/global-style";
 
 import ApilsLogo from "../images/apilcs_trsp_202x202.png";
+import bgImage from "../images/simple-horizontal-light.png";
 
 const Container = styled.div`
   background: ${props => props.theme.pageBg};
-  background-image: url("https://www.transparenttextures.com/patterns/simple-horizontal-light.png");
+  background-image: url(${bgImage});
   display: flex;
   flex-direction: column;
   margin: 0 auto;
