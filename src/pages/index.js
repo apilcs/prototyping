@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
-import styled from "styled-components";
 import Parser from "html-react-parser";
 
 import Layout from "../components/layout";
@@ -15,14 +14,10 @@ export const query = graphql`
   }
 `;
 
-const Padded = styled.div`
-  padding: 20px 10px;
-`;
-
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
-    <Padded>{Parser(data.markdownRemark.html)}</Padded>
+    {Parser(data.markdownRemark.html)}
   </Layout>
 );
 
