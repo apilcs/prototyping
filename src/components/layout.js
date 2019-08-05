@@ -24,8 +24,8 @@ const Container = styled.div`
 
   main {
     ${props => props.theme.pageShadow}
-    background-image: url(${bgImage});
     background: ${props => props.theme.colors.pageBg};
+    background-image: url(${bgImage});
     border-radius: 0 0 8px 0;
     flex-grow: 1;
     margin: ${props => `-${props.theme.contentOverhang}`} auto 0;
