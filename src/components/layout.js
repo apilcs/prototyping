@@ -52,6 +52,7 @@ const Branding = styled.div`
   display: flex;
   flex-direction: row-reverse;
   margin-bottom: 10px;
+  align-items: flex-end;
 
   > div {
     flex-grow: 1;
@@ -68,7 +69,7 @@ const Branding = styled.div`
   }
 
   img {
-    height: 120px;
+    height: 100px;
     margin: 5px 20px 5px 0;
   }
 `;
