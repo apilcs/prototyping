@@ -55,6 +55,15 @@ module.exports = {
       options: {
         pathToConfigModule: `src/theme/typography`
       }
+    },
+    {
+      resolve: `gatsby-plugin-intl`,
+      options: {
+        path: `${__dirname}/src/i18n`,
+        languages: [`en`, `zh`],
+        defaultLanguage: `en`,
+        redirect: false
+      }
     }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
