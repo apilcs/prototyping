@@ -4,6 +4,33 @@
   "description": "Front-end Site for the Asia-Pacific Island and Littoral Studies Journal",
   "version": "0.1.0",
   "author": "Simon Wiles <simonjwiles@gmail.com>",
+  "keywords": ["apils"],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "deploy:gh-pages": "gh-pages -d public -b master -r https://github.com/apilcs/apilcs.github.io",
+    "develop": "gatsby develop",
+    "format": "prettier --write *.js src/**/*.js",
+    "lint": "node_modules/.bin/eslint *.js src/**/*.js --quiet",
+    "serve": "gatsby serve",
+    "start": "npm run develop",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json}": ["prettier --write", "git add"]
+  },
+  "repository": {
+    "type": "git",
+    "url": "tbd"
+  },
+  "bugs": {
+    "url": "tbd"
+  },
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.6",
     "gatsby": "^2.13.45",
@@ -39,24 +66,8 @@
     "eslint-plugin-react": "^7.14.3",
     "gatsby-plugin-eslint": "^2.0.5",
     "gh-pages": "2.0",
+    "husky": "^3.0.2",
+    "lint-staged": "^9.2.1",
     "prettier": "^1.18.2"
-  },
-  "keywords": ["apils"],
-  "license": "MIT",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write src/**/*.{js,jsx}",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
-    "deploy:gh-pages": "gh-pages -d public -b master -r https://github.com/apilcs/apilcs.github.io"
-  },
-  "repository": {
-    "type": "git",
-    "url": "tbd"
-  },
-  "bugs": {
-    "url": "tbd"
   }
 }
