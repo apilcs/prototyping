@@ -1,9 +1,4 @@
 module.exports = {
-  siteMetadata: {
-    title: `Asia-Pacific Island and Littoral Studies`,
-    description: `“Asia-Pacific Island and Littoral Studies” (APILS) is an open-access online journal, which aims to promote knowledge on the islands and litorals of the Asia-Pacific regions in all areas that relate to the Humanities and Social Sciences.`,
-    author: `@simonwiles`
-  },
   plugins: [
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,

@@ -1,15 +1,9 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
-import { Link, useStaticQuery, graphql } from "gatsby";
 import styled, { ThemeProvider } from "styled-components";
+import { injectIntl, Link } from "gatsby-plugin-intl";
+import { intlShape } from "react-intl";
 
 import ApilsTheme from "../theme/apils-theme";
 import GlobalStyle from "../theme/global-style";
@@ -120,17 +114,7 @@ const Footer = styled.footer`
   }
 `;
 
-const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
-
+const Layout = ({ children, intl }) => {
   return (
     <>
       <Helmet>
@@ -145,9 +129,9 @@ const Layout = ({ children }) => {
                 <Branding>
                   <div>
                     <h1>
-                      <Link to="/">{data.site.siteMetadata.title}</Link>
+                      <Link to="/">{intl.formatMessage({ id: "title" })}</Link>
                     </h1>
-                    <h2>亞太島嶼與沿海研究期刊</h2>
+                    <h2>{intl.formatMessage({ id: "subtitle" })}</h2>
                   </div>
                   <img src={ApilsLogo} alt="APILS Logo" />
                 </Branding>
@@ -184,7 +168,8 @@ const Layout = ({ children }) => {
 };
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  intl: intlShape.isRequired
 };
 
-export default Layout;
+export default injectIntl(Layout);
