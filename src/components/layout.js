@@ -8,6 +8,8 @@ import { intlShape } from "react-intl";
 import ApilsTheme from "../theme/apils-theme";
 import GlobalStyle from "../theme/global-style";
 
+import LanguageSwitcher from "./language-switcher";
+
 import ApilsLogo from "../images/apilcs_trsp_202x202.png";
 import bgImage from "../images/simple-horizontal-light.png";
 
@@ -39,6 +41,7 @@ const Header = styled.header`
     flex-grow: 1;
     margin: 0 auto;
     max-width: ${props => props.theme.contentMaxWidth};
+    position: relative;
   }
 `;
 
@@ -154,6 +157,7 @@ const Layout = ({ children, intl }) => {
                     </li>
                   </ul>
                 </Naivgation>
+                <LanguageSwitcher />
               </div>
             </Header>
             <main>{children}</main>
