@@ -5327,10 +5327,10 @@ gatsby-plugin-eslint@^2.0.5:
   resolved "https://registry.yarnpkg.com/gatsby-plugin-eslint/-/gatsby-plugin-eslint-2.0.5.tgz#be02f5aff9b7f4a37927f3f917e82ad9f3d67f09"
   integrity sha512-7dgcNtFOGgPLseDA55DDjqqnSW+2Pe91erL6nFjLFs/vlFlT9+GbR/4zkQH9WjWOHSfCtgrUzi59cxM1rBm4kw==
 
-gatsby-plugin-intl@^0.2.7:
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-intl/-/gatsby-plugin-intl-0.2.7.tgz#69e49cd09c3ed29f2d78b1e2c0d7ea6e197cf154"
-  integrity sha512-vbX6bM58gAidX+bDk1EczfQdrHgqEEhGrDDOymR+943HSZWKpnzAZwOaZAsFt2UjI2zvVYDdkzC5MmQDPlmabA==
+gatsby-plugin-intl@^0.2.7-beta.0:
+  version "0.2.7-beta.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-intl/-/gatsby-plugin-intl-0.2.7-beta.0.tgz#9398d4d42b0ea94bcbfdf6b7cccacc7cfe68d27a"
+  integrity sha512-EJgY5gTuH2PJtmfqVVfQAdiKkcThovUjMAT5sGOovWaHrPlgizAf6yGCV4eOfde4+ViO6PqnYK2cs6ix2VQfRw==
   dependencies:
     "@babel/runtime" "^7.4.5"
     browser-lang "^0.1.0"
