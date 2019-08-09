@@ -141,18 +141,23 @@ const Layout = ({ children, intl }) => {
                 <Naivgation>
                   <ul>
                     <li>
+                      <Link to="/" activeClassName="active">
+                        {intl.formatMessage({ id: "nav.home" })}
+                      </Link>
+                    </li>
+                    <li>
                       <Link to="/about/" activeClassName="active">
-                        About
+                        {intl.formatMessage({ id: "nav.about" })}
                       </Link>
                     </li>
                     <li>
                       <Link to="/volumes/" activeClassName="active">
-                        Volumes
+                        {intl.formatMessage({ id: "nav.volumes" })}
                       </Link>
                     </li>
                     <li>
                       <Link to="/submissions/" activeClassName="active">
-                        Submissions
+                        {intl.formatMessage({ id: "nav.submissions" })}
                       </Link>
                     </li>
                   </ul>
