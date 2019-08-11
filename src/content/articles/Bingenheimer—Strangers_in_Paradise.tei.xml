@@ -1,0 +1,1026 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <!-- The below took me about 1.5 hours (from OxGarage output to usable TEI that could be the basis for a simple HTML). There is much more that could (must?) be done. On the markup side especially:
+        Marking all names and referencing them to, say, wikidata.
+        Linking the references in text and notes to their respective items in the bibl.
+        If all places are identified in wikidata, GeoNames or another palcename gazetteer, it should be possible to produce maps on the fly from there. See the beginning of <listPlace> in the <back>-->
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Strangers in Paradise – Foreigners on Mount Putuo in the Late Qing</title>
+        <author>Marcus Bingenheimer</author>
+      </titleStmt>
+      <editionStmt>
+        <edition>Asia-Pacific Island and Littoral Studies Vol. 0 (2019)</edition>
+        <respStmt>
+          <resp>Editor</resp>
+          <persName>Oliver Streiter</persName>
+        </respStmt>
+        <respStmt>
+          <resp>Editor</resp>
+          <persName>Marcus Bingenheimer</persName>
+        </respStmt>
+        <respStmt>
+          <resp>Chief Technology Officer</resp>
+          <persName>Simon Wiles</persName>
+        </respStmt>
+        <respStmt>
+          <resp>Editorial Assistant</resp>
+          <persName>Manwai Toh</persName>
+        </respStmt>
+      </editionStmt>
+      <publicationStmt>
+        <ab>
+          Received:<date>2019-07-31</date>.
+          Finished review: <date>2019-07-31</date>.
+          Published online: <date>2019-??</date>.
+        </ab>
+      </publicationStmt>
+      <sourceDesc>
+        <ab>Submitted by the author via email as ODT file with images.</ab>
+      </sourceDesc>
+    </fileDesc>
+    <xenoData>
+      <!-- BibTex and/or DC  goes here-->
+    </xenoData>
+  </teiHeader>
+  <text>
+    <front>
+      <docTitle>
+        <titlePart>Strangers in Paradise – Foreigners on Mount Putuo in the Late Qing<note xml:id="ftn1" place="foot" n="1">
+            <p>I am grateful to Professor Katsufumi
+              Narita and the Graduate School of International Development at Nagoya
+              University, for hosting me as Visiting Research Fellow in Fall 2015,
+              where much of the research for this paper took place. Thanks are also
+              due to Jinhua Chen, Timothy Barrett and Anne Baycroft, who all provided
+              new and interesting information.</p>
+            <p> In all quotations I have
+              regularized “Ningbo”, “Putuo” and some other names to their pinyin
+              spelling.</p>
+          </note>
+        </titlePart>
+      </docTitle>
+      <docAuthor>Marcus Bingenheimer</docAuthor>
+      <docDate>2019</docDate>
+      <docEdition>
+        <!-- from  /TEI/teiHeader[1]/fileDesc[1]/editionStmt[1]/edition[1]-->
+      </docEdition>
+      <div type="abstract">
+        <p>Mount Putuo is a small island in the Zhoushan archipelago near Ningbo, located
+          some four kilometer east of the main island Zhoushan. For more than a thousand
+          years Chinese Buddhists have considered Mount Putuo to be the abode of the
+          Bodhisattva Guanyin and the island was and is one of the most popular pilgrimage
+          sites in China. Its many visitors have left numerous notes, poems and
+          travelogues that describe the island from the 12th to the 18th century. These
+          texts are collected in a series of so-called temple or mountain gazetteers (<hi rend="italic">sizhi</hi> 寺志/ <hi rend="italic">shanzhi</hi> 山志). For the
+          last decades of the Qing Dynasty (1644-1911), however, there is a lack of
+          Chinese accounts. Not quite coincidentally, as this article will argue, it is
+          around this time that foreigners start to visit Mount Putuo. The island is
+          mentioned in numerous accounts by European and American travelers such as C.
+          Gützlaff, W. Medhurst, R. Fortune, N. Rondot, É. Huc, A. Little, T. Watters, B.
+          Laufer, and C. Kupfer. Those visitors often left descriptions that reveal a
+          wealth of detail about life on the island at a time for which few Chinese
+          records exist. Below we will discuss the reasons behind this constellation of
+          sources and summarize the descriptions by foreign visitors to Mount Putuo in
+          order to complement the record of the Putuo gazetteers.</p>
+      </div>
+      <div type="keywords">
+        <list xml:lang="en">
+          <item>Mount Putuo</item>
+          <item>19th century Missionaries in China</item>
+        </list>
+        <list xml:lang="zh">
+          <item>普陀山</item>
+          <item>19世紀傳教士在中國</item>
+        </list>
+      </div>
+    </front>
+
+    <body>
+      <div type="articleBody">
+        <div type="section">
+
+          <head>Introduction</head>
+          <p>For Chinese Buddhists the island of Mount Putuo 普陀山 near Ningbo 寧波 is the abode
+            of Guanyin 觀音 (Skt. Avalokiteśvara), the Bodhisattva of Compassion. At least
+            since the 10<hi rend="sup">th</hi> century believers went to the island site to
+            pray and perhaps glimpse the Bodhisattva herself, who was thought to dwell in
+            one of the steep grottoes along the picturesque shoreline. Over the centuries
+            the site’s fortunes varied. Patronized by the imperial court during the Song and
+            Yuan the island attracted increasing numbers of pilgrims. This changed during
+            the early and mid Ming when Mount Putuo was closed to pilgrimage travel for
+            almost hundred fifty years as part of various ocean embargoes (<hi rend="italic">haijin </hi>海禁). It was only in the mid 16<hi rend="sup">th</hi> century
+            that the site was reopened in the wake of a general revival of Buddhism in the
+            late Ming especially in the Jiangnan region. In the late Ming and early Qing
+            both imperial court and local gentry supported the temples on the island and
+            there is evidence for a lively pilgrimage scene that encouraged the expansion of
+            monastic and other settlements into the north of the island. The Kangxi (r.
+            1661-1722) and Yongzheng (r. 1722-1735) emperors bestowed gifts on Mount Putuo
+            and the monastic leadership was well connected at court. During the reign of the
+            Qianlong emperor (r. 1735-1796), who favored Tibetan, not Chinese Buddhism,
+            imperial patronage decreased, but Mount Putuo remained a popular pilgrimage
+            site.</p>
+          <p>As we will see below, in the 19<hi rend="sup">th</hi> century pilgrimage to the
+            site again declined when the Opium Wars (1839–1842 and 1856–1860) and the
+            Taiping Civil War (1850–1864) made pilgrimage travel difficult.<note xml:id="ftn2" place="foot" n="2">For the term “civil war” instead of
+              “rebellion” see Meyer-Fong (2013: 11).</note> Mount Putuo was, at least in
+            part, economically reliant on a steady flow of visitors for the upkeep of its
+            infrastructure. The temples also owned land on neighboring islands, especially
+            Zhoushan and Zhujiajian 朱家尖, that was rented out to tenants.<note xml:id="ftn3" place="foot" n="3">Butler (1879: 122).</note> As such they might have been
+            directly affected by the British invasion and occupation of Dinghai (1840-46),
+            the main harbor of Zhoushan. Especially the Taiping civil war, in which by some
+            estimates more people perished than in the first World War, would have impacted
+            leisure travel in the East China Sea.<note xml:id="ftn4" place="foot" n="4">For
+              a more extensive overview of the history of Mount Putuo see Bingenheimer
+              (2016: 16-28).</note> Although neither Zhoushan nor Mount Putuo saw active
+            fighting in the Taiping campaigns, due to the combined pressures of foreign
+            presence on the coast and the civil war in the interior the Qing lost control
+            over the archipelago. As a consequence piracy impacted both merchant and
+            pilgrimage travel around Zhoushan.<note xml:id="ftn5" place="foot" n="5">See
+              Butler (1879: 120) and Martin (1897: 122-123) discussed below.</note> The
+            reports by foreign travelers mention hundreds of monks and dozens of temples,
+            but also often remark on the dilapidated state of the buildings – without,
+            however, associating the difficult times with there own presence there.</p>
+          <p>For most of its history visitors to Mount Putuo set out from Ningbo, entering
+            Hangzhou Bay at Zhenhai and then following the south coast of Zhoushan Island
+            often with a stopover at Dinghai. This route remained largely unchanged even
+            after the introduction of steamships in the 19<hi rend="sup">th</hi> century.
+            For 1907/08 Boerschmann reports: </p>
+          <p>[Mount Putuo] can be reached relatively easily. From Shanghai to Ningbo there are
+            daily crossings, taking about twelve hours, on elegant and conveniently
+            furnished steamships of French, English and also Chinese shipping lines. From
+            the same pier in Ningpo, at which the large steamers arrive, smaller Chinese
+            steamboats leave almost daily for the six to eight hour journey along the Ningbo
+            River [...] via Dinghai the main city on Zhoushan […] with c.30,000 inhabitants,
+            to its terminal at Shenjiamen [Island]. In summer, during pilgrim season, they
+            even stop at Mount Putuo where they anchor near the coast, and one is taken to
+            the island via small rowboats. Otherwise one takes a two to three hour trip on a
+            sailing boat from Shenjiamen to Putuo.</p>
+          <p>In summer the large steamships that ply the Shanghai Ningbo route sometimes make
+            special trips to Mount Putuo that allow their passengers to stay at Mount Putuo
+            for a whole day with enough time to visit the monasteries and take a bath at the
+            marvelous beach on the east side of the island. The passengers are mostly
+            European and thus the island is not unknown, it has been visited quite often,
+            and described at times quite extensively.<note xml:id="ftn6" place="foot" n="6">Boerschmann (1911: 4-5). The Shanghai to Ningbo steamer route was running
+              since the 1870s, without gaining speed. Some 30 years before Boerschmann,
+              Hughes made the very same trip described by him, twelve hours from Shanghai
+              to Ningbo, a one hour layover, and about six hours to Putuo (Hughes 1881:
+              254-255).</note>
+          </p>
+          <p>These “at times quite extensive” descriptions form an important group of sources
+            for our knowledge about this pilgrimage site, especially during the 19<hi rend="sup">th</hi> century. </p>
+        </div>
+        <div type="section">
+
+          <head>Lack of Chinese sources vs. abundance of Western accounts</head>
+          <p>Difficult times often leave their trace in the sources by an absence. The Putuo
+            gazetteer of 1832 was not too well researched, but nevertheless offers some
+            information about Mount Putuo under Qianlong (1735-1796) and Jiaqing
+            (1796-1820). The next Putuo gazetteer was compiled in 1924, but lacks
+            information about the mid 19<hi rend="sup">th</hi> century, because Chinese
+            sources for the mid 19<hi rend="sup">th</hi> century about Putuo were scarce.
+            Consequently, the most recent Putuo gazetteer of 1999, although carefully
+            researched, was not able to reconstruct even the exact succession of abbots of
+            the main temples for the years between 1830 and 1875.<note xml:id="ftn7" place="foot" n="7">Wang Liansheng (1999: 509).</note> Another notable
+            absence is the lack of miracle stories for this period.<note xml:id="ftn8" place="foot" n="8">Wang Liansheng (1999: 37).</note> Still another lacunae
+            are travelogues. For the time before the 20<hi rend="sup">th</hi> century the
+            1999 Putuo gazetteer includes travelogues by the following authors:</p>
+          <table>
+            <row>
+              <cell>Name</cell>
+              <cell>Date of visit</cell>
+            </row>
+            <row>
+              <cell>Xu Jing 徐兢</cell>
+              <cell>
+                <hi rend="bold">1123</hi>-06-28
+              </cell>
+            </row>
+            <row>
+              <cell>Shi Hao 史浩</cell>
+              <cell>between <hi rend="bold">1148</hi>-03-29/04-26</cell>
+            </row>
+            <row>
+              <cell>Liu Geng 劉賡</cell>
+              <cell>
+                <hi rend="bold">1298</hi>, 1299, and 1300
+              </cell>
+            </row>
+            <row>
+              <cell>Wu Lai 吳萊</cell>
+              <cell>
+                <hi rend="bold">1324</hi>-06-30/07-29
+              </cell>
+            </row>
+            <row>
+              <cell>[First Lacunae]</cell>
+            </row>
+            <row>
+              <cell>Hou Jigao 侯繼高</cell>
+              <cell>
+                <hi rend="bold">1588</hi>-03-30
+              </cell>
+            </row>
+            <row>
+              <cell>Tu Long 屠隆</cell>
+              <cell>~1585-<hi rend="bold">1589</hi>
+              </cell>
+            </row>
+            <row>
+              <cell>Yin Yingyuan 尹應元</cell>
+              <cell>
+                <hi rend="bold">1603</hi>-06-23
+              </cell>
+            </row>
+            <row>
+              <cell>Lu Bao 陸寶</cell>
+              <cell>
+                <hi rend="bold">1617</hi>-03-20/27
+              </cell>
+            </row>
+            <row>
+              <cell>Zhu Guozhen 朱國禎</cell>
+              <cell>early June <hi rend="bold">1617</hi>
+              </cell>
+            </row>
+            <row>
+              <cell>Zhang Dai 張岱</cell>
+              <cell>late March, early April <hi rend="bold">1638</hi>
+              </cell>
+            </row>
+            <row>
+              <cell>Shi Shibiao 施世驃</cell>
+              <cell>autumn- winter <hi rend="bold">1701</hi>
+              </cell>
+            </row>
+            <row>
+              <cell>Lao Zhibian 勞之辨</cell>
+              <cell>
+                <hi rend="bold">1713</hi>-03-11/16
+              </cell>
+            </row>
+            <row>
+              <cell>[Second Lacunae]</cell>
+            </row>
+            <row>
+              <cell>Gao Henian 高鶴年</cell>
+              <cell>
+                <hi rend="bold">1898</hi>
+              </cell>
+            </row>
+          </table>
+          <p>While the 250 years that passed between the travel reports of Wu Lai and Hou
+            Jigao are due to the forced closure of the site during the early and mid-Ming,
+            the reasons for the gap between Lao Zhibian and Gao Henian are more difficult to
+            ascertain.</p>
+          <p>One explanation might be simply that there were indeed no new travelogues about
+            Mount Putuo during much of the 18<hi rend="sup">th</hi> and 19<hi rend="sup">th</hi> centuries, although the travelogue genre enjoyed great popularity
+            in that time.<note xml:id="ftn9" place="foot" n="9">Eggert (2004: 177).</note>
+          </p>
+          <p>Another explanation might be that editorial dynamics prevented the inclusion and
+            production of travelogues on Mount Putuo. The editors of the 1832 gazetteer were
+            not much concerned with updating the record of travelogues and have not added
+            much beyond the earlier gazetteer (compiled in 1740). This, however, would
+            explain only the absence of Chinese travelogues for the period until 1832, not
+            for the 19<hi rend="sup">th</hi> century, as the 1924 gazetteer that should have
+            listed these, was compiled with great care. Thus, if we lack Chinese travelogues
+            for the period (in spite of an ever increasing output of travelogues overall),
+            it is probably because fewer literati were interested in Mount Putuo and/or able
+            to travel there.</p>
+          <p>The dearth of Chinese travelogues for 19<hi rend="sup">th</hi> century Mount
+            Putuocoincides, however, with a large number of reports by European and American
+            travelers, missionaries, scholars, and adventurers, who described their sojourns
+            to the sacred site. Among the most prominent were:<note xml:id="ftn10" place="foot" n="10">See the bibliography for their published works. There
+              are a number of other, shorter accounts of voyages that were published in
+              the newspapers of the French, German and English communities in China.
+              Gützlaff’s is so far the first published account of a visit, but reports of
+              earlier visits might still turn up in archives and letters.</note>
+          </p>
+          <table>
+            <row>
+              <cell>Name</cell>
+              <cell>Date of visit</cell>
+            </row>
+            <row>
+              <cell>Karl F. A. Gützlaff</cell>
+              <cell>
+                <hi rend="bold">1833</hi>-02-04
+              </cell>
+            </row>
+            <row>
+              <cell>Walter Medhurst</cell>
+              <cell>
+                <hi rend="bold">1835</hi>-10-19
+              </cell>
+            </row>
+            <row>
+              <cell>Robert Fortune </cell>
+              <cell>
+                <hi rend="bold">1844</hi>-07
+              </cell>
+            </row>
+            <row>
+              <cell>Natalis Rondot</cell>
+              <cell>
+                <hi rend="bold">1845</hi>-10-7/8
+              </cell>
+            </row>
+            <row>
+              <cell>Évariste R. Huc</cell>
+              <cell> between <hi rend="bold">1840</hi>-53</cell>
+            </row>
+            <row>
+              <cell>John Nevius</cell>
+              <cell> summers of <hi rend="bold">1854</hi>, <hi rend="bold">1855</hi>+<hi rend="bold">1856</hi>
+              </cell>
+            </row>
+            <row>
+              <cell>Helen Nevius</cell>
+              <cell> summers of <hi rend="bold">1855</hi>+<hi rend="bold">1856</hi>
+              </cell>
+            </row>
+            <row>
+              <cell>William A.P. Martin</cell>
+              <cell>
+                <hi rend="bold">1855</hi>
+                <hi rend="bold">
+                  <note xml:id="ftn11" place="foot" n="11">Martin visited at other times as
+                    well. He arrived in Ningbo in 1850 <hi rend="italic">The Chinese
+                      Repository</hi> Vol. 20 1851: 518, and lived there for six years
+                    Martin 1897: 63. The year 1855 is mentioned in Martin 1897:
+                    121.</note>
+                </hi>
+              </cell>
+            </row>
+            <row>
+              <cell>Michael S. Culbertson </cell>
+              <cell>between <hi rend="bold">184</hi>
+                <hi rend="bold">8</hi>
+                <hi rend="bold">-5</hi>
+                <hi rend="bold">6</hi>
+                <note xml:id="ftn12" place="foot" n="12">Culbertson arrived in China 1844 and resided in Ningbo until 1851,
+                  when he moved to Shanghai <hi rend="italic">Chinese Repository</hi> Vol. 20
+                  1851: 516-17. The figure he gives for the number of monks on the island
+                  c. 300 is considerably lower than that cited by Rondot for 1847 c. 2000,
+                  he thus must have visited some time after Rondot.</note>
+              </cell>
+            </row>
+            <row>
+              <cell>John Edkins </cell>
+              <cell>between <hi rend="bold">1848-1857</hi>
+              </cell>
+            </row>
+            <row>
+              <cell>Ferdinand von Richthofen </cell>
+              <cell>
+                <hi rend="bold">1868</hi>-11-25/26
+              </cell>
+            </row>
+            <row>
+              <cell>John Thomson </cell>
+              <cell>
+                <hi rend="bold">1870 </hi>or <hi rend="bold">1871</hi>
+              </cell>
+            </row>
+            <row>
+              <cell>Jules Arène </cell>
+              <cell>10 days in <hi rend="bold">1872</hi>-07 </cell>
+            </row>
+            <row>
+              <cell>Archibald Little </cell>
+              <cell>
+                <hi rend="bold">1875</hi>-09-27/28
+              </cell>
+            </row>
+            <row>
+              <cell>Julia Hughes summer </cell>
+              <cell>
+                <hi rend="bold">1879</hi>
+              </cell>
+            </row>
+            <row>
+              <cell>Hampten C. DuBose </cell>
+              <cell>between<hi rend="bold"> 1875-1886</hi>
+                <hi rend="bold">
+                  <note xml:id="ftn13" place="foot" n="13">DuBose 1886: 275 mentions the
+                    steamer line that started service in c.1875, his visit must have taken
+                    place after that date.</note>
+                </hi>
+              </cell>
+            </row>
+            <row>
+              <cell>Bernhard Laufer </cell>
+              <cell>
+                <hi rend="bold">1901</hi>
+              </cell>
+            </row>
+          </table>
+          <p>The people on this list, which could be extended well into the 20<hi rend="sup">th</hi> century, visited Putuo mainly because of its scenic qualities and
+            its bathing beaches. As several sources (Nevius, Arène, Edkins) attest, already
+            in the mid-19<hi rend="sup">th</hi> century the island had become a popular
+            bathing resort for the foreign community in Shanghai and Zhejiang. This fame
+            lasted into the early decades of the 20<hi rend="sup">th</hi> century when the
+            third edition of Crow’s <hi rend="italic">Traveller’s Handbook to China</hi>
+            says of Mount Putuo: “Among foreigners living in Shanghai it is known as the
+            nearest bathing beach, to Chinese Buddhists it is the most sacred place in East
+            China.”<note xml:id="ftn14" place="foot" n="14">Crow (1921:
+              128-129).</note>
+          </p>
+          <p>Mount Putuo owed its prominence among foreigners in large part to its central
+            location along China’s coast. It was accessible for the foreign communities that
+            sprang up along the coast in the 19<hi rend="sup">th</hi> century, especially
+            from the treaty ports of Shanghai and Ningbo. Travel into the interior of China
+            was difficult for both missionaries and traders during the 19<hi rend="sup">th</hi> century, because of legal restrictions, rebellions and civil war.
+            Ocean travel along the coast, on the other hand, was comparatively easy. Among
+            expatriates in late 19<hi rend="sup">th</hi> and early 20<hi rend="sup">th</hi>
+            century China, Mount Putuo was among the best known Buddhist sites. Not
+            coincidentally therefore, Mount Putuo was discussed in great detail in two early
+            20<hi rend="sup">th</hi> century publications that introduced the site to a
+            foreign readership.<note xml:id="ftn15" place="foot" n="15">Boerschmann (1911)
+              is a dedicated study of the island and its architecture, while Johnston
+              (1913: 259-312) has devoted a long chapter.</note>
+          </p>
+        </div>
+        <div type="section">
+
+          <head>Foreigners on Mount Putuo</head>
+          <p>It was not love on first sight, however. The first two visitors, Gützlaff and
+            Medhurst, who left a description of Mount Putuo were Protestant missionaries.
+            While acknowledging the picturesque landscape, they felt entitled to express
+            their disgust about the religious character of the island.<note xml:id="ftn16" place="foot" n="16">In the same vain, though somewhat less rabid, Culbertson
+              (1857), who when observing a Buddhist ritual was reminded of “the mummeries
+              practiced in the Roman Catholic Church” (<hi rend="italic">ibid</hi>. 101).
+              For an apologetic comment about this generation of missionaries by a later
+              colleague see Johnston (1913: 261f).</note> Gützlaff does not mince his
+            words: </p>
+          <p>A temple built on a projecting rock, beneath which the foaming sea dashed, gave
+            us some idea of the genius of its inhabitants, in thus selecting the most
+            attractive spot to celebrate the orgies of idolatry. … Though we were in a dark
+            hall, standing before the largest image of Budha [sic], there was nothing
+            impressive; even our English sailors were disgusted with the scene. … No females
+            are allowed to live on the island, nor are there any laymen suffered to reside
+            here, unless they be in the service of the priests. To maintain this numerous
+            train of idlers, lands on the opposite island have been allotted for their use,
+            which they farm out; but as this is still inadequate, they go upon begging
+            expeditions not only into surrounding provinces, but even as far as Siam.<note xml:id="ftn17" place="foot" n="17">Gutzlaff (1834: 438, 442-443).</note>
+          </p>
+          <p>Medhurst too was disgusted with the Buddhist presence on the island:</p>
+          <p>All the aids that could be collected from nature and art, were there
+            concentrated, to render the scene lovely and enchanting. But to the eye of the
+            Christian philanthropist, it presented on melancholy picture of moral and
+            spiritual death. Viewed by the light of revelation, and in the prospect of
+            eternity, the whole island of Putuo, with its picturesque scenery, its hundreds
+            temples, and its six thousand priests, exhibited to the mind nothing but a
+            useless waste of property, a gross misemployment of time, and a pernicious
+            fostering of error, tending to corrupt the surrounding population, and to draw
+            off their minds from the worship of the true God, the adoration of the phantom
+            Buddha... On all sides, we were gratified by perceiving marks of decay, in the
+            temples and adjacent buildings; and earnestly hope, that future travellers will
+            find these worse than useless structures level with the ground; and the lazy
+            drones who inhabit them, scattered abroad, or employed in promoting the welfare
+            and intelligence of their fellow countrymen.<note xml:id="ftn18" place="foot" n="18">Medhurst (1838: 483, 486).</note>
+          </p>
+          <p>Thus the first descriptions of Mount Putuo by Europeans are filled with the
+            gentle spirit of Christian mission in the Far East. The reason why Gützlaff and
+            Medhurst visited at all was in order to “distribute good books for their [the
+            monks’] instruction and benefit” (Medhurst 1838: 487). Ambling across the
+            island’s “lovely and enchanting” landscape the missionaries were the vanguard of
+            colonial expansion that materialized a few years later when, in July 1840, the
+            British invaded and occupied Zhoushan. Gützlaff, by then in British employ,
+            served for a while as the civil magistrate on Zhoushan during the occupation of
+            the island, only a few years after his first visit there as a missionary.<note xml:id="ftn19" place="foot" n="19">Lutz (2008: 103). For a detailed first
+              hand account of the (second) capture of Dinghai in 1841 see (Bernhard &amp;
+              Hall 1846: 238-251).</note>
+          </p>
+          <p>In spite of their colonialist attitude, our twisted sources yield useful
+            information. That women, for instance, were forbidden to spend the night on
+            Mount Putuo has often been repeated in Western sources about Putuo, but does not
+            appear in gazetteers of the period. It was independently observed by Fortune in
+            1844 (Fortune 1847: 184), Little in 1875 (Little 1910: 178), and DuBose in
+            c.1880 (DuBose 1886: 277), thus the policy must have been in place for some
+            decades. The <hi rend="italic">Imperial Gazetteer </hi>of 1855, an encyclopedia
+            of the world’s geography as owned and desired by the British Empire, has an
+            entry on Mount Putuo that draws on the accounts of Gützlaff and Medhurst. It
+            says: </p>
+          <p>It [Mt. Putuo] is almost literally covered with monasteries, pavilions, temples,
+            and other buildings appropriated to religious uses; besides grottoes, and other
+            monuments of superstition, in which at least 2000 idle priests chant the praises
+            of their idols, and live in ignorance, idolatry, vice, and dirt. No females are
+            allowed to reside on Putuo, nor any besides priests, unless in their
+            employ.<note xml:id="ftn20" place="foot" n="20">Blackie (1855: sub voc.
+              “Puto”). Rondot(1847: 182) too writes that beside the nearly 2000 monks only
+              200 lay people were allowed to live on the island. This seems in great
+              contrast certainly to the Republican period and today, but also to previous
+              periods. The gazetteers do not mention or at least not extensively discuss
+              that the island was reserved for monks.</note>
+          </p>
+          <p>Not all early travelers to Mount Putuo were Christian supremacists and the
+            reports by the Scottish botanist R. Fortune and the economist N. Rondot, who was
+            part of a French expedition, were less harsh in their judgment of religion on
+            the island. Both provide a wealth of detail about the site including its
+            religious practices. Rondot, for example, included what is perhaps the first
+            extensive retelling of the Miaoshan legend in a Western language (Rondot 1847:
+            164-171) as well as descriptions of monastic garb and ritual (<hi rend="italic">ibid.</hi>: 161-162).</p>
+          <p>Fortune was informed, </p>
+          <p>that the resident priests were fond of collecting plants, particularly
+            Orchidacese, and that their collections were much increased by the itinerant
+            habits of the begging priests, who visit the most distant provinces of the
+            empire, as well as by the donations of the lay devotees, who come to Putuo at
+            stated seasons of the year, to worship and leave their offerings in the
+            temples.<note xml:id="ftn21" place="foot" n="21">Fortune (1847:
+              181).</note>
+          </p>
+          <p>The Catholic priest Évariste Huc, a member of the Vincentian order, was much
+            milder in his assessment of Buddhism on Mount Putuo. Huc had, compared to the
+            Ningbo missionaries, traveled far and wide in China, Tibet and Mongolia. He too
+            considered Chinese Buddhism in decline, especially when he compared it to
+            Tibetan Buddhism that he had encountered in Tibet and Mongolia. Nevertheless, as
+            his account of Mount Putuo shows, he sought contact with monks and appreciated
+            their politeness.<note xml:id="ftn22" place="foot" n="22">Huc (1862[1854]:
+              Vol.2, p. 232-236). On É. Huc see Simon Leys’ essay “Les tribulations d'un
+              Gascon en Chine” (Leys 1999: 596-629).</note>
+          </p>
+          <p>After the Opium War resulted in the establishment of the first treaty ports, a
+            growing number of missionaries descended on Ningbo. Until 1851, 15 Protestant
+            missionaries of different denominations had settled in Ningbo, many bringing
+            their families with them.<note xml:id="ftn23" place="foot" n="23">The Chinese
+              RepositoryVol. 20 (1851): 530.</note> Among then were John L. and Helen S.
+            C. Nevius, American Presbyterian missionaries that stayed in China for almost 40
+            years (1854-1893). Their first years were spend in Ningbo, from where they
+            visited Mount Putuo. John Nevius spend his first summer there in company of a
+            friend 1854. An excerpt from his diary:</p>
+          <p>Island of Putuo, Zhoushan Archipelago, sixty miles from Ningbo, August 16, 1854:
+            Last week Mr. Cobbold, of the Church Missionary Society, having determined to
+            take a trip to Putuo. on account of his health, kindly invited me to accompany
+            him. As I have been closely confined to my work and needed a little change, I
+            accepted his invitation, and soon found myself very much in the spirit of going.
+            . . . We started with the tide at 7 p.m., and arrived at the mouth of the river
+            about ten and anchored for the night. As the tide was just changing, Mr. Cobbold
+            and I enjoyed a fine swim before going to bed. Yesterday at ten in the forenoon
+            we reached the island of Zhoushan. . . . This morning, after all sorts of
+            detentions from wind and tide and incompetent boatmen, we arrived at Putuo and
+            anchored some distance from shore. There was, fortunately, a small boat close
+            by, which took us off. We started at once for a walk up the hill behind the
+            nearest temple, and on to the northern side of the island, enjoying many
+            beautiful views from the summits of the hill. We visited the immense boulder
+            which rests on a very slight foundation, scarcely bigger than a thimble.<note xml:id="ftn24" place="foot" n="24">Probably the <placeName>Pantuo Stone 盤陀石</placeName>, a famous site on
+              the island. But perhaps the boulder seen in the background of the sketch
+              drawn by Helen Nevius on the first photo of Putuo by John Thomson,
+              below.</note> Several of the priests from an adjoining monastery following
+            us, Mr. Cobbold had an opportunity of speaking to them of the folly of idolatry.
+            They assented to all he said, but no doubt it seemed foolishness to them. The
+            sun broke through the mist and we hastened back. I took shelter in a monastery,
+            and Mr. Cobbold went to our boat He soon returned, bringing some food for our
+            lunch, and also books and writing-materials. Having no bed or lounge, I was glad
+            to lie down upon two tables furnished me by a priest, to get a little rest.
+            After occupying them an hour or so, I left them to write, and I presume Mr.
+            Cobbold has now appropriated them.</p>
+          <p>Thursday: After breakfast this morning we followed the beach to the right until
+            we passed the first monastery, and from there on to another near a very deep
+            cave. . . . From there we went to ‘Tunbridge Wells,’ where there is another
+            natural cave, and rocks piled up in a very fantastic manner. We found in the
+            adjoining monastery a man from Shanghai who has taken temporary vows upon
+            himself. He was very talkative, and somewhat intelligent. There was also a
+            good-natured old priest, who had nothing to say, but assented to everything that
+            was said to him. And there was another, a stupefied, besotted fellow, who sat in
+            a little nook conning an old book, looking up and grinning at us occasionally. I
+            procured a string of beads — a rosary — from the talkative Shanghai man, and the
+            good-humored priest presented me with another. . . . When we reached the top of
+            Veh-ting-san [<placeName>Fodingshan 佛頂山</placeName>] we found ourselves in the clouds,
+            which were driving over the top, and the air was very cold. As we were thinly
+            dad, and warm with climbing, we quickly started back. We got to our boat at
+            seven o'clock, and the boatman at once shoved off and we started for Zhoushan,
+            which place we reached about midnight ... I have been out of sorts ever since
+            leaving home; still I have enjoyed the trip and hope to visit Putuo again.<note xml:id="ftn25" place="foot" n="25">Nevius (1895: 133-134). Omissions and
+              abridgments in the original.</note>
+          </p>
+          <p>His wish was fulfilled when in the following two summers he visited Putuo again,
+            this time with Helen, his newly betrothed wife. To Helen we owe the first
+            account of Mount Putuo by a woman:</p>
+          <p>Putuo is devoted exclusively to the Buddhists; having four large temples with
+            monasteries attached, and not far from a hundred smaller ones. The number of
+            priests is variously estimated from seven or eight hundred, to several
+            thousands. I believe it is more than eight hundred years since this island was
+            first devoted to religious purposes; and some of the buildings were constructed
+            at that time. Others again are of much more recent date, but all, even the
+            newest, have a dilapidated, faded appearance, which indicates a great falling
+            off in resources, as well as in the devotion of the people generally to the
+            Buddhist religion.... Adjoining this is a lotus pond, which, though not what it
+            once was, is still very pretty. It is crossed by an arched stone bridge. There
+            are numerous other buildings, — some used as temples for the idols, and some as
+            sleeping places for the lazy, stupid priests, who doze away their lives in this
+            pretty retreat. Had they a spark of energy or ambition, they would make some
+            effort to rescue these buildings from the decay and ruin in which we now find
+            them.... Our rooms were not in the Sien-z [前寺], but at the Heo-z [後寺],<note xml:id="ftn26" place="foot" n="26">The Qian si 前寺is the <placeName>Puji Temple 普濟寺</placeName>. The Hou si 後寺 (“Back
+              Temple”) is the <placeName>Fayu Temple 法雨寺</placeName>.</note> about a mile further
+            on. ... On three sides of our large room were windows, looking towards the sea,
+            the Sien-z, and the Heo-z, of the latter of which our building formed part. ....
+            One reason for our coming to the Heo-z, rather than either of the other temples
+            nearer the landing, was its proximity to a sandy beach which was a capital
+            bathing-place.<note xml:id="ftn27" place="foot" n="27">This is the beach
+              today called <placeName>Qianbusha 千步沙</placeName>.</note> Some years before
+            this, an English chaplain had lost his life while bathing on this beach; having
+            ventured, I suppose, to an unsafe distance. Thus on our guard against possible
+            danger, we had many refreshing baths. As several other families from Ningbo were
+            also at Putuo, we planned some delightful picnics and rambles in company to
+            various points of interest. During the summer, years ago, it was very customary
+            for foreigners from Ningbo and Shanghai to visit this island; but of late such
+            visits seem nearly discontinued. Since the opening of Japan, and of other parts
+            of China, by the recent treaties, foreigners, in choosing summer resorts, have
+            generally given the preference to places situated in more northern latitudes, or
+            more accessible.<note xml:id="ftn28" place="foot" n="28">Nevius (1869: 45-48).
+            </note>
+          </p>
+          <p>The <hi rend="italic">Sien-z</hi> (=<hi rend="italic">Qiansi</hi>)<hi rend="italic"> </hi> or “Front Temple,” today the <placeName>Puji Temple 普濟寺</placeName>, was the older of the two main
+            temples of Mount Putuo. Helen’s memoirs <hi rend="italic">Our Life in China
+            </hi>includes a sketch she must have drawn at one of her visits 1855-56:</p>
+          <p>
+            <figure>
+              <graphic url="Pictures/100000000000022E0000034FC41D6CA328075E7D.png" />
+            </figure>
+            <figure>
+              <graphic url="Pictures/1000000000000640000004E1F0E3E02C33807B61.jpg" />
+            </figure>
+          </p>
+          <p>[[IMAGE1: Helen Nevius 1869: Page facing p. 46. Public Domain.]]</p>
+          <p>[[IMAGE2: John Thomson 1874: Vol. 3, Plate VII-15. Scanned image from the
+            original plates: CC License (Wellcome Trust)]]</p>
+          <p>A photo of the lake before the Puji Temple was taken from the spot some 15 years
+            later by John Thomson, one of the first photographers who traveled to China, and
+            must have visited Mount Putuo 1870 or 1871. This might be the earliest photo of
+            Mount Putuo.<note xml:id="ftn29" place="foot" n="29">A perhaps earlier series of
+              photos of Mount Putuo and Zhoushan were in the collection of Robert Wilson
+              Shufeldt (1822-1895), who was in the archipelago 1866 or 1867. These are now
+              kept at the United States National Anthropological Archives (Inventory Nos:
+              04513300-04537900). Thomson seems only have taken the photo above of Mount
+              Putuo. It should be noted that next to the well-known series of ca. 200
+              photos published in Thomson (1874), which were later republished and
+              included in other publications, there are still more unpublished images. The
+              Wellcome Library owns a collection of Thomson’s original glass plate
+              negatives and has digitized 662 of these and made them available as a
+              digital collection. Another photo of the temple taken from the same spot a
+              few years later is found in the Edward Bang Drew collection in the
+              Harvard-Yenching Library (Identifier: Hv37-29).</note>
+          </p>
+          <p>In the text accompanying the image Thomson speaks of a large community of c. 2000
+            monastics, which he describes unfavorably as “...lusty, lazy monks, the pious
+            paupers who spend their years in drowsily chanting to Buddha, and who, if dirt
+            and sloth will foster the growth of piety, must indeed be accounted hold
+            men.”<note xml:id="ftn30" place="foot" n="30">Thomson 1874: Vol.3, facing
+              Plate VII-15.</note> He also remarks on the economy of the site: “The
+            revenues for the support of these various religious establishments are derived
+            from three sources: the rent of church lands, the contributions of pilgrims and
+            the labours of the mendicant priests.”<note xml:id="ftn31" place="foot" n="31">Ibid.</note>
+          </p>
+          <p>Among those labors was presumably to rent out rooms to foreign guests, foreign
+            women being exempted from the prohibition against women pilgrims staying
+            over-night. An account by Julia Hughes, the wife of an officer in the British
+            Imperial Maritime Customs Service, who visited in summer 1879, describes the
+            very effective catering service arranged in a Buddhist monastery, complete with
+            meat and champagne.<note xml:id="ftn32" place="foot" n="32">Hughes (1881:
+              258-259). To Hughes we also owe an account of how in the 1870s a lady bathed
+              on the beaches of Mount Putuo: “After visiting one or two other temples, we
+              strolled down to a lovely beach, in a secluded corner of which our kind
+              captain had erected a tent for my own special comfort, I being the only lady
+              of the party, and having attired myself in a bathing costume, I indulged in
+              a most refreshing sea-bath. When I was again dressed it was getting late,
+              and having joined the others, who had been bathing in another part of the
+              beach, we all proceeded towards the landing-place.” (<hi rend="italic">ibid</hi>, 262-263).</note>
+          </p>
+          <p>A close friend of the Nevius’ was William Martin who, like them, stayed in China
+            for more than forty years. His memoirs confirm again that the Ningbo
+            missionaries visited Mount Putuo regularly during the hot summers.</p>
+          <p>Beyond Zhoushan, to the east, and parted from it by a narrow channel, lies the
+            sacred isle of Puto. Like lona in early times, and Mount Athos at the present
+            day, it is exclusively an abode of monks, no native woman being allowed to live
+            there on any pretext. This rule, however, is not enforced in the case of
+            foreigners; and, taking our wives and children with us, we sometimes sought
+            refuge there from the heat of Ningbo.… In the daytime we climbed the hills or
+            bathed in the surf, and in the evening inhaled the ocean breeze while we viewed
+            the phosphorescent waves breaking on the shore in long billows of flame.<note xml:id="ftn33" place="foot" n="33">Martin 1897: 119-120.</note>
+          </p>
+          <p>The visits to “the most lovely spot in Far Cathay” (DuBose 1886: 274), however,
+            were not altogether carefree. Apart from the dangers of the surf, the Chinese
+            defeat in the Opium Wars had weakened government control of the Zhoushan
+            archipelago and, as always during such periods of weakness, this allowed the
+            rise of piracy. Between the 1840s and the 1870s the waters around Zhoushan were
+            not entirely safe for travel, as Martin and one of his colleagues, W. A.
+            Russell, found out when they tried to join their families on Mount Putuo. </p>
+          <p>Going on deck, as we approached a narrow channel we saw many lights dancing over
+            the surface of the water, and heard an occasional discharge of small arms. In a
+            solitary place this looked suspicious; and the next moment we perceived through
+            the twilight the outline of seven large Canton junks lying at anchor. We pursued
+            our course, hoping to pass them unobserved, but when we were just abreast of the
+            fleet, a boat was lowered from the side of one of the junks and gave chase. The
+            wind had fallen, and we were soon overtaken. Springing on board, the pirates
+            began beating our sailors to compel them to slacken sail. Turning to us, they
+            said, <hi rend="italic">Pu pa pu pa</hi> (“You have nothing to fear”). Our boat
+            was lashed to the side of a large junk, and the free-booters made free with our
+            fresh provisions — the only booty they found in our possession. The pirates were
+            evidently disappointed. “Who are you,” they asked, “that you have no goods? As
+            you have no opium, you are not merchants; and as you have no firearms, you are
+            not soldiers; who and what are you?” “We are missionaries,” we quietly replied.
+            “Missionaries!” exclaimed a handsome young man, whom we recognized as the leader
+            of the prize crew. “You preach about Jesus — you are good men; we will not hurt
+            you.” He then told us that he had been in a mission chapel at Whampo, near
+            Canton, and there heard missionaries preach the gospel. Becoming communicative,
+            he added that he and his party, thrown out of business by the outbreak of
+            rebellion [i.e. the Taiping], had been forced to take to the sea. “It was a bad
+            business,” he knew, “but there was no help for it.” In searching our persons for
+            money, of which they found very little, they had stripped off my coat and taken
+            away Russell's shoes and watch. My own watch, or rather my wife's, I had taken
+            off and left at home, not wishing to risk the loss of an object which she held
+            precious. Observing me in my shirt-sleeves, the young leader pointed to Russell
+            and asked if we were not “all the same”? “Oh yes,” said I; “but one of your
+            fokees (“pals”) has carried my coat away.” The young man left us and in a moment
+            came back with the coat. The shoes, too, were restored, but not the watch;
+            which, however, was brought to the owner for an explanation of the mode of
+            winding and setting.<note xml:id="ftn34" place="foot" n="34">Martin (1897:
+              122-123).</note>
+          </p>
+          <p>While the Ningbo missionaries enjoyed Mount Putuo for its scenic beauty, other
+            travelers were looking for different assets. An interested visitor was Ferdinand
+            von Richthofen whose descriptions of the island in <hi rend="italic">China -
+              Ergebnisse eigener Reisen und darauf gegründeter Studien </hi>(1877-1912)
+            are mainly geological, with the exception of a comment on the <placeName>Huiji Temple</placeName>: </p>
+          <p>[At the Huiji Temple:] Here lived 23 monks in poverty and simplicity. They were
+            just holding a procession with sombre chanting and incense-burning. Refectory
+            and cells showed how little they desired. The monks were said to own an old
+            library and have a reputation for clerical erudition.<note xml:id="ftn35" place="foot" n="35">Richthofen (1855-1912: Vol.3, p. 656).</note>
+          </p>
+          <p>It is only in his posthumously published diaries that we find a more detailed
+            account of his visit to the island. It contains an interesting remark about how
+            the fortune telling, so common to Chinese temple culture, on Mount Putuo was
+            geared towards fishermen:</p>
+          <p>
+            <hi rend="color(#000000)">From the place where we anchored we came first to a
+              small temple, where the Europeans tend to stay. In the main temple we found
+              some priests, one of their best sources of income is fortune telling. In a
+              box there are some hundred lots. One draws a lot and a priest who sits in a
+              stall, exchanges, for a small fee, the number for a printed piece of paper.
+              We made the experiment and received some commonplace divinations which were
+              mainly concerned with fishing. This is because the place is visited
+              especially by fishermen who pray here and seem to consider the place as some
+              sort of oracle. I was prophesied a lucky catch in a river. An other source
+              of income is the sale of images of the temple deity, a map of the temples
+              and their surroundings, a sort of rosary etc.</hi>
+            <hi rend="color(#000000)">
+              <note xml:id="ftn36" place="foot" n="36">Richthofen (1907: 47). For
+                another account of fortune telling at Mount Putuo see Hughes (1881:
+                262).</note>
+            </hi>
+            <hi rend="color(#000000)"> </hi>
+          </p>
+          <p>The maps mentioned by von Richhofen here (and earlier by Rondot (1847: 161))
+            would have been the kind of simple woodblock prints for the use of pilgrims of
+            which some specimens have survived in libraries and museums.<note xml:id="ftn37" place="foot" n="37">See e.g. the maps in the American Museum of Natural
+              History (ASIA/ 0578, No. 70/11655).</note> Von Richthofen’s survey of
+            China’s geography and geology was done not merely for scientific purposes. His
+            diary notes reveal other motives as well: </p>
+          <p>
+            <hi rend="color(#000000)">As free port in the hands of a power such as Prussia
+              Zhoushan would gain a paramount position. The harbor can be fortified easily
+              and the navy flotilla would control the traffic with northern China and
+              Japan. It would turn into an important center of commerce. Ningbo would
+              wither away and Shanghai be greatly diminished, because property would be
+              much safer here.[...] For the Chinese the islands are but of little value,
+              and a purchase could perhaps be arranged for a not too high price.</hi>
+            <hi rend="color(#000000)">
+              <note xml:id="ftn38" place="foot" n="38">Richthofen
+                (1907: 44).</note>
+            </hi>
+          </p>
+          <p>The practical-minded von Richthofen also included a number of maps of the
+            Zhoushan archipelago including one of Mount Putuo:<note xml:id="ftn39" place="foot" n="39">For Chinese maps and representations of Mount Putuo see
+              Bingenheimer (2016: Ch.2).</note>
+          </p>
+          <p>
+            <figure>
+              <graphic url="Pictures/1000000000000348000002F896B00E60AF071A96.png" />
+            </figure>[[Map1: Richthofen 1877-1912: Vol. 3, p. 655]]
+          </p>
+          <p>
+            <figure>
+              <graphic url="Pictures/10000000000009CB00000C622AFA1D0FF040449A.jpg" />
+            </figure>
+          </p>
+          <p>[[Map 2: Modern Map of Putuo, with places mentioned in the text. Note the
+            artificial land that was created in the western bay of the island in the late
+            20<hi rend="sup">th</hi> century.]]</p>
+        </div>
+        <div type="section">
+
+          <head>Conclusion</head>
+          <p>The travel records of foreigners, whether created with missionary, imperialist or
+            simply touristic intent, contain information about Mount Putuo, at least some of
+            which is not found in the local gazetteers.The gazetteers, of course, suffer
+            from their own – literati – bias and have disregarded many aspects that Western
+            visitors found remarkable. They do not seem to mention, for instance, the
+            prohibition against women residing on the island which is mentioned by almost
+            all foreign witnesses. This prohibition seems to have been in force at least for
+            several decades during the 19<hi rend="sup">th</hi> century, and was probably
+            limited to pilgrims not the resident population of fishing folk. It is hard to
+            imagine, however, that all women pilgrims were confined to one day visits and
+            returned to adjacent Zhoushan by nightfall. This might be one of those
+            prohibitions that were widely announced, but not too rigorously enforced.<note xml:id="ftn40" place="foot" n="40">For more prohibitions concerning women
+              and temples in China see Goossaert (2008).</note> Another facet not usually
+            emphasized by the gazetteers is that fishing communities were an important group
+            of devotees for the religious establishments on Mount Putuo. This is mentioned
+            by the eye-witness reports of their worship by Gutzlaff (1834: 443), Rondot
+            (1847: 158), and von Richthofen (1907: 47). </p>
+          <p>Also not mentioned in the gazetteers as far as I see are the Tibetan inscriptions
+            on the island mentioned by Laufer (1909: 568) and Kupfer (1911: 62). These
+            inscriptions, almost certainly the mantra <hi rend="italic">oṃ maṇi padme
+              huṃ</hi>, have vanished in the 20<hi rend="sup">th</hi> century. That Mount
+            Putuo was also visited by at least some Tibetan and Mongol Buddhists during the
+            Qing is not in itself surprising, considering the strong Tibetan Buddhist
+            presence in the north, in Beijing and at Mount Putuo. Nevertheless past
+            gazetteers and the site today do not reference Tibetan Buddhism in any way –
+            textually, epigraphically, or architecturally.</p>
+          <p>Perhaps the most important information provided by foreign accounts pertains to
+            the number of monks in residence. Disregarding the exaggerated figure of 6000
+            that is cited by Medhurst (1838: 483), most early travelers report c. 2000 monks
+            (Gutzlaff 1834: 443, Fortune 1847: 185, Rondot 1847: 182). Against that
+            estimates from after the Taiping wars, speak of about 1000 monks (Butler 1879:
+            122, DuBose 1886: 277, Boerschman 1911: 12, Johnston 1913: 316).<note xml:id="ftn41" place="foot" n="41">Thomson who stayed only shortly around
+              1870/71, but in his description also mentions 2000 monks, he might have been
+              quoting from older sources. A Chinese traveler visiting in 1913 corroborates
+              the lower figure of “somewhat more than 1000” (Gao 2015: 139).</note> If
+            Culbertson is correct and the number of monks had fallen to 300 in 1857<note xml:id="ftn42" place="foot" n="42">“The number of priests, once perhaps
+              reaching three thousand, now hardly reaches three hundred.” (Culbertson
+              1857: 97).</note> the decline must have happened after Rondot’s visit in
+            1847.</p>
+          <p>Although these numbers are estimates, the discrepancy between the size of the
+            monastic population before and after the Taiping, combined with Culbertson’s
+            observation, indicates a drop in the monastic population in the 1850s. The main
+            reason for the decline was probably the Taiping civil war (1850-1864), which
+            directly or indirectly affected the movement of supplies and people all through
+            central China and the lower Yangzi region. Qing naval forces, already expelled
+            from Zhoushan during the British occupation, would have been ordered inland to
+            fight the Taiping. Pirates – Martin’s “free-booters” – filled the power vacuum
+            in the archipelago after the British left for Hong Kong, which they had
+            exchanged for Zhoushan. The pirates interrupted pilgrimage traffic and thus
+            affected the economy of the island. Consequently, as mentioned above, the
+            gazetteers of Mount Putuo show a lack of information for the 19<hi rend="sup">th</hi> century regarding the succession of abbots, miracle tales, and
+            other matters for the decades around 1850. All this indicates that the Taiping
+            civil war and to a lesser degree the short-lived British occupation of
+            Zhoushan’s main harbor interrupted pilgrimage travel to Mount Putuo in the
+            mid-19th century.</p>
+          <p>The downturn was temporary. Whereas in the 1840s Abbé Huc found “the vast
+            monasteries of Putuo, where once large numbers of monks congregated, now almost
+            entirely abandoned to legions of rats and huge spiders,” visitors in the late
+            1870s saw a rejuvenated pilgrimage site. In a lecture delivered before the
+            Ningpo Book Club on January 29, 1879 John Butler, another Ningbo missionary,
+            gave an account of “Modern Putuo”:</p>
+          <p>Modern Putuo begins with the era of rebuilding, on a large and permanent scale,
+            and this era has commenced within the last ten years. While the fear of pirates
+            hovered around the island, the priests were chary to bring forward their buried
+            wealth and Buddhism appeared as dead. Now that merchant steamers are daily
+            passing back and forth in sight of its shores, and gunboats, native and foreign
+            make frequent visits to its waters, the fears of the priests have been quieted,
+            and there is a simultaneous movement all over the island, to repair the old
+            temples and to build new ones.<note xml:id="ftn43" place="foot" n="43">Butler
+              (1879: 120).</note>
+          </p>
+          <p>Later Butler again remarks on the role of steamships in the development of
+            shipping routes to Putuo:</p>
+          <p>I have been so struck with this appearance of revival and activity that I have
+            enquired of some of the oldest priests on the island, the cause, and all give
+            the same reasons, viz., a sense of security that their buildings will not be
+            burned nor their contents rifled, and this security and immunity from danger, is
+            the result of foreign commerce and civilization, in driving pirates from the
+            seas, and introducing the era of steam into Chinese waters.<note xml:id="ftn44" place="foot" n="44">Ibid.</note>
+          </p>
+          <p>Thus it seems to Butler that Buddhism on Mount Putuo, which appeared to its
+            Western visitors to have fallen on hard times all by itself, was now rescued by
+            the arrival of “foreign commerce and civilization.” A truly amazing conclusion,
+            and in its lack of reflection, contrition, and shame in line with Western
+            attitudes for a century and more to come.</p>
+        </div>
+      </div>
+    </body>
+    <back>
+      <listBibl>
+        <bibl>Arène, Jules. 1875. “Excursion de Deux Baigneurs Européens a l’Ile Sacrée de
+          Poutou.” <hi rend="italic">L’Explorateur</hi> Vol. 20.1 (1875): 467-471.</bibl>
+        <bibl>Bernhard, W.D.; Hall, W.H. 1846. <hi rend="italic">The Nemesis in China -
+            comprising a history of the late war in that country</hi>. London: Henry
+          Colburn. (3rd Edition)</bibl>
+        <bibl>Baycroft, Anne. 2017. “Gendered Readings of Ritual: Exploring Narratives of
+          Chinese Religion through Nineteenth Century Christian Missionary Writings.”
+          Unpublished MA thesis (University of Saskatchewan).</bibl>
+        <bibl>Bingenheimer, Marcus. 2016. <hi rend="italic">Island of Guanyin – Mount Putuo and
+            Its Gazetteers</hi>. New York &amp; London: Oxford University Press.</bibl>
+        <bibl>Blackie, Walker Graham. 1855-56. <hi rend="italic">The Imperial Gazetteer - A
+            General dictionary of Geography, physical, political, statistical and
+            descriptive.</hi> 4 Vols. Glasgow: Blackie and Son.</bibl>
+        <bibl>Boerschmann, Ernst. 1911. <hi rend="italic">P’u T’o Shan – Die Heilige
+            Ins</hi>
+          <hi rend="italic">el der Kuan-Yin der Göttin der
+            Barmherzigkeit.</hi> Berlin: Georg Reimer.
+        </bibl>
+        <bibl>Butler, John. 1879. “Pootoo Ancient and Modern— A Lecture Delivered before the
+          Ningbo Book Club, January, 29, 1879.” <hi rend="italic">Chinese Recorder and
+            Missionary Journal</hi> Vol. 10: 108–124.</bibl>
+        <bibl>Crow, Carl. 1921. <hi rend="italic">The Travelers ’ Handbook for China (Including
+            Hongkong)</hi>. 3rd ed.</bibl>
+        <bibl>New York: Dodd, Mead and Co.</bibl>
+        <bibl>Culbertson, Michael Simpson (1819-1862). 1857. <hi rend="italic">Darkness in the
+            flowery land - Religious Notions and Popular Superstitions in North
+            China</hi>. New York: Scribner.</bibl>
+        <bibl>DuBose, Hampden C. 1886. <hi rend="italic">The Dragon, Image, and Demon: Or, The
+            Three Religions of China</hi>. London: Partridge &amp; Co.</bibl>
+        <bibl>Eggert, Marion. 2004. <hi rend="italic">Vom Sinn des Reisens. Chinesische
+            Reiseschriften vom 16. bis zum frühen 19. Jahrhundert.</hi> Wiesbaden:
+          Harrassowitz.</bibl>
+        <bibl>Gao, Henian 高鶴年. 2015. <hi rend="italic">Wuzinian gaidingben Mingshan youfang ji
+          </hi>戊子年改訂本 名山遊訪記. Hongkong: Xinyitang 心一堂. Edited by Chen Yingning 陳攖寧 and Pu
+          Tuanzi 蒲團子.</bibl>
+        <bibl>Goossaert, Vincent. 2008. “Irrepressible Female Piety: Late Imperial Bans on
+          Women Visiting Temples.” <hi rend="italic">Nan Nü</hi> 10 (2008), 212-241.</bibl>
+        <bibl>Gutzlaff, Charles [=Gützlaff, Karl F. A.]. 1834. <hi rend="italic">Journal of
+            three voyages along the coast of China, in 1831, 1832, &amp; 1833, with
+            notices of Siam, Corea, and the Loo-Choo islands.</hi> London: Frederick
+          Westley and A.H. Davis. Preface by William Ellis.</bibl>
+        <bibl>Edkins, John (?). 1857. “The Monasteries at Mount Putuo” <hi rend="italic">North-China Herald</hi> March 7th 1857, p.127. (signed J E).</bibl>
+        <bibl>Eggert, Marion. 2004. “Der Reisebericht (youji).” In: Marion Eggert, Wolfgang
+          Kubin, Rolf Trauzettel, Thomas Zimmer. <hi rend="italic">Die klassische
+            chinesische Prosa Essay, Reisebericht, Skizze, Brief - Vom Mittelalter bis
+            zur Neuzeit.</hi> München: K. G. Saur Verlag, pp 117–202. (Geschichte
+          derChinesischen Literatur Vol. 4)</bibl>
+        <bibl>Fortune, Robert. 1847. <hi rend="italic">Three Years’ Wanderings in the Northern
+            Provinces of China, including a Visit to the Tea, Silk and Cotton
+            Countries.</hi> London: John Murray.</bibl>
+        <bibl>Huc, Évariste Régis. 1862 [1854]. <hi rend="italic">L’Empire Chinois.</hi> 2
+          Vols. Paris: Gaume &amp; Duprey.</bibl>
+        <bibl>Hughes, Julia (Mrs. Thomas Francis). 1881. <hi rend="italic">Among the Sons of
+            Han: Notes of a Six Years' Residence in Various Parts of China and Formosa.
+          </hi>London: Tinsley Brothers.</bibl>
+        <bibl>Johnston, Reginald F. 1913 <hi rend="italic">Buddhist China</hi>. London: Murray,
+          1913.</bibl>
+        <bibl>Kupfer, Carl F. 1904. “Pootoo – China’s Sacred Island” <hi rend="italic">The East
+            of Asia Magazine</hi> Vol. 3 (1904): 264-281. </bibl>
+        <bibl>Kupfer, Carl F. 1911. <hi rend="italic">Sacred Places in China</hi>. Cincinnati:
+          The Western Methodist Book Concern.</bibl>
+        <bibl>Laufer, Bernhard. 1909 [1976]. “Die Kanjur Ausgabe des Kaisers K’ang-hsi.” <hi rend="italic">Izvestija Imperatorskoj Akademii nauk</hi> 1909: 567-574.
+          Reprint in: Laufer, Berthold: <hi rend="italic">Kleinere Schriften.</hi>
+          Wiesbaden 1976, Vol.1: 1352-1359.</bibl>
+        <bibl>Leys, Simon. 1999. <hi rend="italic">Essais sur la Chine.</hi> Paris: Robert
+          Laffont. (“Les tribulations d'un Gascon en Chine” was first published in <hi rend="italic">Le forêt en feu</hi>, 1983<hi rend="italic">.</hi>)</bibl>
+        <bibl>Little, Archibald. 1910. <hi rend="italic">Gleanings from fifty years in China.
+          </hi>London: Low, Marston and Co.</bibl>
+        <bibl>Lutz, Jessie Gregory. 2008. <hi rend="italic">Opening China: Karl F. A. Gützlaff
+            and Sino-Western relations, 1827-1852.</hi> Grand Rapids, MI: Eerdmans.</bibl>
+        <bibl>Martin, William Alexander Parsons. 1897. <hi rend="italic">A Cycle of Cathay, or,
+            China, South and North.</hi> New York: Revell.</bibl>
+        <bibl>Medhurst, Walter H. 1938.<hi rend="italic"> China: its state and prospects with
+            especial Reference to the Spread of the Gospel.</hi> London: John Snow.
+          Illustrations by G. Baxter.</bibl>
+        <bibl>Meyer-Fong, Toby. 2013. <hi rend="italic">What Remains-Coming to Terms with Civil
+            War in 19th </hi>
+        </bibl>
+        <bibl>
+          <hi rend="italic">Century China</hi>. Stanford, CA: Stanford University
+          Press.
+        </bibl>
+        <bibl>Nevius, Helen S. C. 1869. <hi rend="italic">Our Life in China.</hi> New York: R.
+          Carter and Brothers.</bibl>
+        <bibl>Nevius, Helen S. C. 1895. <hi rend="italic">The Life of John Livingstone
+            Nevius.</hi> New York: Fleming.</bibl>
+        <bibl>
+          <anchor type="bookmark-start" xml:id="id___DdeLink__3596_3312230221" />Richthofen,
+          Ferdinand von. 1877-1912
+          <ptr type="bookmark-end" target="#id___DdeLink__3596_3312230221" />.
+          <anchor type="bookmark-start" xml:id="id___DdeLink__2475_942533919" />
+          <hi rend="italic">China - Ergebnisse
+            eigener Reisen und darauf gegründeter Studien</hi>
+          <ptr type="bookmark-end" target="#id___DdeLink__2475_942533919" />
+          <hi rend="italic">.</hi> 5 vols.
+          Berlin: D. Reimer.
+        </bibl>
+        <bibl>Richthofen, Ferdinand von. 1907. <hi rend="italic">Tagebücher ans China.</hi> 2
+          Vols. Berlin: D. Reimer.</bibl>
+        <bibl>Rondot, Natalis. 1847. “Excursion à l’île de Pou-tou (province de tché-kiang) 7
+          et 8 Octobre, 1845.” <hi rend="italic">Séances et travaux de l‘Académie de
+            Reims</hi> Tome 5 (Mai 1846 – Aout 1846): 159-195.</bibl>
+        <bibl>Thomson, John. 1874. <hi rend="italic">Illustrations of China and its people. A
+            series of two hundred photographs, with letterpress descriptive of the
+            places and people represented.</hi> Sampson Low: Marston, Low, and Searle. 4
+          Vols.</bibl>
+        <bibl>Wang, Liansheng 王连胜, 1999: Putuoluojiashan zhi 普陀洛迦山誌. Shanghai: Shanghai shudian
+          上海書店.</bibl>
+      </listBibl>
+      <listPlace>
+        <place>
+          <placeName xml:lang="en">Putuo Shan</placeName>
+          <placeName xml:lang="zh">普陀山</placeName>
+          <idno>https://www.geonames.org/1898813/putuo-shan.html</idno>
+        </place>
+        <place>
+          <placeName xml:lang="en">Puji Si</placeName>
+          <placeName xml:lang="zh">普濟寺</placeName>
+          <idno>https://www.geonames.org/1894725/puji-si.html</idno>
+        </place>
+      </listPlace>
+    </back>
+  </text>
+</TEI>
