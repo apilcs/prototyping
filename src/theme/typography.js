@@ -1,7 +1,13 @@
 import Typography from "typography";
 import deYoungTheme from "typography-theme-de-young";
 
-deYoungTheme.headerFontFamily = ["Alegreya Sans", "KaiTi", "楷体", "STKaiti", "华文楷体"];
+deYoungTheme.headerFontFamily = [
+  "Alegreya Sans",
+  "KaiTi",
+  "楷体",
+  "STKaiti",
+  "华文楷体"
+];
 deYoungTheme.bodyFontFamily = [
   "Alegreya",
   "Microsoft YaHei New",

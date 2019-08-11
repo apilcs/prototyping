@@ -5,7 +5,8 @@ import { injectIntl } from "gatsby-plugin-intl";
 import { intlShape } from "react-intl";
 
 function Meta({ description, meta, title, intl }) {
-  const metaDescription = description || intl.formatMessage({ id: "description" });
+  const metaDescription =
+    description || intl.formatMessage({ id: "description" });
 
   return (
     <Helmet

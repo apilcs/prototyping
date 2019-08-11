@@ -46,7 +46,8 @@ const StaticPage = ({ data, intl }) => {
 };
 
 StaticPage.propTypes = {
-  data: PropTypes.shape({ allMarkdownRemark: PropTypes.object.isRequired }).isRequired,
+  data: PropTypes.shape({ allMarkdownRemark: PropTypes.object.isRequired })
+    .isRequired,
   intl: intlShape.isRequired
 };
 
