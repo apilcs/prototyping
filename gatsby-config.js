@@ -31,6 +31,7 @@ module.exports = {
         plugins: [`gatsby-remark-smartypants`]
       }
     },
+    `gatsby-transformer-tei`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
