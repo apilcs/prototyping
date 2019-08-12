@@ -1,75 +1,125 @@
-/* eslint-disable */
-var buffer = require("buffer"),
-  Parser = require("node-expat").Parser;
+const { Parser } = require("node-expat");
 
-function _isEmpty(obj) {
-  for (var key in obj) {
-    if (obj.hasOwnProperty(key)) return false;
+const JsonMlDoc = class {
+  constructor(xmlString) {
+    this.render = {};
+    this.skipTags = [];
+    this.parse(xmlString);
   }
 
-  return true;
-}
+  parse(content) {
+    const nodeStack = [];
+    const encoding = "UTF-8";
+    const parser = new Parser(encoding);
+    const data = Buffer.from(content, encoding);
 
-function _parse(content, encoding, noStripWhiteSpace) {
-  var enc = encoding || "UTF-8",
-    noStrip = noStripWhiteSpace || false,
-    nodeStack = [],
-    root,
-    node,
-    partial = "",
-    parser = new Parser(enc);
+    let node;
+    let partial = "";
 
-  parser.on("startElement", function _startElement(name, attrs) {
-    var newNode = [name];
+    parser.on("startElement", (name, attrs) => {
+      const newNode = [name];
 
-    if (partial) {
-      node.push(partial);
-      partial = "";
-    }
-
-    if (!_isEmpty(attrs)) newNode.push(attrs);
-
-    if (node) {
-      node.push(newNode);
-      nodeStack.push(node);
-    }
-
-    node = newNode;
-  });
-
-  parser.on("endElement", function _endElement(name) {
-    if (partial) {
-      node.push(partial);
-      partial = "";
-    }
-
-    if (nodeStack.length == 0) root = node;
-
-    node = nodeStack.pop();
-  });
-
-  parser.on("text", function _text(text) {
-    var textContent = noStrip ? text : text.replace(/[\r\n\t]*/, "");
-    textContent = noStrip ? textContent : textContent.replace(/\s+$/, "");
-    textContent = noStrip ? textContent : textContent.replace(/^\s+/, "");
-    if (textContent.length > 0) {
       if (partial) {
-        partial += textContent;
-      } else {
-        partial = textContent;
+        node.push(partial);
+        partial = "";
       }
-    }
-  });
 
-  var data = typeof content === "buffer" ? content : new Buffer(content, enc);
-  if (!parser.parse(data, true)) {
-    throw new Error("Could not parse XML: " + parser.getError());
+      if (Object.entries(attrs).length > 0) newNode.push(attrs);
+
+      if (node) {
+        node.push(newNode);
+        nodeStack.push(node);
+      }
+
+      node = newNode;
+    });
+
+    parser.on("endElement", (/* name */) => {
+      if (partial) {
+        node.push(partial);
+        partial = "";
+      }
+
+      if (nodeStack.length === 0) this.doc = node;
+
+      node = nodeStack.pop();
+    });
+
+    parser.on("text", function _text(text) {
+      const textContent = text.replace(/[\r\n\t]*/, "");
+      // textContent = noStrip ? textContent : textContent.replace(/\s+$/, "");
+      // textContent = noStrip ? textContent : textContent.replace(/^\s+/, "");
+      if (textContent.length > 0) {
+        partial += textContent;
+      }
+    });
+
+    if (!parser.parse(data, true)) {
+      throw new Error(`Could not parse XML: ${parser.getError()}`);
+    }
   }
 
-  return root;
-}
+  getFirstTextContent(elemPath) {
+    const elem = this.getElemByPath(elemPath);
+    elem.shift(); // drop the tag
+    // return first element which is a string
+    return elem.find(child => typeof child === "string");
+  }
 
-/**
- * JsonML parser.
- */
-module.exports.parse = _parse;
+  getElemByName(elemName, parent = this.doc, condition = () => true) {
+    return parent.reduce((accumulator, elem) => {
+      if (accumulator) return accumulator;
+      if (Array.isArray(elem)) {
+        // console.log(`iterating: ${elem[0]}, looking for ${elemName}`);
+        if (elem[0] === elemName && condition(elem)) return elem;
+        return this.getElemByName(elemName, elem, condition);
+      }
+      return false;
+    }, null);
+  }
+
+  getElemByPath(elemPath) {
+    // elemPath is an xPath-like expression, currently limited to descendant
+    // selectors (i.e. tag/tag/tag) and attribute equality (tag[@attr='val'])
+    // Missing (not necessarily todo...):
+    //  * distinguish prefixes (/, //, ./ -- root, anywhere, relative)
+    //  * more-or-less everything else
+    let currentElem = this.doc;
+    elemPath.split("/").forEach(expr => {
+      if (!expr) return;
+      const {
+        groups: { path, attr, val }
+      } = /(?<path>[^[]+)(?:\[@(?<attr>[^=]+)=["'](?<val>[^'"]+)["']\])?/.exec(
+        expr
+      );
+      currentElem = this.getElemByName(
+        path,
+        currentElem,
+        attr && val ? elem => elem[1][attr] === val : () => true
+      );
+    });
+    return currentElem;
+  }
+
+  toHtml(elem = this.doc, html = "") {
+    const tag = elem.shift();
+    const attrs = elem[0] instanceof Object ? elem.shift() : {};
+
+    let newHtml = html;
+
+    if (Object.keys(this.render).includes(tag)) {
+      newHtml += this.render[tag](elem, attrs, this);
+    } else {
+      elem.forEach(child => {
+        if (Array.isArray(child)) {
+          newHtml += this.toHtml(child);
+        } else if (typeof child === "string") {
+          newHtml += child;
+        }
+      });
+    }
+    return newHtml.replace(/\s+/g, " ").trim();
+  }
+};
+
+module.exports.JsonMlDoc = JsonMlDoc;

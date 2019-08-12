@@ -1,4 +1,4 @@
-const { parseTei, getFrontmatter } = require(`./tei`);
+const { TeiDoc } = require(`./tei`);
 
 async function onCreateNode({
   node,
@@ -17,7 +17,7 @@ async function onCreateNode({
   const content = await loadNodeContent(node);
 
   try {
-    const teiDoc = parseTei(content);
+    const teiDoc = new TeiDoc(content);
 
     const teiNode = {
       id: createNodeId(`${node.id} >>> TEI`),
@@ -29,8 +29,8 @@ async function onCreateNode({
       }
     };
 
-    teiNode.frontmatter = getFrontmatter(teiDoc);
-
+    teiNode.frontmatter = teiDoc.getFrontmatter();
+    teiNode.abstractHtml = teiDoc.getAbstractHtml();
     teiNode.rawXML = content;
 
     if (node.internal.type === `File`) {

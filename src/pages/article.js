@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
-import Parser from "html-react-parser";
 import { injectIntl } from "gatsby-plugin-intl"; // Link, FormattedMessage
-import { intlShape } from "react-intl";
+import Parser from "html-react-parser";
+// import { intlShape } from "react-intl";
 
 import Layout from "../components/layout";
 import Meta from "../components/meta";
@@ -15,6 +15,7 @@ export const query = graphql`
         author
         title
       }
+      abstractHtml
     }
   }
 `;
@@ -28,6 +29,7 @@ const StaticPage = ({ data }) => {
       <Meta title={title} />
       <h1>{title}</h1>
       <h3>{author}</h3>
+      {Parser(tei.abstractHtml)}
     </Layout>
   );
 };
