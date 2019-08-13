@@ -78,6 +78,22 @@ const JsonMlDoc = class {
     }, null);
   }
 
+  getElemsByName(elemName, parent = this.doc, condition = () => true) {
+    let matchedElems = [];
+    parent.forEach(elem => {
+      if (Array.isArray(elem)) {
+        if (elem[0] === elemName && condition(elem)) {
+          matchedElems.push(elem);
+        } else {
+          matchedElems = matchedElems.concat(
+            this.getElemsByName(elemName, elem, condition)
+          );
+        }
+      }
+    });
+    return matchedElems;
+  }
+
   getElemByPath(elemPath) {
     // elemPath is an xPath-like expression, currently limited to descendant
     // selectors (i.e. tag/tag/tag) and attribute equality (tag[@attr='val'])
