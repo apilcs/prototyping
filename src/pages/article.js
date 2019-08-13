@@ -16,13 +16,15 @@ export const query = graphql`
         author
         title
       }
+      titleHtml
       abstractHtml
+      footnotesHtml
     }
   }
 `;
 
 const Abstract = styled.blockquote`
-  font-size: 0.9em;
+  font-size: 0.9rem;
   font-family: ${props => props.theme.fonts.header};
   margin: 0 3.45rem 0 2rem;
 
@@ -32,6 +34,13 @@ const Abstract = styled.blockquote`
   }
 `;
 
+const Footnotes = styled.div`
+  font-size: 0.9rem;
+  margin-top: 4rem;
+  padding-top: 1rem;
+  border-top: 1px solid #000;
+`;
+
 const StaticPage = ({ data }) => {
   const { tei } = data;
   const { title, author } = tei.frontmatter;
@@ -39,9 +48,10 @@ const StaticPage = ({ data }) => {
   return (
     <Layout>
       <Meta title={title} />
-      <h1>{title}</h1>
+      <h1>{Parser(tei.titleHtml)}</h1>
       <h3>{author}</h3>
       <Abstract>{Parser(tei.abstractHtml)}</Abstract>
+      <Footnotes>{Parser(tei.footnotesHtml)}</Footnotes>
     </Layout>
   );
 };

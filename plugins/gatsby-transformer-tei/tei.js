@@ -4,6 +4,9 @@ class TeiDoc extends JsonMlDoc {
   constructor(xmlString) {
     super(xmlString);
 
+    this.footnotes = {};
+    this.skipTags = [];
+
     this.render = {
       hi: (elem, attrs, doc) => {
         if (attrs.rend && attrs.rend === "italic") {
@@ -18,10 +21,32 @@ class TeiDoc extends JsonMlDoc {
         }
 
         return `<span>${doc.toHtml([null, ...elem])}</span>`;
+      },
+
+      p: (elem, attrs, doc) => {
+        return `<p>${doc.toHtml([null, ...elem])}</p>`;
+      },
+
+      note: (elem, attrs, doc) => {
+        const { n: footnoteIndex, "xml:id": footnoteId } = attrs;
+        return `<sup id="${footnoteId}:ref"><a href="#${footnoteId}">${footnoteIndex}</a></sup>`;
       }
     };
 
-    this.skipTags = [];
+    this.collectFootnotes();
+  }
+
+  collectFootnotes() {
+    this.getElemsByName("note").forEach(_footnote => {
+      const footnote = [..._footnote];
+      footnote.shift();
+      const attrs = footnote[0] instanceof Object ? footnote.shift() : {};
+      const { n: footnoteIndex, "xml:id": footnoteId } = attrs;
+      this.footnotes[footnoteId] = {
+        index: footnoteIndex,
+        content: this.toHtml([null, ...footnote])
+      };
+    });
   }
 
   getFrontmatter() {
@@ -31,10 +56,24 @@ class TeiDoc extends JsonMlDoc {
     };
   }
 
+  getTitleHtml() {
+    return TeiDoc.markupChinese(this.toHtml(this.getElemByPath("titlePart")));
+  }
+
   getAbstractHtml() {
     return TeiDoc.markupChinese(
       this.toHtml(this.getElemByPath("div[@type='abstract']"))
     );
+  }
+
+  getFootnotesHtml() {
+    const footnotesHtml = Object.entries(this.footnotes)
+      .map(
+        ([id, footnote]) =>
+          `<li id="${id}">${footnote.content}<a href="#${id}:ref">↩</a></li>`
+      )
+      .join("");
+    return TeiDoc.markupChinese(`<ol>${footnotesHtml}</ol>`);
   }
 
   static markupChinese(text) {

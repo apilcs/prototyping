@@ -30,7 +30,9 @@ async function onCreateNode({
     };
 
     teiNode.frontmatter = teiDoc.getFrontmatter();
+    teiNode.titleHtml = teiDoc.getTitleHtml();
     teiNode.abstractHtml = teiDoc.getAbstractHtml();
+    teiNode.footnotesHtml = teiDoc.getFootnotesHtml();
     teiNode.rawXML = content;
 
     if (node.internal.type === `File`) {
