@@ -60,7 +60,7 @@ const JsonMlDoc = class {
   }
 
   getFirstTextContent(elemPath) {
-    const elem = this.getElemByPath(elemPath);
+    const elem = [...this.getElemByPath(elemPath)];
     elem.shift(); // drop the tag
     // return first element which is a string
     return elem.find(child => typeof child === "string");
@@ -117,7 +117,8 @@ const JsonMlDoc = class {
     return currentElem;
   }
 
-  toHtml(elem = this.doc, html = "") {
+  toHtml(_elem = this.doc, html = "") {
+    const elem = [..._elem];
     const tag = elem.shift();
     const attrs = elem[0] instanceof Object ? elem.shift() : {};
 
