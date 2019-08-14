@@ -5,7 +5,8 @@ export default {
   colors: {
     main: "#508084",
     mainAlt: "ghostwhite",
-    pageBg: "white"
+    pageBg: "white",
+    highlight: "#f4ff99"
   },
 
   fonts: {

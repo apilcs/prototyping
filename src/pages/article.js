@@ -52,6 +52,11 @@ const Footnotes = styled.div`
   margin-top: 4rem;
   padding-top: 1rem;
   border-top: 1px solid #000;
+
+  li:target {
+    background-color: ${props => props.theme.colors.highlight};
+    border: 8px solid ${props => props.theme.colors.highlight};
+  }
 `;
 
 const StaticPage = ({ data }) => {
