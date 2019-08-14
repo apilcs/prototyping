@@ -30,10 +30,14 @@ export const query = graphql`
 const StaticPage = ({ data, intl }) => {
   const { edges } = data.allMarkdownRemark;
   const { locale } = intl;
+  const availableNodes = edges.map(({ node: { fields } }) => fields.lang);
   let node;
-  if (edges.map(({ node: { fields } }) => fields.lang).includes(locale)) {
+
+  if (availableNodes.includes(locale)) {
+    // get the node with the appropriate fields.lang
     [{ node }] = edges.filter(({ node: { fields } }) => fields.lang === locale);
   } else {
+    // if the desired lanuage isn't available, just get the first node
     [{ node }] = edges;
   }
 
@@ -46,7 +50,8 @@ const StaticPage = ({ data, intl }) => {
 };
 
 StaticPage.propTypes = {
-  data: PropTypes.shape({ allMarkdownRemark: PropTypes.object.isRequired }).isRequired,
+  data: PropTypes.shape({ allMarkdownRemark: PropTypes.object.isRequired })
+    .isRequired,
   intl: intlShape.isRequired
 };
 

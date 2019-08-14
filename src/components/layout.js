@@ -121,7 +121,11 @@ const Layout = ({ children, intl }) => {
   return (
     <>
       <Helmet>
-        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin />
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+          crossOrigin
+        />
       </Helmet>
       <ThemeProvider theme={ApilsTheme}>
         <>
