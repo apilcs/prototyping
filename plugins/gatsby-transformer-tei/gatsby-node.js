@@ -32,6 +32,7 @@ async function onCreateNode({
     teiNode.frontmatter = teiDoc.getFrontmatter();
     teiNode.titleHtml = teiDoc.getTitleHtml();
     teiNode.abstractHtml = teiDoc.getAbstractHtml();
+    teiNode.articleBodyHtml = teiDoc.getArticleBodyHtml();
     teiNode.footnotesHtml = teiDoc.getFootnotesHtml();
     teiNode.rawXML = content;
 

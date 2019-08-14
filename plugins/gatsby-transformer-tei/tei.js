@@ -5,20 +5,24 @@ class TeiDoc extends JsonMlDoc {
     super(xmlString, debug);
 
     this.footnotes = {};
-    this.skipTags = [];
+    this.skipExprs = ["titlePart", "div[@type='articleBody']"];
 
-    this.render = {
+    this.renderToHtml = {
       hi: (elem, attrs, doc) => {
-        if (attrs.rend && attrs.rend === "italic") {
+        if (attrs.rend && attrs.rend === "italic")
           return `<em>${doc.toHtml([null, ...elem])}</em>`;
-        }
 
-        if (attrs.rend) {
-          return `<span class="${attrs.rend}">${doc.toHtml([
-            null,
-            ...elem
-          ])}</span>`;
-        }
+        if (attrs.rend && attrs.rend === "bold")
+          return `<strong>${doc.toHtml([null, ...elem])}</strong>`;
+
+        if (attrs.rend && attrs.rend === "sup")
+          return `<sup>${doc.toHtml([null, ...elem])}</sup>`;
+
+        if (this.debug)
+          // eslint-disable-next-line no-console
+          console.log(
+            `passing through tag: ${this.constructor.renderTag(["hi", attrs])}`
+          );
 
         return `<span>${doc.toHtml([null, ...elem])}</span>`;
       },
@@ -30,9 +34,44 @@ class TeiDoc extends JsonMlDoc {
       note: (elem, attrs, doc) => {
         const { n: footnoteIndex, "xml:id": footnoteId } = attrs;
         return `<sup id="${footnoteId}:ref"><a href="#${footnoteId}">${footnoteIndex}</a></sup>`;
+      },
+
+      placeName: (elem, attrs, doc) => {
+        if (this.debug && Object.keys(attrs).length)
+          // eslint-disable-next-line no-console
+          console.warn(
+            `Unexpected attrs: ${this.constructor.renderTag([
+              "placeName",
+              attrs
+            ])}`
+          );
+        return `<span class="place-name">${doc.toHtml([null, ...elem])}</span>`;
+      },
+
+      div: (elem, attrs, doc) => {
+        const { type } = attrs;
+        if (type === "section")
+          return `<section>${doc.toHtml([null, ...elem])}</section>`;
+
+        if (this.debug)
+          // eslint-disable-next-line no-console
+          console.log(
+            `passing through tag: ${this.constructor.renderTag(["div", attrs])}`
+          );
+        return doc.toHtml([null, ...elem]);
+      },
+
+      head: (elem, attrs, doc) => {
+        if (this.debug && Object.keys(attrs).length)
+          // eslint-disable-next-line no-console
+          console.warn(
+            `Unexpected attrs: ${this.constructor.renderTag(["head", attrs])}`
+          );
+        return `<header>${doc.toHtml([null, ...elem])}</header>`;
       }
     };
 
+    // collect footnotes on class instantiation
     this.collectFootnotes();
   }
 
@@ -66,6 +105,16 @@ class TeiDoc extends JsonMlDoc {
     );
   }
 
+  getKeywords() {
+    // pass
+  }
+
+  getArticleBodyHtml() {
+    return TeiDoc.markupChinese(
+      this.toHtml(this.getElemByPath("div[@type='articleBody']"))
+    );
+  }
+
   getFootnotesHtml() {
     const footnotesHtml = Object.entries(this.footnotes)
       .map(
@@ -95,7 +144,7 @@ class TeiDoc extends JsonMlDoc {
       `(?<chinese>(?:${chineseUnicodeRanges.join("|")})+)`,
       "ug"
     );
-    return text.replace(anyChineseRegex, "<span class='zh'>$<chinese></span>");
+    return text.replace(anyChineseRegex, '<span class="zh">$<chinese></span>');
   }
 }
 
