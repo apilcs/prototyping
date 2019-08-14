@@ -1,8 +1,8 @@
 const { JsonMlDoc } = require(`./jsonml`);
 
 class TeiDoc extends JsonMlDoc {
-  constructor(xmlString) {
-    super(xmlString);
+  constructor(xmlString, debug) {
+    super(xmlString, debug);
 
     this.footnotes = {};
     this.skipTags = [];

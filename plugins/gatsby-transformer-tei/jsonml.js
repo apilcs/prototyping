@@ -1,7 +1,8 @@
 const { Parser } = require("node-expat");
 
 const JsonMlDoc = class {
-  constructor(xmlString) {
+  constructor(xmlString, debug = false) {
+    this.debug = debug;
     this.render = {};
     this.skipTags = [];
     this.parse(xmlString);
@@ -47,11 +48,7 @@ const JsonMlDoc = class {
 
     parser.on("text", function _text(text) {
       const textContent = text.replace(/[\r\n\t]*/, "");
-      // textContent = noStrip ? textContent : textContent.replace(/\s+$/, "");
-      // textContent = noStrip ? textContent : textContent.replace(/^\s+/, "");
-      if (textContent.length > 0) {
-        partial += textContent;
-      }
+      partial += textContent;
     });
 
     if (!parser.parse(data, true)) {
@@ -70,7 +67,6 @@ const JsonMlDoc = class {
     return parent.reduce((accumulator, elem) => {
       if (accumulator) return accumulator;
       if (Array.isArray(elem)) {
-        // console.log(`iterating: ${elem[0]}, looking for ${elemName}`);
         if (elem[0] === elemName && condition(elem)) return elem;
         return this.getElemByName(elemName, elem, condition);
       }
@@ -127,6 +123,9 @@ const JsonMlDoc = class {
     if (Object.keys(this.render).includes(tag)) {
       newHtml += this.render[tag](elem, attrs, this);
     } else {
+      if (this.debug && tag !== null)
+        // eslint-disable-next-line no-console
+        console.log(`passing through tag: ${JsonMlDoc.renderTag(_elem)}`);
       elem.forEach(child => {
         if (Array.isArray(child)) {
           newHtml += this.toHtml(child);
@@ -136,6 +135,18 @@ const JsonMlDoc = class {
       });
     }
     return newHtml.replace(/\s+/g, " ").trim();
+  }
+
+  static renderTag(elem) {
+    // convenience method for development/debugging
+    const tag = elem[0];
+    const attrsString =
+      elem[1] instanceof Object
+        ? ` ${Object.entries(elem[1])
+            .map(([key, value]) => `${key}="${value}"`)
+            .join(" ")}`
+        : "";
+    return `<${tag}${attrsString} />`;
   }
 };
 
