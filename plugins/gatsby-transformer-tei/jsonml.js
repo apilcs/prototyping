@@ -3,8 +3,8 @@ const { Parser } = require("node-expat");
 const JsonMlDoc = class {
   constructor(xmlString, debug = false) {
     this.debug = debug;
-    this.render = {};
-    this.skipTags = [];
+    this.renderToHtml = {};
+    this.skipExprs = [];
     this.parse(xmlString);
   }
 
@@ -99,13 +99,9 @@ const JsonMlDoc = class {
     let currentElem = this.doc;
     elemPath.split("/").forEach(expr => {
       if (!expr) return;
-      const {
-        groups: { path, attr, val }
-      } = /(?<path>[^[]+)(?:\[@(?<attr>[^=]+)=["'](?<val>[^'"]+)["']\])?/.exec(
-        expr
-      );
+      const { tag, attr, val } = this.constructor.parseExpr(expr);
       currentElem = this.getElemByName(
-        path,
+        tag,
         currentElem,
         attr && val ? elem => elem[1][attr] === val : () => true
       );
@@ -120,12 +116,14 @@ const JsonMlDoc = class {
 
     let newHtml = html;
 
-    if (Object.keys(this.render).includes(tag)) {
-      newHtml += this.render[tag](elem, attrs, this);
+    if (Object.keys(this.renderToHtml).includes(tag) && !this.skipElem(_elem)) {
+      newHtml += this.renderToHtml[tag](elem, attrs, this);
     } else {
-      if (this.debug && tag !== null)
+      if (this.debug && tag !== null && !this.skipElem(_elem))
         // eslint-disable-next-line no-console
-        console.log(`passing through tag: ${JsonMlDoc.renderTag(_elem)}`);
+        console.log(
+          `passing through tag: ${this.constructor.renderTag(_elem)}`
+        );
       elem.forEach(child => {
         if (Array.isArray(child)) {
           newHtml += this.toHtml(child);
@@ -135,6 +133,23 @@ const JsonMlDoc = class {
       });
     }
     return newHtml.replace(/\s+/g, " ").trim();
+  }
+
+  skipElem(elem) {
+    return this.skipExprs.some(expr =>
+      this.constructor.elemMatchesExpr(elem, expr)
+    );
+  }
+
+  static parseExpr(expr) {
+    return /(?<tag>[^[]+)(?:\[@(?<attr>[^=]+)=["'](?<val>[^'"]+)["']\])?/.exec(
+      expr
+    ).groups;
+  }
+
+  static elemMatchesExpr(elem, expr) {
+    const { tag, attr, val } = this.parseExpr(expr);
+    return elem[0] === tag && elem[1][attr] === val;
   }
 
   static renderTag(elem) {
