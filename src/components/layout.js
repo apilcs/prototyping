@@ -16,7 +16,8 @@ import bgImage from "../images/simple-horizontal-light.png";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-    min-height: 100%;
+  min-height: 100%;
+  overflow: hidden;
 
   main {
     ${props => props.theme.pageShadow}
