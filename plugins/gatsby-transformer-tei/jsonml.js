@@ -109,15 +109,15 @@ const JsonMlDoc = class {
     return currentElem;
   }
 
-  toHtml(_elem = this.doc, html = "") {
+  toHtml(_elem = this.doc, parent = null) {
     const elem = [..._elem];
     const tag = elem.shift();
     const attrs = elem[0] instanceof Object ? elem.shift() : {};
 
-    let newHtml = html;
+    let newHtml = "";
 
     if (Object.keys(this.renderToHtml).includes(tag) && !this.skipElem(_elem)) {
-      newHtml += this.renderToHtml[tag](elem, attrs, this);
+      newHtml += this.renderToHtml[tag](elem, attrs, this, parent);
     } else {
       if (this.debug && tag !== null && !this.skipElem(_elem))
         // eslint-disable-next-line no-console
@@ -126,7 +126,7 @@ const JsonMlDoc = class {
         );
       elem.forEach(child => {
         if (Array.isArray(child)) {
-          newHtml += this.toHtml(child);
+          newHtml += this.toHtml(child, _elem);
         } else if (typeof child === "string") {
           newHtml += child;
         }
