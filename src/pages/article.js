@@ -6,6 +6,8 @@ import Parser, { domToReact } from "html-react-parser";
 // import { intlShape } from "react-intl";
 import styled from "styled-components";
 
+import ApilsTheme from "../theme/apils-theme";
+
 import Layout from "../components/layout";
 import Meta from "../components/meta";
 
@@ -76,7 +78,7 @@ const StaticPage = ({ data }) => {
               return (
                 <>
                   <section>{domToReact(domNode.children)}</section>
-                  <SectionDivider />
+                  <SectionDivider color={ApilsTheme.colors.main} />
                 </>
               );
           }
