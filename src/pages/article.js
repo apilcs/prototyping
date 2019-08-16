@@ -6,6 +6,7 @@ import { injectIntl } from "gatsby-plugin-intl"; // Link, FormattedMessage
 import Parser, { domToReact } from "html-react-parser";
 // import { intlShape } from "react-intl";
 import styled from "styled-components";
+import { lighten } from "polished";
 
 import ApilsTheme from "../theme/apils-theme";
 
@@ -77,23 +78,43 @@ const ArticleBody = styled.div`
     }
 
     figcaption {
+      background: ${props => lighten(0.4, props.theme.colors.main)};
       font-family: ${props => props.theme.fonts.header};
       font-size: 0.8rem;
       padding: 5px;
+    }
+  }
+
+  table {
+    font-family: ${props => props.theme.fonts.header};
+    font-size: 0.8rem;
+
+    tr:nth-child(odd) {
       background: #eaeaea;
+    }
+
+    tr:first-child {
+      background: ${props => lighten(0.4, props.theme.colors.main)};
+      font-weight: bold;
+    }
+
+    td {
+      padding: 0.25rem 0.5rem;
     }
   }
 `;
 
 const Footnotes = styled.div`
+  border-top: 1px solid #000;
+  color: rgba(0, 0, 0, 0.6);
   font-size: 0.9rem;
   margin-top: 4rem;
   padding-top: 1rem;
-  border-top: 1px solid #000;
 
   li:target {
     background-color: ${props => props.theme.colors.highlight};
     border: 8px solid ${props => props.theme.colors.highlight};
+    color: ${props => props.theme.colors.bodyText};
   }
 `;
 
@@ -138,6 +159,12 @@ const StaticPage = ({ data }) => {
           //   alt=""
           // />
         );
+
+      if (domNode.name === "td" && domNode.parent.children.length === 1) {
+        domNode.attribs.colspan = "100%";
+      }
+
+      return false;
     }
   };
 
