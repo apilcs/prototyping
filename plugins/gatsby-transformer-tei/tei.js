@@ -88,6 +88,18 @@ class TeiDoc extends JsonMlDoc {
             ["figure", attrs, ...children]
           )}</figcaption>
         </figure>`;
+      },
+
+      table: (children, attrs, doc, parent) => {
+        return `<table>${doc.toHtml([null, ...children], parent)}</table>`;
+      },
+
+      row: (children, attrs, doc, parent) => {
+        return `<tr>${doc.toHtml([null, ...children], parent)}</tr>`;
+      },
+
+      cell: (children, attrs, doc, parent) => {
+        return `<td>${doc.toHtml([null, ...children], parent)}</td>`;
       }
     };
 
