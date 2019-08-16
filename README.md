@@ -1,7 +1,5 @@
 <p align="center">
-  <a href="/">
-    <img alt="APILS" src="/" width="60" />
-  </a>
+  <img alt="APILS" src="https://raw.githubusercontent.com/apilcs/prototyping/master/src/images/apilcs_trsp_202x202.png" width="202" />
 </p>
 <h1 align="center">
   Asia-Pacific Island and Littoral Studies

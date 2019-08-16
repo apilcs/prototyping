@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const SectionDividerContainer = styled.div`
@@ -23,22 +24,34 @@ const SectionDividerContainer = styled.div`
     }
 
     &:first-child {
-      background-image: linear-gradient(90deg, transparent, #000);
+      background-image: linear-gradient(
+        90deg,
+        transparent,
+        ${props => props.color}
+      );
     }
 
     &:last-child {
-      background-image: linear-gradient(90deg, #000, transparent);
+      background-image: linear-gradient(
+        90deg,
+        ${props => props.color},
+        transparent
+      );
     }
   }
 `;
 
-function SectionDivider() {
+function SectionDivider(props) {
+  const { color } = props;
   return (
-    <SectionDividerContainer>
+    <SectionDividerContainer color={color}>
       <span />
       <span />
     </SectionDividerContainer>
   );
 }
+
+SectionDivider.propTypes = { color: PropTypes.string };
+SectionDivider.defaultProps = { color: "black" };
 
 export default SectionDivider;

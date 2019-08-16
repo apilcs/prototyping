@@ -1,10 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
+// import { Img } from "gatsby-image";
 import { injectIntl } from "gatsby-plugin-intl"; // Link, FormattedMessage
 import Parser, { domToReact } from "html-react-parser";
 // import { intlShape } from "react-intl";
 import styled from "styled-components";
+import { lighten } from "polished";
+
+import ApilsTheme from "../theme/apils-theme";
 
 import Layout from "../components/layout";
 import Meta from "../components/meta";
@@ -22,9 +26,24 @@ export const query = graphql`
       abstractHtml
       articleBodyHtml
       footnotesHtml
+      images {
+        publicURL
+        relativePath
+      }
     }
   }
 `;
+
+// childImageSharp {
+//   fluid(maxWidth: 400, maxHeight: 250) {
+//     ...GatsbyImageSharpFluid
+//   }
+// }
+
+// Can't get this to work with the gatsby-image `<Img>` component
+//  (hence the commenting out here and below)
+// Same problem here:
+//  https://stackoverflow.com/questions/57381690/gatsby-image-mystery
 
 const Abstract = styled.blockquote`
   font-size: 0.9rem;
@@ -45,23 +64,111 @@ const ArticleBody = styled.div`
     font-size: 1.4rem;
     margin: 1rem 0;
   }
+
+  figure {
+    border: 1px solid ${props => props.theme.colors.bodyText};
+    border-radius: 5px;
+    display: inline-block;
+    margin: 0 0.5%;
+    max-width: 48%;
+    padding: 5px;
+
+    img {
+      margin-bottom: 0;
+    }
+
+    figcaption {
+      background: ${props => lighten(0.4, props.theme.colors.main)};
+      font-family: ${props => props.theme.fonts.header};
+      font-size: 0.8rem;
+      padding: 5px;
+    }
+  }
+
+  table {
+    font-family: ${props => props.theme.fonts.header};
+    font-size: 0.8rem;
+
+    tr:nth-child(odd) {
+      background: #eaeaea;
+    }
+
+    tr:first-child {
+      background: ${props => lighten(0.4, props.theme.colors.main)};
+      font-weight: bold;
+    }
+
+    td {
+      padding: 0.25rem 0.5rem;
+    }
+  }
 `;
 
 const Footnotes = styled.div`
+  border-top: 1px solid #000;
+  color: rgba(0, 0, 0, 0.6);
   font-size: 0.9rem;
   margin-top: 4rem;
   padding-top: 1rem;
-  border-top: 1px solid #000;
 
   li:target {
     background-color: ${props => props.theme.colors.highlight};
     border: 8px solid ${props => props.theme.colors.highlight};
+    color: ${props => props.theme.colors.bodyText};
   }
 `;
+
+// domNode = { type: 'tag',
+//   name: 'br',
+//   attribs: {},
+//   children: [],
+//   next: null,
+//   prev: null,
+//   parent: null }
 
 const StaticPage = ({ data }) => {
   const { tei } = data;
   const { title, author } = tei.frontmatter;
+
+  const parserOptions = {
+    replace: domNode => {
+      if (domNode.name === "section")
+        return (
+          <>
+            <section>{domToReact2(domNode.children)}</section>
+            <SectionDivider color={ApilsTheme.colors.main} />
+          </>
+        );
+
+      if (domNode.name === "img")
+        return (
+          <img
+            src={
+              tei.images.find(img =>
+                img.relativePath.endsWith(domNode.attribs.src)
+              ).publicURL
+            }
+            alt=""
+          />
+          // <Img
+          //   fluid={
+          //     tei.images.find(img =>
+          //       img.relativePath.endsWith(domNode.attribs.src)
+          //     ).childImageSharp.fluid
+          //   }
+          //   alt=""
+          // />
+        );
+
+      if (domNode.name === "td" && domNode.parent.children.length === 1) {
+        domNode.attribs.colspan = "100%";
+      }
+
+      return false;
+    }
+  };
+
+  const domToReact2 = children => domToReact(children, parserOptions);
 
   return (
     <Layout>
@@ -69,19 +176,7 @@ const StaticPage = ({ data }) => {
       <h1>{Parser(tei.titleHtml)}</h1>
       <h3>{author}</h3>
       <Abstract>{Parser(tei.abstractHtml)}</Abstract>
-      <ArticleBody>
-        {Parser(tei.articleBodyHtml, {
-          replace: domNode => {
-            if (domNode.name === "section")
-              return (
-                <>
-                  <section>{domToReact(domNode.children)}</section>
-                  <SectionDivider />
-                </>
-              );
-          }
-        })}
-      </ArticleBody>
+      <ArticleBody>{Parser(tei.articleBodyHtml, parserOptions)}</ArticleBody>
       <Footnotes>{Parser(tei.footnotesHtml)}</Footnotes>
     </Layout>
   );

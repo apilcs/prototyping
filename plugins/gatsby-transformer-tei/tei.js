@@ -8,15 +8,15 @@ class TeiDoc extends JsonMlDoc {
     this.skipExprs = ["titlePart", "div[@type='articleBody']"];
 
     this.renderToHtml = {
-      hi: (elem, attrs, doc) => {
+      hi: (children, attrs, doc, parent) => {
         if (attrs.rend && attrs.rend === "italic")
-          return `<em>${doc.toHtml([null, ...elem])}</em>`;
+          return `<em>${doc.toHtml([null, ...children], parent)}</em>`;
 
         if (attrs.rend && attrs.rend === "bold")
-          return `<strong>${doc.toHtml([null, ...elem])}</strong>`;
+          return `<strong>${doc.toHtml([null, ...children], parent)}</strong>`;
 
         if (attrs.rend && attrs.rend === "sup")
-          return `<sup>${doc.toHtml([null, ...elem])}</sup>`;
+          return `<sup>${doc.toHtml([null, ...children], parent)}</sup>`;
 
         if (this.debug)
           // eslint-disable-next-line no-console
@@ -24,19 +24,19 @@ class TeiDoc extends JsonMlDoc {
             `passing through tag: ${this.constructor.renderTag(["hi", attrs])}`
           );
 
-        return `<span>${doc.toHtml([null, ...elem])}</span>`;
+        return `<span>${doc.toHtml([null, ...children], parent)}</span>`;
       },
 
-      p: (elem, attrs, doc) => {
-        return `<p>${doc.toHtml([null, ...elem])}</p>`;
+      p: (children, attrs, doc, parent) => {
+        return `<p>${doc.toHtml([null, ...children], parent)}</p>`;
       },
 
-      note: (elem, attrs, doc) => {
+      note: (children, attrs, doc, parent) => {
         const { n: footnoteIndex, "xml:id": footnoteId } = attrs;
         return `<sup id="${footnoteId}:ref"><a href="#${footnoteId}">${footnoteIndex}</a></sup>`;
       },
 
-      placeName: (elem, attrs, doc) => {
+      placeName: (children, attrs, doc, parent) => {
         if (this.debug && Object.keys(attrs).length)
           // eslint-disable-next-line no-console
           console.warn(
@@ -45,29 +45,64 @@ class TeiDoc extends JsonMlDoc {
               attrs
             ])}`
           );
-        return `<span class="place-name">${doc.toHtml([null, ...elem])}</span>`;
+        return `<span class="place-name">${doc.toHtml(
+          [null, ...children],
+          parent
+        )}</span>`;
       },
 
-      div: (elem, attrs, doc) => {
+      div: (children, attrs, doc, parent) => {
         const { type } = attrs;
         if (type === "section")
-          return `<section>${doc.toHtml([null, ...elem])}</section>`;
+          return `<section>${doc.toHtml(
+            [null, ...children],
+            parent
+          )}</section>`;
 
         if (this.debug)
           // eslint-disable-next-line no-console
           console.log(
             `passing through tag: ${this.constructor.renderTag(["div", attrs])}`
           );
-        return doc.toHtml([null, ...elem]);
+        return doc.toHtml([null, ...children], parent);
       },
 
-      head: (elem, attrs, doc) => {
+      head: (children, attrs, doc, parent) => {
         if (this.debug && Object.keys(attrs).length)
           // eslint-disable-next-line no-console
           console.warn(
             `Unexpected attrs: ${this.constructor.renderTag(["head", attrs])}`
           );
-        return `<header>${doc.toHtml([null, ...elem])}</header>`;
+
+        return `<header>${doc.toHtml([null, ...children], parent)}</header>`;
+      },
+
+      figure: (children, attrs, doc, parent) => {
+        const graphic = children.find(elem => elem[0] === "graphic");
+        const head = children.find(elem => elem[0] === "head");
+        return `\
+        <figure>
+          <img src="${graphic[1].url}" alt="" />
+          <figcaption>${doc.toHtml(
+            [null, ...head.slice(1)],
+            ["figure", attrs, ...children]
+          )}</figcaption>
+        </figure>`;
+      },
+
+      table: (children, attrs, doc, parent) => {
+        return `<table>${doc.toHtml(
+          [null, ...children],
+          parent
+        )}</table>`.replace(/>\s+</g, "><");
+      },
+
+      row: (children, attrs, doc, parent) => {
+        return `<tr>${doc.toHtml([null, ...children], parent)}</tr>`;
+      },
+
+      cell: (children, attrs, doc, parent) => {
+        return `<td>${doc.toHtml([null, ...children], parent)}</td>`;
       }
     };
 
@@ -123,6 +158,10 @@ class TeiDoc extends JsonMlDoc {
       )
       .join("");
     return TeiDoc.markupChinese(`<ol>${footnotesHtml}</ol>`);
+  }
+
+  getImagePaths() {
+    return this.getElemsByName("graphic").map(graphic => graphic[1].url);
   }
 
   static markupChinese(text) {
