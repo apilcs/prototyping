@@ -63,6 +63,26 @@ const ArticleBody = styled.div`
     font-size: 1.4rem;
     margin: 1rem 0;
   }
+
+  figure {
+    border: 1px solid ${props => props.theme.colors.bodyText};
+    border-radius: 5px;
+    display: inline-block;
+    margin: 0 0.5%;
+    max-width: 48%;
+    padding: 5px;
+
+    img {
+      margin-bottom: 0;
+    }
+
+    figcaption {
+      font-family: ${props => props.theme.fonts.header};
+      font-size: 0.8rem;
+      padding: 5px;
+      background: #eaeaea;
+    }
+  }
 `;
 
 const Footnotes = styled.div`
