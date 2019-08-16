@@ -91,7 +91,10 @@ class TeiDoc extends JsonMlDoc {
       },
 
       table: (children, attrs, doc, parent) => {
-        return `<table>${doc.toHtml([null, ...children], parent)}</table>`;
+        return `<table>${doc.toHtml(
+          [null, ...children],
+          parent
+        )}</table>`.replace(/>\s+</g, "><");
       },
 
       row: (children, attrs, doc, parent) => {
