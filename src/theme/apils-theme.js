@@ -6,7 +6,9 @@ export default {
     main: "#508084",
     mainAlt: "ghostwhite",
     pageBg: "white",
-    highlight: "#f4ff99"
+    highlight: "#f4ff99",
+    bodyText: options.bodyColor,
+    headerText: options.headerColor
   },
 
   fonts: {
