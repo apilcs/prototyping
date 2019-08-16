@@ -74,12 +74,20 @@ class TeiDoc extends JsonMlDoc {
             `Unexpected attrs: ${this.constructor.renderTag(["head", attrs])}`
           );
 
-        if (parent[0] === "figure")
-          return `<figcaption>${doc.toHtml(
-            [null, ...children],
-            parent
-          )}</figcaption>`;
         return `<header>${doc.toHtml([null, ...children], parent)}</header>`;
+      },
+
+      figure: (children, attrs, doc, parent) => {
+        const graphic = children.find(elem => elem[0] === "graphic");
+        const head = children.find(elem => elem[0] === "head");
+        return `\
+        <figure>
+          <img src="${graphic[1].url}" alt="" />
+          <figcaption>${doc.toHtml(
+            [null, ...head.slice(1)],
+            ["figure", attrs, ...children]
+          )}</figcaption>
+        </figure>`;
       }
     };
 
