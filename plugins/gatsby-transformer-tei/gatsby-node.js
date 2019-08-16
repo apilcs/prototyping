@@ -34,6 +34,7 @@ async function onCreateNode({
     teiNode.abstractHtml = teiDoc.getAbstractHtml();
     teiNode.articleBodyHtml = teiDoc.getArticleBodyHtml();
     teiNode.footnotesHtml = teiDoc.getFootnotesHtml();
+    teiNode.images = teiDoc.getImagePaths();
     teiNode.rawXML = content;
 
     if (node.internal.type === `File`) {

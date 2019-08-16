@@ -137,6 +137,10 @@ class TeiDoc extends JsonMlDoc {
     return TeiDoc.markupChinese(`<ol>${footnotesHtml}</ol>`);
   }
 
+  getImagePaths() {
+    return this.getElemsByName("graphic").map(graphic => graphic[1].url);
+  }
+
   static markupChinese(text) {
     const chineseUnicodeRanges = [
       "[\u4e00-\u9fff]", // CJK Unified Ideographs
