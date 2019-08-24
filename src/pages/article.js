@@ -100,6 +100,20 @@ const ArticleBody = styled.div`
 
     td {
       padding: 0.25rem 0.5rem;
+
+      &[colspan="100%"] {
+        text-align: center;
+      }
+    }
+  }
+
+  blockquote {
+    border: none;
+    margin: 0 1.45rem 1.45rem;
+    padding: 0;
+
+    span.zh {
+      font-style: normal;
     }
   }
 `;
@@ -135,7 +149,8 @@ const StaticPage = ({ data }) => {
       if (domNode.name === "section")
         return (
           <>
-            <section>{domToReact2(domNode.children)}</section>
+            {/* eslint-disable-next-line no-use-before-define */}
+            <section>{domToReactWithReplace(domNode.children)}</section>
             <SectionDivider color={ApilsTheme.colors.main} />
           </>
         );
@@ -161,6 +176,7 @@ const StaticPage = ({ data }) => {
         );
 
       if (domNode.name === "td" && domNode.parent.children.length === 1) {
+        // eslint-disable-next-line no-param-reassign
         domNode.attribs.colspan = "100%";
       }
 
@@ -168,7 +184,7 @@ const StaticPage = ({ data }) => {
     }
   };
 
-  const domToReact2 = children => domToReact(children, parserOptions);
+  const domToReactWithReplace = children => domToReact(children, parserOptions);
 
   return (
     <Layout>

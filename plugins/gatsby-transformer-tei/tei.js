@@ -103,6 +103,13 @@ class TeiDoc extends JsonMlDoc {
 
       cell: (children, attrs, doc, parent) => {
         return `<td>${doc.toHtml([null, ...children], parent)}</td>`;
+      },
+
+      quote: (children, attrs, doc, parent) => {
+        return `<blockquote>${doc.toHtml(
+          [null, ...children],
+          parent
+        )}</blockquote>`;
       }
     };
 
