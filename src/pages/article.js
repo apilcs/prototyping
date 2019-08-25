@@ -5,15 +5,14 @@ import { graphql } from "gatsby";
 import { injectIntl } from "gatsby-plugin-intl"; // Link, FormattedMessage
 import Parser, { domToReact } from "html-react-parser";
 // import { intlShape } from "react-intl";
-import styled from "styled-components";
-import { lighten } from "polished";
-
-import ApilsTheme from "../theme/apils-theme";
+import styled, { css } from "styled-components";
+import { lighten, transparentize } from "polished";
 
 import Layout from "../components/layout";
 import Meta from "../components/meta";
 
 import SectionDivider from "../ui-components/section-divider";
+import Tooltip from "../ui-components/tooltip";
 
 export const query = graphql`
   query {
@@ -44,6 +43,25 @@ export const query = graphql`
 //  (hence the commenting out here and below)
 // Same problem here:
 //  https://stackoverflow.com/questions/57381690/gatsby-image-mystery
+
+const footnoteTipStyles = css`
+  background: ${props => transparentize(0.05, props.theme.colors.main)};
+  border-color: ${props => transparentize(0.05, props.theme.colors.main)};
+  font-family: ${props => props.theme.fonts.body};
+  font-size: 0.9rem;
+  line-height: 1.45;
+  max-width: 20rem;
+  padding: 0.5rem 1rem;
+  z-index: 2;
+
+  a[href^="#ftn"] {
+    display: none;
+  }
+
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+`;
 
 const Abstract = styled.blockquote`
   font-size: 0.9rem;
@@ -140,7 +158,7 @@ const Footnotes = styled.div`
 //   prev: null,
 //   parent: null }
 
-const StaticPage = ({ data }) => {
+const ArticlePage = ({ data }) => {
   const { tei } = data;
   const { title, author } = tei.frontmatter;
 
@@ -151,7 +169,7 @@ const StaticPage = ({ data }) => {
           <>
             {/* eslint-disable-next-line no-use-before-define */}
             <section>{domToReactWithReplace(domNode.children)}</section>
-            <SectionDivider color={ApilsTheme.colors.main} />
+            <SectionDivider color={props => props.theme.colors.main} />
           </>
         );
 
@@ -175,6 +193,21 @@ const StaticPage = ({ data }) => {
           // />
         );
 
+      if (domNode.name === "a" && /#ftn\d+/.test(domNode.attribs.href)) {
+        return (
+          <Tooltip
+            tipContent={() =>
+              Parser(document.querySelector(domNode.attribs.href).innerHTML)
+            }
+            tipStyles={footnoteTipStyles}>
+            <a href={domNode.attribs.href}>
+              {/* eslint-disable-next-line no-use-before-define */}
+              {domToReactWithReplace(domNode.children)}
+            </a>
+          </Tooltip>
+        );
+      }
+
       if (domNode.name === "td" && domNode.parent.children.length === 1) {
         // eslint-disable-next-line no-param-reassign
         domNode.attribs.colspan = "100%";
@@ -189,7 +222,7 @@ const StaticPage = ({ data }) => {
   return (
     <Layout>
       <Meta title={title} />
-      <h1>{Parser(tei.titleHtml)}</h1>
+      <h1>{Parser(tei.titleHtml, parserOptions)}</h1>
       <h3>{author}</h3>
       <Abstract>{Parser(tei.abstractHtml)}</Abstract>
       <ArticleBody>{Parser(tei.articleBodyHtml, parserOptions)}</ArticleBody>
@@ -198,8 +231,8 @@ const StaticPage = ({ data }) => {
   );
 };
 
-StaticPage.propTypes = {
+ArticlePage.propTypes = {
   data: PropTypes.shape({ tei: PropTypes.object.isRequired }).isRequired
 };
 
-export default injectIntl(StaticPage);
+export default injectIntl(ArticlePage);
