@@ -157,7 +157,7 @@ Tooltip.propTypes = {
     PropTypes.string,
     PropTypes.func
   ]).isRequired,
-  tipStyles: PropTypes.string
+  tipStyles: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
 };
 
 export default Tooltip;

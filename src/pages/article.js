@@ -158,7 +158,7 @@ const Footnotes = styled.div`
 //   prev: null,
 //   parent: null }
 
-const StaticPage = ({ data }) => {
+const ArticlePage = ({ data }) => {
   const { tei } = data;
   const { title, author } = tei.frontmatter;
 
@@ -231,9 +231,8 @@ const StaticPage = ({ data }) => {
   );
 };
 
-StaticPage.propTypes = {
-  data: PropTypes.shape({ tei: PropTypes.object.isRequired }).isRequired,
-  theme: PropTypes.objectOf({}).isRequired
+ArticlePage.propTypes = {
+  data: PropTypes.shape({ tei: PropTypes.object.isRequired }).isRequired
 };
 
-export default injectIntl(StaticPage);
+export default injectIntl(ArticlePage);
