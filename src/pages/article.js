@@ -14,6 +14,7 @@ import Layout from "../components/layout";
 import Meta from "../components/meta";
 
 import SectionDivider from "../ui-components/section-divider";
+import Tooltip from "../ui-components/tooltip";
 
 export const query = graphql`
   query {
@@ -175,6 +176,20 @@ const StaticPage = ({ data }) => {
           // />
         );
 
+      if (domNode.name === "a" && /#ftn\d+/.test(domNode.attribs.href)) {
+        return (
+          <Tooltip
+            tipContent={() =>
+              Parser(document.querySelector(domNode.attribs.href).innerHTML)
+            }>
+            <a href={domNode.attribs.href}>
+              {/* eslint-disable-next-line no-use-before-define */}
+              {domToReactWithReplace(domNode.children)}
+            </a>
+          </Tooltip>
+        );
+      }
+
       if (domNode.name === "td" && domNode.parent.children.length === 1) {
         // eslint-disable-next-line no-param-reassign
         domNode.attribs.colspan = "100%";
@@ -189,7 +204,7 @@ const StaticPage = ({ data }) => {
   return (
     <Layout>
       <Meta title={title} />
-      <h1>{Parser(tei.titleHtml)}</h1>
+      <h1>{Parser(tei.titleHtml, parserOptions)}</h1>
       <h3>{author}</h3>
       <Abstract>{Parser(tei.abstractHtml)}</Abstract>
       <ArticleBody>{Parser(tei.articleBodyHtml, parserOptions)}</ArticleBody>
