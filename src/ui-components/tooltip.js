@@ -31,53 +31,40 @@ const Tip = styled.output`
 `;
 
 const Arrow = styled.span`
-  border-color: ${color};
+  border-color: transparent;
   border-style: solid;
   height: 0;
-  margin: 5px;
   position: absolute;
   width: 0;
 
   &[data-placement="top"] {
-    border-bottom-color: transparent;
-    border-left-color: transparent;
-    border-right-color: transparent;
+    border-top-color: ${color};
     border-width: 5px 5px 0 5px;
     bottom: -5px;
     left: calc(50% - 5px);
-    margin-bottom: 0;
-    margin-top: 0;
+    margin: 0 5px;
   }
 
   &[data-placement="bottom"] {
-    border-left-color: transparent;
-    border-right-color: transparent;
-    border-top-color: transparent;
+    border-bottom-color: ${color};
     border-width: 0 5px 5px 5px;
     left: calc(50% - 5px);
-    margin-bottom: 0;
-    margin-top: 0;
+    margin: 0 5px;
     top: -5px;
   }
 
   &[data-placement="right"] {
-    border-bottom-color: transparent;
-    border-left-color: transparent;
-    border-top-color: transparent;
+    border-right-color: ${color};
     border-width: 5px 5px 5px 0;
     left: -5px;
-    margin-left: 0;
-    margin-right: 0;
+    margin: 5px 0;
     top: calc(50% - 5px);
   }
 
   &[data-placement="left"] {
-    border-bottom-color: transparent;
-    border-right-color: transparent;
-    border-top-color: transparent;
+    border-left-color: ${color};
     border-width: 5px 0 5px 5px;
-    margin-left: 0;
-    margin-right: 0;
+    margin: 5px 0;
     right: -5px;
     top: calc(50% - 5px);
   }
