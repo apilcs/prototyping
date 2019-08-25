@@ -18,6 +18,7 @@ deYoungTheme.bodyFontFamily = [
   "STXihei",
   "华文细黑"
 ];
+// deYoungTheme.baseFontSize = "8px";
 const typography = new Typography(deYoungTheme);
 
 export const { scale, rhythm, options } = typography;
