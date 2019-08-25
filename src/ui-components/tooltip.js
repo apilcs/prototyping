@@ -1,3 +1,8 @@
+// Possibly look out for https://github.com/FezVrasta/react-popper/issues/267
+// TODO:
+// * allow click-to-trigger?
+// * think more about styling, and customizable styling
+
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
@@ -14,6 +19,15 @@ const Tip = styled.output`
   line-height: 1.45;
   max-width: 20rem;
   padding: 0.5rem 1rem;
+  z-index: 2;
+
+  a[href^="#ftn"] {
+    display: none;
+  }
+
+  p:last-of-type {
+    margin-bottom: 0;
+  }
 `;
 
 const Arrow = styled.span`
@@ -76,7 +90,7 @@ class Tooltip extends Component {
   }
 
   render() {
-    const { tipContent, children } = this.props;
+    const { tipContent, children, placement: preferredPlacement } = this.props;
     const { shown } = this.state;
     return (
       <Manager>
@@ -98,7 +112,7 @@ class Tooltip extends Component {
             )
           }
         </Reference>
-        <Popper placement="top" positionFixed>
+        <Popper placement={preferredPlacement} positionFixed>
           {({ ref, style, placement, arrowProps }) => {
             if (!shown) return null;
             return (
@@ -123,6 +137,10 @@ class Tooltip extends Component {
   }
 }
 
+Tooltip.defaultProps = {
+  placement: "top"
+};
+
 Tooltip.propTypes = {
   tipContent: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
@@ -130,7 +148,8 @@ Tooltip.propTypes = {
     PropTypes.string,
     PropTypes.func
   ]).isRequired,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  placement: PropTypes.string
 };
 
 export default Tooltip;
