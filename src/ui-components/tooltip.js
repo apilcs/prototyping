@@ -1,44 +1,40 @@
-// Possibly look out for https://github.com/FezVrasta/react-popper/issues/267
+// Look out for errors when wrapping styled-components?
+//  - https://github.com/FezVrasta/react-popper/issues/267
 // TODO:
 // * allow click-to-trigger?
-// * think more about styling, and customizable styling
 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Manager, Reference, Popper } from "react-popper";
 
 const color = "rgba(0, 0, 0, 0.8)";
 
 const Tip = styled.output`
   background: ${color};
+  border-color: ${color};
   border-radius: 6px;
   color: white;
-  font-family: ${props => props.theme.fonts.body};
-  font-size: 0.9rem;
-  line-height: 1.45;
-  max-width: 20rem;
-  padding: 0.5rem 1rem;
-  z-index: 2;
 
-  a[href^="#ftn"] {
-    display: none;
-  }
-
-  p:last-of-type {
-    margin-bottom: 0;
-  }
+  ${props =>
+    props.customStyles
+      ? css`
+          ${props.customStyles}
+        `
+      : ""}
 `;
 
 const Arrow = styled.span`
-  border-color: transparent;
+  border-color: inherit;
   border-style: solid;
   height: 0;
   position: absolute;
   width: 0;
 
   &[data-placement="top"] {
-    border-top-color: ${color};
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
     border-width: 5px 5px 0 5px;
     bottom: -5px;
     left: calc(50% - 5px);
@@ -46,7 +42,9 @@ const Arrow = styled.span`
   }
 
   &[data-placement="bottom"] {
-    border-bottom-color: ${color};
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-top-color: transparent;
     border-width: 0 5px 5px 5px;
     left: calc(50% - 5px);
     margin: 0 5px;
@@ -54,7 +52,9 @@ const Arrow = styled.span`
   }
 
   &[data-placement="right"] {
-    border-right-color: ${color};
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-top-color: transparent;
     border-width: 5px 5px 5px 0;
     left: -5px;
     margin: 5px 0;
@@ -62,12 +62,21 @@ const Arrow = styled.span`
   }
 
   &[data-placement="left"] {
-    border-left-color: ${color};
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-top-color: transparent;
     border-width: 5px 0 5px 5px;
     margin: 5px 0;
     right: -5px;
     top: calc(50% - 5px);
   }
+
+  ${props =>
+    props.customStyles
+      ? css`
+          ${props.customStyles}
+        `
+      : ""}
 `;
 
 class Tooltip extends Component {
@@ -77,7 +86,13 @@ class Tooltip extends Component {
   }
 
   render() {
-    const { tipContent, children, placement: preferredPlacement } = this.props;
+    const {
+      arrowStyles,
+      children,
+      placement: preferredPlacement,
+      tipContent,
+      tipStyles
+    } = this.props;
     const { shown } = this.state;
     return (
       <Manager>
@@ -104,16 +119,18 @@ class Tooltip extends Component {
             if (!shown) return null;
             return (
               <Tip
+                customStyles={tipStyles}
+                data-placement={placement}
                 ref={ref}
                 style={style}
-                data-placement={placement}
                 onMouseEnter={() => this.setState({ shown: true })}
                 onMouseLeave={() => this.setState({ shown: false })}>
                 {typeof tipContent === "function" ? tipContent() : tipContent}
                 <Arrow
+                  customStyles={arrowStyles}
+                  data-placement={placement}
                   ref={arrowProps.ref}
                   style={arrowProps.style}
-                  data-placement={placement}
                 />
               </Tip>
             );
@@ -125,18 +142,22 @@ class Tooltip extends Component {
 }
 
 Tooltip.defaultProps = {
-  placement: "top"
+  arrowStyles: "",
+  placement: "top",
+  tipStyles: ""
 };
 
 Tooltip.propTypes = {
+  arrowStyles: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  placement: PropTypes.string,
   tipContent: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
     PropTypes.string,
     PropTypes.func
   ]).isRequired,
-  children: PropTypes.node.isRequired,
-  placement: PropTypes.string
+  tipStyles: PropTypes.string
 };
 
 export default Tooltip;
