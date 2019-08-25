@@ -5,10 +5,8 @@ import { graphql } from "gatsby";
 import { injectIntl } from "gatsby-plugin-intl"; // Link, FormattedMessage
 import Parser, { domToReact } from "html-react-parser";
 // import { intlShape } from "react-intl";
-import styled from "styled-components";
-import { lighten } from "polished";
-
-import ApilsTheme from "../theme/apils-theme";
+import styled, { css } from "styled-components";
+import { lighten, transparentize } from "polished";
 
 import Layout from "../components/layout";
 import Meta from "../components/meta";
@@ -45,6 +43,25 @@ export const query = graphql`
 //  (hence the commenting out here and below)
 // Same problem here:
 //  https://stackoverflow.com/questions/57381690/gatsby-image-mystery
+
+const footnoteTipStyles = css`
+  background: ${props => transparentize(0.05, props.theme.colors.main)};
+  border-color: ${props => transparentize(0.05, props.theme.colors.main)};
+  font-family: ${props => props.theme.fonts.body};
+  font-size: 0.9rem;
+  line-height: 1.45;
+  max-width: 20rem;
+  padding: 0.5rem 1rem;
+  z-index: 2;
+
+  a[href^="#ftn"] {
+    display: none;
+  }
+
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+`;
 
 const Abstract = styled.blockquote`
   font-size: 0.9rem;
@@ -152,7 +169,7 @@ const StaticPage = ({ data }) => {
           <>
             {/* eslint-disable-next-line no-use-before-define */}
             <section>{domToReactWithReplace(domNode.children)}</section>
-            <SectionDivider color={ApilsTheme.colors.main} />
+            <SectionDivider color={props => props.theme.colors.main} />
           </>
         );
 
@@ -181,7 +198,8 @@ const StaticPage = ({ data }) => {
           <Tooltip
             tipContent={() =>
               Parser(document.querySelector(domNode.attribs.href).innerHTML)
-            }>
+            }
+            tipStyles={footnoteTipStyles}>
             <a href={domNode.attribs.href}>
               {/* eslint-disable-next-line no-use-before-define */}
               {domToReactWithReplace(domNode.children)}
@@ -214,7 +232,8 @@ const StaticPage = ({ data }) => {
 };
 
 StaticPage.propTypes = {
-  data: PropTypes.shape({ tei: PropTypes.object.isRequired }).isRequired
+  data: PropTypes.shape({ tei: PropTypes.object.isRequired }).isRequired,
+  theme: PropTypes.objectOf({}).isRequired
 };
 
 export default injectIntl(StaticPage);
