@@ -159,10 +159,7 @@ class TeiDoc extends JsonMlDoc {
 
   getFootnotesHtml() {
     const footnotesHtml = Object.entries(this.footnotes)
-      .map(
-        ([id, footnote]) =>
-          `<li id="${id}">${footnote.content}<a href="#${id}:ref">↩</a></li>`
-      )
+      .map(([id, footnote]) => `<li id="${id}">${footnote.content}</li>`)
       .join("");
     return TeiDoc.markupChinese(`<ol>${footnotesHtml}</ol>`);
   }

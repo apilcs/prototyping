@@ -225,6 +225,35 @@ const ArticlePage = ({ data }) => {
 
   const domToReactWithReplace = children => domToReact(children, parserOptions);
 
+  const footnotesParserOptions = {
+    replace: domNode => {
+      if (domNode.name === "li") {
+        const content = domToReactWithReplace(domNode.children);
+        if (
+          typeof content === "object" &&
+          typeof content[content.length - 1] === "object"
+        ) {
+          return (
+            <li id={domNode.attribs.id}>
+              {content}
+              <p>
+                {content.pop().props.children}
+                <a href={`#${domNode.attribs.id}:ref`}>↩</a>
+              </p>
+            </li>
+          );
+        }
+        return (
+          <li id={domNode.attribs.id}>
+            {content}
+            <a href={`#${domNode.attribs.id}:ref`}>↩</a>
+          </li>
+        );
+      }
+      return false;
+    }
+  };
+
   return (
     <Layout>
       <Meta title={title} />
@@ -232,7 +261,7 @@ const ArticlePage = ({ data }) => {
       <h3>{author}</h3>
       <Abstract>{Parser(tei.abstractHtml)}</Abstract>
       <ArticleBody>{Parser(tei.articleBodyHtml, parserOptions)}</ArticleBody>
-      <Footnotes>{Parser(tei.footnotesHtml)}</Footnotes>
+      <Footnotes>{Parser(tei.footnotesHtml, footnotesParserOptions)}</Footnotes>
     </Layout>
   );
 };
