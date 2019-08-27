@@ -45,11 +45,11 @@ export const query = graphql`
 //  https://stackoverflow.com/questions/57381690/gatsby-image-mystery
 
 const footnoteTipStyles = css`
-  background: ${props => transparentize(0.05, props.theme.colors.main)};
-  border-color: ${props => transparentize(0.05, props.theme.colors.main)};
-  font-family: ${props => props.theme.fonts.body};
-  font-size: 0.9rem;
-  line-height: 1.45;
+  ${({ theme }) => theme.scale(-0.3)};
+  background: ${({ theme }) => transparentize(0.05, theme.colors.main)};
+  border-color: ${({ theme }) => transparentize(0.05, theme.colors.main)};
+  font-family: ${({ theme }) => theme.fonts.body};
+  font-style: normal;
   max-width: 20rem;
   padding: 0.5rem 1rem;
   z-index: 2;
@@ -58,15 +58,20 @@ const footnoteTipStyles = css`
     display: none;
   }
 
-  p:last-of-type {
-    margin-bottom: 0;
+  p {
+    margin-bottom: ${({ theme }) => theme.rhythm(1 / 2)};
+    &:last-of-type {
+      margin-bottom: 0;
+    }
   }
 `;
 
 const Abstract = styled.blockquote`
-  font-size: 0.9rem;
-  font-family: ${props => props.theme.fonts.header};
-  margin: 0 3.45rem 0 2rem;
+  ${({ theme }) => theme.scale(-0.1)}
+  font-family: ${({ theme }) => theme.fonts.header};
+  margin: ${({ theme: { rhythm } }) =>
+    `${rhythm(1)} ${rhythm(2)} ${rhythm(1)} ${rhythm(1)}`};
+  text-align: justify;
 
   em,
   span.zh {
@@ -75,49 +80,50 @@ const Abstract = styled.blockquote`
 `;
 
 const ArticleBody = styled.div`
-  font-size: 0.9rem;
+  ${({ theme }) => theme.scale(0)};
 
   section > header:first-child {
-    font-family: ${props => props.theme.fonts.header};
-    font-size: 1.4rem;
-    margin: 1rem 0;
+    ${({ theme }) => theme.scale(0.5)};
+    font-family: ${({ theme }) => theme.fonts.header};
+    margin: ${({ theme }) => theme.rhythm(2 / 3)} 0;
   }
 
   figure {
-    border: 1px solid ${props => props.theme.colors.bodyText};
+    border: 1px solid ${({ theme }) => theme.colors.bodyText};
     border-radius: 5px;
     display: inline-block;
     margin: 0 0.5%;
     max-width: 48%;
-    padding: 5px;
+    padding: ${({ theme }) => theme.rhythm(1 / 5)};
 
     img {
       margin-bottom: 0;
     }
 
     figcaption {
-      background: ${props => lighten(0.4, props.theme.colors.main)};
-      font-family: ${props => props.theme.fonts.header};
-      font-size: 0.8rem;
-      padding: 5px;
+      background: ${({ theme }) => lighten(0.4, theme.colors.main)};
+      font-family: ${({ theme }) => theme.fonts.header};
+      ${({ theme }) => theme.scale(-0.2)};
+      padding: ${({ theme }) => theme.rhythm(1 / 5)};
     }
   }
 
   table {
-    font-family: ${props => props.theme.fonts.header};
-    font-size: 0.8rem;
+    ${({ theme }) => theme.scale(-0.1)};
+    font-family: ${({ theme }) => theme.fonts.header};
 
     tr:nth-child(odd) {
       background: #eaeaea;
     }
 
     tr:first-child {
-      background: ${props => lighten(0.4, props.theme.colors.main)};
+      background: ${({ theme }) => lighten(0.4, theme.colors.main)};
       font-weight: bold;
     }
 
     td {
-      padding: 0.25rem 0.5rem;
+      padding: ${({ theme: { rhythm } }) =>
+        `${rhythm(1 / 6)} ${rhythm(1 / 3)}`};
 
       &[colspan="100%"] {
         text-align: center;
@@ -127,7 +133,7 @@ const ArticleBody = styled.div`
 
   blockquote {
     border: none;
-    margin: 0 1.45rem 1.45rem;
+    margin: ${({ theme: { rhythm } }) => `0 ${rhythm(1)} ${rhythm(1)}`};
     padding: 0;
 
     span.zh {
@@ -137,16 +143,16 @@ const ArticleBody = styled.div`
 `;
 
 const Footnotes = styled.div`
+  ${({ theme }) => theme.scale(-0.2)};
   border-top: 1px solid #000;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 0.9rem;
-  margin-top: 4rem;
-  padding-top: 1rem;
+  margin-top: ${({ theme }) => theme.rhythm(2)};
+  padding-top: ${({ theme }) => theme.rhythm(2 / 3)};
 
   li:target {
-    background-color: ${props => props.theme.colors.highlight};
-    border: 8px solid ${props => props.theme.colors.highlight};
-    color: ${props => props.theme.colors.bodyText};
+    background-color: ${({ theme }) => theme.colors.highlight};
+    border: 8px solid ${({ theme }) => theme.colors.highlight};
+    color: ${({ theme }) => theme.colors.bodyText};
   }
 `;
 
@@ -169,7 +175,7 @@ const ArticlePage = ({ data }) => {
           <>
             {/* eslint-disable-next-line no-use-before-define */}
             <section>{domToReactWithReplace(domNode.children)}</section>
-            <SectionDivider color={props => props.theme.colors.main} />
+            <SectionDivider color={({ theme }) => theme.colors.main} />
           </>
         );
 
