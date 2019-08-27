@@ -103,6 +103,13 @@ class TeiDoc extends JsonMlDoc {
 
       cell: (children, attrs, doc, parent) => {
         return `<td>${doc.toHtml([null, ...children], parent)}</td>`;
+      },
+
+      quote: (children, attrs, doc, parent) => {
+        return `<blockquote>${doc.toHtml(
+          [null, ...children],
+          parent
+        )}</blockquote>`;
       }
     };
 
@@ -152,10 +159,7 @@ class TeiDoc extends JsonMlDoc {
 
   getFootnotesHtml() {
     const footnotesHtml = Object.entries(this.footnotes)
-      .map(
-        ([id, footnote]) =>
-          `<li id="${id}">${footnote.content}<a href="#${id}:ref">↩</a></li>`
-      )
+      .map(([id, footnote]) => `<li id="${id}">${footnote.content}</li>`)
       .join("");
     return TeiDoc.markupChinese(`<ol>${footnotesHtml}</ol>`);
   }

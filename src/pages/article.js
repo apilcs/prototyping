@@ -5,15 +5,14 @@ import { graphql } from "gatsby";
 import { injectIntl } from "gatsby-plugin-intl"; // Link, FormattedMessage
 import Parser, { domToReact } from "html-react-parser";
 // import { intlShape } from "react-intl";
-import styled from "styled-components";
-import { lighten } from "polished";
-
-import ApilsTheme from "../theme/apils-theme";
+import styled, { css } from "styled-components";
+import { lighten, transparentize } from "polished";
 
 import Layout from "../components/layout";
 import Meta from "../components/meta";
 
 import SectionDivider from "../ui-components/section-divider";
+import Tooltip from "../ui-components/tooltip";
 
 export const query = graphql`
   query {
@@ -45,10 +44,34 @@ export const query = graphql`
 // Same problem here:
 //  https://stackoverflow.com/questions/57381690/gatsby-image-mystery
 
+const footnoteTipStyles = css`
+  ${({ theme }) => theme.scale(-0.3)};
+  background: ${({ theme }) => transparentize(0.05, theme.colors.main)};
+  border-color: ${({ theme }) => transparentize(0.05, theme.colors.main)};
+  font-family: ${({ theme }) => theme.fonts.body};
+  font-style: normal;
+  max-width: 20rem;
+  padding: 0.5rem 1rem;
+  z-index: 2;
+
+  a[href^="#ftn"] {
+    display: none;
+  }
+
+  p {
+    margin-bottom: ${({ theme }) => theme.rhythm(1 / 2)};
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+`;
+
 const Abstract = styled.blockquote`
-  font-size: 0.9rem;
-  font-family: ${props => props.theme.fonts.header};
-  margin: 0 3.45rem 0 2rem;
+  ${({ theme }) => theme.scale(-0.1)}
+  font-family: ${({ theme }) => theme.fonts.header};
+  margin: ${({ theme: { rhythm } }) =>
+    `${rhythm(1)} ${rhythm(2)} ${rhythm(1)} ${rhythm(1)}`};
+  text-align: justify;
 
   em,
   span.zh {
@@ -57,64 +80,79 @@ const Abstract = styled.blockquote`
 `;
 
 const ArticleBody = styled.div`
-  font-size: 0.9rem;
+  ${({ theme }) => theme.scale(0)};
 
   section > header:first-child {
-    font-family: ${props => props.theme.fonts.header};
-    font-size: 1.4rem;
-    margin: 1rem 0;
+    ${({ theme }) => theme.scale(0.5)};
+    font-family: ${({ theme }) => theme.fonts.header};
+    margin: ${({ theme }) => theme.rhythm(2 / 3)} 0;
   }
 
   figure {
-    border: 1px solid ${props => props.theme.colors.bodyText};
+    border: 1px solid ${({ theme }) => theme.colors.bodyText};
     border-radius: 5px;
     display: inline-block;
     margin: 0 0.5%;
     max-width: 48%;
-    padding: 5px;
+    padding: ${({ theme }) => theme.rhythm(1 / 5)};
 
     img {
       margin-bottom: 0;
     }
 
     figcaption {
-      background: ${props => lighten(0.4, props.theme.colors.main)};
-      font-family: ${props => props.theme.fonts.header};
-      font-size: 0.8rem;
-      padding: 5px;
+      background: ${({ theme }) => lighten(0.4, theme.colors.main)};
+      font-family: ${({ theme }) => theme.fonts.header};
+      ${({ theme }) => theme.scale(-0.2)};
+      padding: ${({ theme }) => theme.rhythm(1 / 5)};
     }
   }
 
   table {
-    font-family: ${props => props.theme.fonts.header};
-    font-size: 0.8rem;
+    ${({ theme }) => theme.scale(-0.1)};
+    font-family: ${({ theme }) => theme.fonts.header};
 
     tr:nth-child(odd) {
       background: #eaeaea;
     }
 
     tr:first-child {
-      background: ${props => lighten(0.4, props.theme.colors.main)};
+      background: ${({ theme }) => lighten(0.4, theme.colors.main)};
       font-weight: bold;
     }
 
     td {
-      padding: 0.25rem 0.5rem;
+      padding: ${({ theme: { rhythm } }) =>
+        `${rhythm(1 / 6)} ${rhythm(1 / 3)}`};
+
+      &[colspan="100%"] {
+        text-align: center;
+      }
+    }
+  }
+
+  blockquote {
+    border: none;
+    margin: ${({ theme: { rhythm } }) => `0 ${rhythm(1)} ${rhythm(1)}`};
+    padding: 0;
+
+    span.zh {
+      font-style: normal;
     }
   }
 `;
 
 const Footnotes = styled.div`
+  ${({ theme }) => theme.scale(-0.2)};
   border-top: 1px solid #000;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 0.9rem;
-  margin-top: 4rem;
-  padding-top: 1rem;
+  margin-top: ${({ theme }) => theme.rhythm(2)};
+  padding-top: ${({ theme }) => theme.rhythm(2 / 3)};
 
   li:target {
-    background-color: ${props => props.theme.colors.highlight};
-    border: 8px solid ${props => props.theme.colors.highlight};
-    color: ${props => props.theme.colors.bodyText};
+    background-color: ${({ theme }) => theme.colors.highlight};
+    border: 8px solid ${({ theme }) => theme.colors.highlight};
+    color: ${({ theme }) => theme.colors.bodyText};
   }
 `;
 
@@ -126,7 +164,7 @@ const Footnotes = styled.div`
 //   prev: null,
 //   parent: null }
 
-const StaticPage = ({ data }) => {
+const ArticlePage = ({ data }) => {
   const { tei } = data;
   const { title, author } = tei.frontmatter;
 
@@ -135,8 +173,9 @@ const StaticPage = ({ data }) => {
       if (domNode.name === "section")
         return (
           <>
-            <section>{domToReact2(domNode.children)}</section>
-            <SectionDivider color={ApilsTheme.colors.main} />
+            {/* eslint-disable-next-line no-use-before-define */}
+            <section>{domToReactWithReplace(domNode.children)}</section>
+            <SectionDivider color={({ theme }) => theme.colors.main} />
           </>
         );
 
@@ -160,7 +199,23 @@ const StaticPage = ({ data }) => {
           // />
         );
 
+      if (domNode.name === "a" && /#ftn\d+/.test(domNode.attribs.href)) {
+        return (
+          <Tooltip
+            tipContent={() =>
+              Parser(document.querySelector(domNode.attribs.href).innerHTML)
+            }
+            tipStyles={footnoteTipStyles}>
+            <a href={domNode.attribs.href}>
+              {/* eslint-disable-next-line no-use-before-define */}
+              {domToReactWithReplace(domNode.children)}
+            </a>
+          </Tooltip>
+        );
+      }
+
       if (domNode.name === "td" && domNode.parent.children.length === 1) {
+        // eslint-disable-next-line no-param-reassign
         domNode.attribs.colspan = "100%";
       }
 
@@ -168,22 +223,51 @@ const StaticPage = ({ data }) => {
     }
   };
 
-  const domToReact2 = children => domToReact(children, parserOptions);
+  const domToReactWithReplace = children => domToReact(children, parserOptions);
+
+  const footnotesParserOptions = {
+    replace: domNode => {
+      if (domNode.name === "li") {
+        const content = domToReactWithReplace(domNode.children);
+        if (
+          typeof content === "object" &&
+          typeof content[content.length - 1] === "object"
+        ) {
+          return (
+            <li id={domNode.attribs.id}>
+              {content}
+              <p>
+                {content.pop().props.children}
+                <a href={`#${domNode.attribs.id}:ref`}>↩</a>
+              </p>
+            </li>
+          );
+        }
+        return (
+          <li id={domNode.attribs.id}>
+            {content}
+            <a href={`#${domNode.attribs.id}:ref`}>↩</a>
+          </li>
+        );
+      }
+      return false;
+    }
+  };
 
   return (
     <Layout>
       <Meta title={title} />
-      <h1>{Parser(tei.titleHtml)}</h1>
+      <h1>{Parser(tei.titleHtml, parserOptions)}</h1>
       <h3>{author}</h3>
       <Abstract>{Parser(tei.abstractHtml)}</Abstract>
       <ArticleBody>{Parser(tei.articleBodyHtml, parserOptions)}</ArticleBody>
-      <Footnotes>{Parser(tei.footnotesHtml)}</Footnotes>
+      <Footnotes>{Parser(tei.footnotesHtml, footnotesParserOptions)}</Footnotes>
     </Layout>
   );
 };
 
-StaticPage.propTypes = {
+ArticlePage.propTypes = {
   data: PropTypes.shape({ tei: PropTypes.object.isRequired }).isRequired
 };
 
-export default injectIntl(StaticPage);
+export default injectIntl(ArticlePage);

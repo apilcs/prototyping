@@ -20,28 +20,29 @@ const Container = styled.div`
   overflow: hidden;
 
   main {
-    ${props => props.theme.pageShadow}
-    background: ${props => props.theme.colors.pageBg};
+    ${({ theme }) => theme.pageShadow}
+    background: ${({ theme }) => theme.colors.pageBg};
     background-image: url(${bgImage});
     border-radius: 0 0 8px 0;
     flex-grow: 1;
     margin: ${props => `-${props.theme.contentOverhang}`} auto 0;
-    max-width: ${props => props.theme.contentMaxWidth};
-    padding: 60px 120px 20px;
+    max-width: ${({ theme }) => theme.contentMaxWidth};
+    padding: ${({ theme: { rhythm } }) =>
+      `${rhythm(2)} ${rhythm(4)} ${rhythm(2 / 3)}`};
     width: 100%;
   }
 `;
 
 const Header = styled.header`
   background: rgba(0, 0, 0, 0.7);
-  border-bottom: 1px solid ${props => props.theme.colors.main};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.main};
   display: flex;
-  padding-bottom: ${props => props.theme.contentOverhang};
+  padding-bottom: ${({ theme }) => theme.contentOverhang};
 
   > div {
     flex-grow: 1;
     margin: 0 auto;
-    max-width: ${props => props.theme.contentMaxWidth};
+    max-width: ${({ theme }) => theme.contentMaxWidth};
     position: relative;
   }
 `;
@@ -49,7 +50,7 @@ const Header = styled.header`
 const Branding = styled.div`
   display: flex;
   flex-direction: row-reverse;
-  margin-bottom: 10px;
+  margin-bottom: ${({ theme }) => theme.rhythm(1 / 3)};
   align-items: flex-end;
 
   > div {
@@ -61,9 +62,10 @@ const Branding = styled.div`
   }
 
   h2 {
-    color: ${props => props.theme.colors.mainAlt};
-    font-size: 1.4rem;
-    margin-top: 0.375rem;
+    ${({ theme }) => theme.scale(0.5)};
+    color: ${({ theme }) => theme.colors.mainAlt};
+    margin-bottom: ${({ theme }) => theme.rhythm(1 / 8)};
+    margin-top: 0;
   }
 
   img {
@@ -73,11 +75,10 @@ const Branding = styled.div`
 `;
 
 const Naivgation = styled.nav`
-  ${props => props.theme.pageShadow}
-  background: ${props => props.theme.colors.main};
+  background: ${({ theme }) => theme.colors.main};
   border-radius: 0 8px 0 0;
-  color: ${props => props.theme.colors.mainAlt};
-  font-family: ${props => props.theme.fonts.header};
+  color: ${({ theme }) => theme.colors.mainAlt};
+  font-family: ${({ theme }) => theme.fonts.header};
 
   ul {
     display: flex;
@@ -91,12 +92,14 @@ const Naivgation = styled.nav`
     text-align: center;
 
     a {
-      color: ${props => props.theme.colors.mainAlt};
+      color: ${({ theme }) => theme.colors.mainAlt};
       display: inline-block;
-      padding: 4px 10px;
+      padding: ${({ theme: { rhythm } }) =>
+        `${rhythm(1 / 8)} ${rhythm(1 / 3)}`};
       transition: background-color 0.25s ease;
 
-      &:hover, &.active {
+      &:hover,
+      &.active {
         background-color: rgba(255, 255, 255, 0.2);
         box-shadow: none;
       }
@@ -106,13 +109,13 @@ const Naivgation = styled.nav`
 
 const Footer = styled.footer`
   background: rgba(0, 0, 0, 0.7);
-  color: ${props => props.theme.colors.mainAlt};
-  padding-top: ${props => props.theme.contentOverhang};
-  margin-top: -${props => props.theme.contentOverhang};
+  color: ${({ theme }) => theme.colors.mainAlt};
+  padding-top: ${({ theme }) => theme.contentOverhang};
+  margin-top: -${({ theme }) => theme.contentOverhang};
 
   > div {
     margin: 0 auto;
-    max-width: ${props => props.theme.contentMaxWidth};
+    max-width: ${({ theme }) => theme.contentMaxWidth};
     line-height: 50px;
     text-align: right;
   }

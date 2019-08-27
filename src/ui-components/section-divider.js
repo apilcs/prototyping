@@ -27,14 +27,14 @@ const SectionDividerContainer = styled.div`
       background-image: linear-gradient(
         90deg,
         transparent,
-        ${props => props.color}
+        ${props => props.customColor}
       );
     }
 
     &:last-child {
       background-image: linear-gradient(
         90deg,
-        ${props => props.color},
+        ${props => props.customColor},
         transparent
       );
     }
@@ -44,14 +44,16 @@ const SectionDividerContainer = styled.div`
 function SectionDivider(props) {
   const { color } = props;
   return (
-    <SectionDividerContainer color={color}>
+    <SectionDividerContainer customColor={color}>
       <span />
       <span />
     </SectionDividerContainer>
   );
 }
 
-SectionDivider.propTypes = { color: PropTypes.string };
+SectionDivider.propTypes = {
+  color: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+};
 SectionDivider.defaultProps = { color: "black" };
 
 export default SectionDivider;

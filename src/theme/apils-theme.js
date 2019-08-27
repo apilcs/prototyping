@@ -1,4 +1,4 @@
-import { options } from "./typography";
+import { options, rhythm, scale } from "./typography";
 
 export default {
   // main: "hsl(230, 55%, 58%)"
@@ -15,6 +15,9 @@ export default {
     body: options.bodyFontFamily.map(typeface => `"${typeface}"`).join(","),
     header: options.headerFontFamily.map(typeface => `"${typeface}"`).join(",")
   },
+
+  rhythm,
+  scale,
 
   contentMaxWidth: "960px",
   contentOverhang: "20px",
