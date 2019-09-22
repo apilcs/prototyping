@@ -1,4 +1,4 @@
-const { JsonMlDoc } = require(`./jsonml`);
+import JsonMlDoc from "./jsonml";
 
 class TeiDoc extends JsonMlDoc {
   constructor(xmlString, debug) {
@@ -191,4 +191,4 @@ class TeiDoc extends JsonMlDoc {
   }
 }
 
-module.exports = { TeiDoc };
+export default TeiDoc;

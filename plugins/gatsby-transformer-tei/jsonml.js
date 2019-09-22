@@ -1,4 +1,4 @@
-const sax = require("./sax");
+import sax from "./sax";
 
 const JsonMlDoc = class {
   constructor(xmlString, debug = false) {
@@ -173,4 +173,4 @@ const JsonMlDoc = class {
   }
 };
 
-module.exports.JsonMlDoc = JsonMlDoc;
+export default JsonMlDoc;
