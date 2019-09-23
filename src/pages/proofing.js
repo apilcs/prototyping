@@ -1,4 +1,6 @@
 import React from "react";
+import { css } from "styled-components";
+
 import { post } from "axios";
 
 import Layout from "../components/layout";
@@ -14,11 +16,23 @@ import Tooltip from "../ui-components/tooltip";
 import TeiDoc from "../../plugins/gatsby-transformer-tei/tei";
 import TeiRenderer from "../utils/tei-renderer";
 
+const controlsTipStyles = css`
+  ${({ theme }) => theme.scale(-0.3)};
+  background: black;
+  color: white;
+  font-family: ${({ theme }) => theme.fonts.header};
+  font-style: normal;
+  max-width: 20rem;
+  padding: 0.5rem 1rem;
+  z-index: 2;
+`;
+
 class ProofingPage extends React.Component {
   static fileUpload(file) {
-    const url = "http://localhost:5000/ents";
+    const url = "http://localhost:5000/";
     const formData = new FormData();
-    formData.append("data_file", file);
+    formData.append("xml", file);
+    formData.set("model", "en_core_web_lg");
     const config = {
       headers: { "content-type": "multipart/form-data" }
     };
@@ -97,7 +111,9 @@ class ProofingPage extends React.Component {
         <h1>Proofing Page</h1>
         <div>
           <input type="file" name="input-file" onChange={this.onNewFile} />
-          <Tooltip tipContent="Send document for NER markup and render result.">
+          <Tooltip
+            tipContent="Send document for NER markup and render result."
+            tipStyles={controlsTipStyles}>
             <button type="button" onClick={this.onNerClick}>
               NER
             </button>

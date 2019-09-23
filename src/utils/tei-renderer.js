@@ -4,6 +4,10 @@ import Parser, { domToReact } from "html-react-parser";
 import SectionDivider from "../ui-components/section-divider";
 import Tooltip from "../ui-components/tooltip";
 import { footnoteTipStyles } from "../ui-components/article-elements";
+import {
+  NamedEntity,
+  entityTipStyles
+} from "../ui-components/proofing-elements";
 
 class TeiRenderer {
   constructor(teiDoc) {
@@ -70,13 +74,15 @@ class TeiRenderer {
           domNode.attribs.colspan = "100%";
         }
 
-        if (domNode.name === "span" && domNode.attribs.class.match(/\bne\b/)) {
+        if (domNode.name === "span" && "data-type" in domNode.attribs) {
           return (
-            <Tooltip tipContent={domNode.attribs[`data-role`]}>
-              <span className={domNode.attribs.class}>
+            <Tooltip
+              tipContent={domNode.attribs[`data-role`]}
+              tipStyles={entityTipStyles}>
+              <NamedEntity type={domNode.attribs[`data-type`]}>
                 {/* eslint-disable-next-line no-use-before-define */}
                 {this.domToReactWithReplace(domNode.children)}
-              </span>
+              </NamedEntity>
             </Tooltip>
           );
         }
