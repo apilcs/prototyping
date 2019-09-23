@@ -97,6 +97,11 @@ const ArticleBody = styled.div`
       font-style: normal;
     }
   }
+
+  span.ne {
+    outline: 2px solid yellow;
+    background: #eaeaea;
+  }
 `;
 
 const Footnotes = styled.div`

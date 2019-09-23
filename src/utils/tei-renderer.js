@@ -70,6 +70,17 @@ class TeiRenderer {
           domNode.attribs.colspan = "100%";
         }
 
+        if (domNode.name === "span" && domNode.attribs.class.match(/\bne\b/)) {
+          return (
+            <Tooltip tipContent={domNode.attribs[`data-role`]}>
+              <span className={domNode.attribs.class}>
+                {/* eslint-disable-next-line no-use-before-define */}
+                {this.domToReactWithReplace(domNode.children)}
+              </span>
+            </Tooltip>
+          );
+        }
+
         return false;
       }
     };

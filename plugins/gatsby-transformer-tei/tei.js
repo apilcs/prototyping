@@ -51,6 +51,12 @@ class TeiDoc extends JsonMlDoc {
         )}</span>`;
       },
 
+      name: (children, attrs, doc, parent) => {
+        return `<span class="ne ${attrs.type}" data-role="${
+          attrs.role
+        }">${doc.toHtml([null, ...children], parent)}</span>`;
+      },
+
       div: (children, attrs, doc, parent) => {
         const { type } = attrs;
         if (type === "section")
