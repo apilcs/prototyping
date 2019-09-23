@@ -1,5 +1,5 @@
 // Based on: https://github.com/isaacs/sax-js
-
+/* eslint-disable */
 const sax = {};
 
 // When we pass the MAX_BUFFER_LENGTH position, start checking for buffer overruns.
