@@ -7,13 +7,13 @@
   "keywords": ["apils"],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "node -r esm ./node_modules/.bin/gatsby build",
     "deploy:gh-pages": "gh-pages -d public -b master -r https://github.com/apilcs/apilcs.github.io",
-    "develop": "gatsby develop",
+    "develop": "node -r esm ./node_modules/.bin/gatsby develop",
     "format": "prettier --write *.{js,json} src/**/*.{js,json}",
     "lint": "node_modules/.bin/eslint *.js src/**/*.js --quiet",
-    "serve": "gatsby serve",
-    "start": "gatsby develop",
+    "serve": "node -r esm ./node_modules/.bin/gatsby serve",
+    "start": "node -r esm ./node_modules/.bin/gatsby develop",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "husky": {
@@ -49,7 +49,6 @@
     "gatsby-transformer-remark": "^2.6.12",
     "gatsby-transformer-sharp": "^2.2.6",
     "html-react-parser": "^0.9.1",
-    "node-expat": "^2.3.18",
     "polished": "^3.4.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
@@ -71,6 +70,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.3",
+    "esm": "^3.2.25",
     "gatsby-plugin-eslint": "^2.0.5",
     "gh-pages": "2.0",
     "husky": "^3.0.3",

@@ -1,4 +1,4 @@
-const { TeiDoc } = require(`./tei`);
+import TeiDoc from "./tei";
 
 async function onCreateNode({
   node,

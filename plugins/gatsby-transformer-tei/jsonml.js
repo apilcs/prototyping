@@ -1,4 +1,4 @@
-const { Parser } = require("node-expat");
+import sax from "./sax";
 
 const JsonMlDoc = class {
   constructor(xmlString, debug = false) {
@@ -11,13 +11,13 @@ const JsonMlDoc = class {
   parse(content) {
     const nodeStack = [];
     const encoding = "UTF-8";
-    const parser = new Parser(encoding);
+    const parser = sax.parser(true, { xmlns: true });
     const data = Buffer.from(content, encoding);
 
     let node;
     let partial = "";
 
-    parser.on("startElement", (name, attrs) => {
+    parser.onopentag = ({ name, attributes = {} }) => {
       const newNode = [name];
 
       if (partial) {
@@ -25,7 +25,14 @@ const JsonMlDoc = class {
         partial = "";
       }
 
-      if (Object.entries(attrs).length > 0) newNode.push(attrs);
+      if (Object.entries(attributes).length > 0) {
+        newNode.push(
+          Object.keys(attributes).reduce((acc, k) => {
+            acc[k] = attributes[k].value;
+            return acc;
+          }, {})
+        );
+      }
 
       if (node) {
         node.push(newNode);
@@ -33,9 +40,9 @@ const JsonMlDoc = class {
       }
 
       node = newNode;
-    });
+    };
 
-    parser.on("endElement", (/* name */) => {
+    parser.onclosetag = (/* name */) => {
       if (partial) {
         node.push(partial);
         partial = "";
@@ -44,16 +51,17 @@ const JsonMlDoc = class {
       if (nodeStack.length === 0) this.doc = node;
 
       node = nodeStack.pop();
-    });
+    };
 
-    parser.on("text", function _text(text) {
+    parser.ontext = function _text(text) {
       const textContent = text.replace(/[\r\n\t]*/, "");
       partial += textContent;
-    });
+    };
 
-    if (!parser.parse(data, true)) {
-      throw new Error(`Could not parse XML: ${parser.getError()}`);
-    }
+    parser.write(data).close();
+    // if (!parser.parse(data, true)) {
+    //   throw new Error(`Could not parse XML: ${parser.getError()}`);
+    // }
   }
 
   getFirstTextContent(elemPath) {
@@ -94,8 +102,8 @@ const JsonMlDoc = class {
     // elemPath is an xPath-like expression, currently limited to descendant
     // selectors (i.e. tag/tag/tag) and attribute equality (tag[@attr='val'])
     // Missing (not necessarily todo...):
-    //  * distinguish prefixes (/, //, ./ -- root, anywhere, relative)
-    //  * more-or-less everything else
+    //  - distinguish prefixes (/, //, ./ -- root, anywhere, relative)
+    //  - more-or-less everything else
     let currentElem = this.doc;
     elemPath.split("/").forEach(expr => {
       if (!expr) return;
@@ -165,4 +173,4 @@ const JsonMlDoc = class {
   }
 };
 
-module.exports.JsonMlDoc = JsonMlDoc;
+export default JsonMlDoc;
