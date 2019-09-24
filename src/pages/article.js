@@ -43,6 +43,8 @@ export const query = graphql`
 //  (hence the commenting out here and below)
 // Same problem here:
 //  https://stackoverflow.com/questions/57381690/gatsby-image-mystery
+// Try disabling HMR to see if that helps debug -- possibly related:
+//  https://github.com/gatsbyjs/gatsby/issues/16481
 
 const footnoteTipStyles = css`
   ${({ theme }) => theme.scale(-0.3)};
