@@ -39,7 +39,7 @@ const Abstract = styled.blockquote`
 const ArticleBody = styled.div`
   ${({ theme }) => theme.scale(0)};
 
-  section > header:first-child {
+  header {
     ${({ theme }) => theme.scale(0.5)};
     font-family: ${({ theme }) => theme.fonts.header};
     margin: ${({ theme }) => theme.rhythm(2 / 3)} 0;
