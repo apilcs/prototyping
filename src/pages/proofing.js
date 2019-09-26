@@ -237,7 +237,8 @@ class ProofingPage extends React.Component {
                         onClick={event =>
                           Array.from(event.target.form.include).forEach(
                             checkbox => {
-                              checkbox.checked = true;
+                              const cb = checkbox;
+                              cb.checked = true;
                             }
                           )
                         }>
@@ -248,7 +249,8 @@ class ProofingPage extends React.Component {
                         onClick={event =>
                           Array.from(event.target.form.include).forEach(
                             checkbox => {
-                              checkbox.checked = false;
+                              const cb = checkbox;
+                              cb.checked = false;
                             }
                           )
                         }>
