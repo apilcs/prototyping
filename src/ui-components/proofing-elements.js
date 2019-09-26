@@ -2,6 +2,26 @@ import styled, { css } from "styled-components";
 import { lighten } from "polished";
 import { Tip } from "./tooltip";
 
+const ToggleButton = styled.button`
+  background: none;
+  border: none;
+  margin: 1em 0 0;
+
+  &::before {
+    color: ${({ theme }) => theme.colors.main};
+    content: "⧐";
+    display: inline-block;
+    margin-right: 4px;
+    transition: transform 0.5s ease;
+  }
+
+  &.shown {
+    &::before {
+      transform: rotate(90deg);
+    }
+  }
+`;
+
 const ControlsPanel = styled.div`
   background: #eaeaea;
   margin: 10px;
@@ -16,31 +36,12 @@ const ControlsPanel = styled.div`
     align-items: center;
   }
 
-  h4 {
-    margin: 1em 0 0 1em;
-
-    &::before {
-      color: ${({ theme }) => theme.colors.main};
-      content: "⧐";
-      display: inline-block;
-      margin-right: 4px;
-      transition: transform 0.5s ease;
-    }
-
-    &.shown {
-      &::before {
-        transform: rotate(90deg);
-      }
-
-      & + form {
-        padding: 1em 0;
-        height: auto;
-      }
-    }
+  ${ToggleButton}.shown + form {
+    height: 650px;
   }
 
   form {
-    transition: padding 1s ease;
+    transition: height 0.5s ease;
     overflow: hidden;
     height: 0;
     padding: 0;
@@ -83,6 +84,7 @@ const controlsTipStyles = css`
   background: black;
   color: white;
   font-style: normal;
+  line-height: 1.5;
   max-width: 20rem;
   padding: 0 8px;
   z-index: 2;
@@ -157,6 +159,7 @@ const NamedEntity = styled.span`
 export {
   ControlsPanel,
   controlsTipStyles,
+  ToggleButton,
   ControlButton,
   NamedEntity,
   entityTipStyles

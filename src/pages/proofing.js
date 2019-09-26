@@ -9,7 +9,8 @@ import { ArticleBody, Footnotes } from "../ui-components/article-elements";
 import {
   ControlsPanel,
   controlsTipStyles,
-  ControlButton
+  ControlButton,
+  ToggleButton
 } from "../ui-components/proofing-elements";
 import Tooltip from "../ui-components/tooltip";
 import LoadingSpinner from "../ui-components/loading-spinner";
@@ -155,32 +156,43 @@ class ProofingPage extends React.Component {
           </div>
           {teiNode ? (
             <>
-              <h4 onClick={event => event.target.classList.toggle("shown")}>
+              <ToggleButton
+                onClick={event => {
+                  event.target.classList.toggle("shown");
+                }}>
                 NER Tools
-              </h4>
+              </ToggleButton>
               <form onSubmit={this.onNerSubmit}>
                 <div>
                   <fieldset>
                     <legend>Model</legend>
-                    <label htmlFor="en_core_web_sm">
-                      <input
-                        type="radio"
-                        name="model"
-                        id="en_core_web_sm"
-                        value="en_core_web_sm"
-                        defaultChecked
-                      />
-                      en_core_web_sm
-                    </label>
-                    <label htmlFor="en_core_web_lg">
-                      <input
-                        type="radio"
-                        name="model"
-                        id="en_core_web_lg"
-                        value="en_core_web_lg"
-                      />
-                      en_core_web_lg
-                    </label>
+                    <Tooltip
+                      tipContent="English multi-task CNN trained on OntoNotes v5."
+                      tipStyles={controlsTipStyles}>
+                      <label htmlFor="en_core_web_sm">
+                        <input
+                          type="radio"
+                          name="model"
+                          id="en_core_web_sm"
+                          value="en_core_web_sm"
+                          defaultChecked
+                        />
+                        en_core_web_sm
+                      </label>
+                    </Tooltip>
+                    <Tooltip
+                      tipContent="English multi-task CNN trained on OntoNotes v5, with GloVe vectors trained on Common Crawl."
+                      tipStyles={controlsTipStyles}>
+                      <label htmlFor="en_core_web_lg">
+                        <input
+                          type="radio"
+                          name="model"
+                          id="en_core_web_lg"
+                          value="en_core_web_lg"
+                        />
+                        en_core_web_lg
+                      </label>
+                    </Tooltip>
                   </fieldset>
                   <fieldset>
                     <legend>Include</legend>
@@ -208,7 +220,9 @@ class ProofingPage extends React.Component {
                         type="button"
                         onClick={event =>
                           Array.from(event.target.form.include).forEach(
-                            checkbox => (checkbox.checked = true)
+                            checkbox => {
+                              checkbox.checked = true;
+                            }
                           )
                         }>
                         Select All
@@ -217,7 +231,9 @@ class ProofingPage extends React.Component {
                         type="button"
                         onClick={event =>
                           Array.from(event.target.form.include).forEach(
-                            checkbox => (checkbox.checked = false)
+                            checkbox => {
+                              checkbox.checked = false;
+                            }
                           )
                         }>
                         Select None
