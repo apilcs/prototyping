@@ -40,7 +40,7 @@ const ENTITY_TYPES = [
 
 class ProofingPage extends React.Component {
   static sendFileForNerMarkup(file, model, include) {
-    const url = "http://localhost:5000/";
+    const url = process.env.NLP_API_ENDPOINT;
     const formData = new FormData();
     formData.append("xml", file);
     formData.set("model", model);
