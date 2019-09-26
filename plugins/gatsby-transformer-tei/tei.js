@@ -31,7 +31,7 @@ class TeiDoc extends JsonMlDoc {
         return `<p>${doc.toHtml([null, ...children], parent)}</p>`;
       },
 
-      note: (children, attrs, doc, parent) => {
+      note: (children, attrs /* doc, parent */) => {
         const { n: footnoteIndex, "xml:id": footnoteId } = attrs;
         return `<sup id="${footnoteId}:ref"><a href="#${footnoteId}">${footnoteIndex}</a></sup>`;
       },
@@ -49,6 +49,12 @@ class TeiDoc extends JsonMlDoc {
           [null, ...children],
           parent
         )}</span>`;
+      },
+
+      name: (children, attrs, doc, parent) => {
+        return `<span data-type="${attrs.type}" data-role="${
+          attrs.role
+        }">${doc.toHtml([null, ...children], parent)}</span>`;
       },
 
       div: (children, attrs, doc, parent) => {
@@ -77,7 +83,7 @@ class TeiDoc extends JsonMlDoc {
         return `<header>${doc.toHtml([null, ...children], parent)}</header>`;
       },
 
-      figure: (children, attrs, doc, parent) => {
+      figure: (children, attrs, doc /* parent */) => {
         const graphic = children.find(elem => elem[0] === "graphic");
         const head = children.find(elem => elem[0] === "head");
         return `\
@@ -150,8 +156,9 @@ class TeiDoc extends JsonMlDoc {
     return abstractElem ? TeiDoc.markupChinese(this.toHtml(abstractElem)) : "";
   }
 
+  // eslint-disable-next-line class-methods-use-this
   getKeywords() {
-    // pass
+    // TODO: add this method :)
   }
 
   getArticleBodyHtml() {

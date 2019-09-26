@@ -11,7 +11,7 @@
     "deploy:gh-pages": "gh-pages -d public -b master -r https://github.com/apilcs/apilcs.github.io",
     "develop": "node -r esm ./node_modules/.bin/gatsby develop",
     "format": "prettier --write *.{js,json} src/**/*.{js,json}",
-    "lint": "node_modules/.bin/eslint *.js src/**/*.js --quiet",
+    "lint": "node_modules/.bin/eslint *.js src/**/*.js plugins/**/*.js --quiet",
     "serve": "node -r esm ./node_modules/.bin/gatsby serve",
     "start": "node -r esm ./node_modules/.bin/gatsby develop",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
@@ -32,6 +32,7 @@
     "url": "https://github.com/apilcs/website/issues"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "babel-plugin-styled-components": "^1.10.6",
     "buffer": "^5.2.1",
     "gatsby": "^2.13.57",
