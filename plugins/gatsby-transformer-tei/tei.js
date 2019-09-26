@@ -106,6 +106,9 @@ class TeiDoc extends JsonMlDoc {
       },
 
       quote: (children, attrs, doc, parent) => {
+        if (attrs.rend && attrs.rend === "inline") {
+          return `“${doc.toHtml([null, ...children], parent)}”`;
+        }
         return `<blockquote>${doc.toHtml(
           [null, ...children],
           parent
@@ -132,19 +135,19 @@ class TeiDoc extends JsonMlDoc {
 
   getFrontmatter() {
     return {
-      title: this.getFirstTextContent("titleStmt/title"),
-      author: this.getFirstTextContent("titleStmt/author")
+      title: this.getFirstTextContent("titleStmt/title") || "",
+      author: this.getFirstTextContent("titleStmt/author") || ""
     };
   }
 
   getTitleHtml() {
-    return TeiDoc.markupChinese(this.toHtml(this.getElemByPath("titlePart")));
+    const titleElem = this.getElemByPath("titlePart");
+    return titleElem ? TeiDoc.markupChinese(this.toHtml(titleElem)) : "";
   }
 
   getAbstractHtml() {
-    return TeiDoc.markupChinese(
-      this.toHtml(this.getElemByPath("div[@type='abstract']"))
-    );
+    const abstractElem = this.getElemByPath("div[@type='abstract']");
+    return abstractElem ? TeiDoc.markupChinese(this.toHtml(abstractElem)) : "";
   }
 
   getKeywords() {
@@ -152,9 +155,10 @@ class TeiDoc extends JsonMlDoc {
   }
 
   getArticleBodyHtml() {
-    return TeiDoc.markupChinese(
-      this.toHtml(this.getElemByPath("div[@type='articleBody']"))
-    );
+    const bodyElem = this.getElemByPath("div[@type='articleBody']");
+    return bodyElem
+      ? TeiDoc.markupChinese(this.toHtml(bodyElem))
+      : TeiDoc.markupChinese(this.toHtml(this.getElemByPath("body")));
   }
 
   getFootnotesHtml() {

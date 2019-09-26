@@ -65,7 +65,9 @@ const JsonMlDoc = class {
   }
 
   getFirstTextContent(elemPath) {
-    const elem = [...this.getElemByPath(elemPath)];
+    let elem = this.getElemByPath(elemPath);
+    if (!elem) return "";
+    elem = [...this.getElemByPath(elemPath)];
     elem.shift(); // drop the tag
     // return first element which is a string
     return elem.find(child => typeof child === "string");
