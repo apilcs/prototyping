@@ -160,4 +160,5 @@ Tooltip.propTypes = {
   tipStyles: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
 };
 
+export { Tip };
 export default Tooltip;

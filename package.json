@@ -1,5 +1,5 @@
 {
-  "name": "apils-journal-site",
+  "name": "apils-website",
   "private": true,
   "description": "Front-end Site for the Asia-Pacific Island and Littoral Studies Journal",
   "version": "0.1.0",
@@ -7,13 +7,13 @@
   "keywords": ["apils"],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "node -r esm ./node_modules/.bin/gatsby build",
     "deploy:gh-pages": "gh-pages -d public -b master -r https://github.com/apilcs/apilcs.github.io",
-    "develop": "gatsby develop",
-    "format": "prettier --write *.js src/**/*.js",
-    "lint": "node_modules/.bin/eslint *.js src/**/*.js --quiet",
-    "serve": "gatsby serve",
-    "start": "npm run develop",
+    "develop": "node -r esm ./node_modules/.bin/gatsby develop",
+    "format": "prettier --write *.{js,json} src/**/*.{js,json}",
+    "lint": "node_modules/.bin/eslint *.js src/**/*.js plugins/**/*.js --quiet",
+    "serve": "node -r esm ./node_modules/.bin/gatsby serve",
+    "start": "node -r esm ./node_modules/.bin/gatsby develop",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "husky": {
@@ -26,12 +26,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "tbd"
+    "url": "https://github.com/apilcs/website"
   },
   "bugs": {
-    "url": "tbd"
+    "url": "https://github.com/apilcs/website/issues"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "babel-plugin-styled-components": "^1.10.6",
     "buffer": "^5.2.1",
     "gatsby": "^2.13.57",
@@ -40,6 +41,7 @@
     "gatsby-plugin-manifest": "^2.2.5",
     "gatsby-plugin-offline": "^2.2.5",
     "gatsby-plugin-react-helmet": "^3.1.3",
+    "gatsby-plugin-react-svg": "^2.1.2",
     "gatsby-plugin-sharp": "^2.2.11",
     "gatsby-plugin-styled-components": "^3.1.2",
     "gatsby-plugin-typography": "^2.3.2",
@@ -48,7 +50,6 @@
     "gatsby-transformer-remark": "^2.6.12",
     "gatsby-transformer-sharp": "^2.2.6",
     "html-react-parser": "^0.9.1",
-    "node-expat": "^2.3.18",
     "polished": "^3.4.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
@@ -70,6 +71,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.3",
+    "esm": "^3.2.25",
     "gatsby-plugin-eslint": "^2.0.5",
     "gh-pages": "2.0",
     "husky": "^3.0.3",

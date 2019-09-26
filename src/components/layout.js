@@ -10,7 +10,7 @@ import GlobalStyle from "../theme/global-style";
 
 import LanguageSwitcher from "./language-switcher";
 
-import ApilsLogo from "../images/apilcs_trsp_202x202.png";
+import ApilsLogo from "../images/apils_logo.min.svg";
 import bgImage from "../images/simple-horizontal-light.png";
 
 const Container = styled.div`
@@ -51,7 +51,7 @@ const Branding = styled.div`
   display: flex;
   flex-direction: row-reverse;
   margin-bottom: ${({ theme }) => theme.rhythm(1 / 3)};
-  align-items: flex-end;
+  align-items: center;
 
   > div {
     flex-grow: 1;
@@ -68,9 +68,10 @@ const Branding = styled.div`
     margin-top: 0;
   }
 
-  img {
-    height: 100px;
+  svg {
+    fill: ${({ theme }) => theme.colors.main};
     margin: 5px 20px 5px 0;
+    width: 100px;
   }
 `;
 
@@ -144,7 +145,7 @@ const Layout = ({ children, intl }) => {
                     </h1>
                     <h2>{intl.formatMessage({ id: "subtitle" })}</h2>
                   </div>
-                  <img src={ApilsLogo} alt="APILS Logo" />
+                  <ApilsLogo />
                 </Branding>
                 <Naivgation>
                   <ul>

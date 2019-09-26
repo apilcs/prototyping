@@ -1,4 +1,4 @@
-const { JsonMlDoc } = require(`./jsonml`);
+import JsonMlDoc from "./jsonml";
 
 class TeiDoc extends JsonMlDoc {
   constructor(xmlString, debug) {
@@ -31,7 +31,7 @@ class TeiDoc extends JsonMlDoc {
         return `<p>${doc.toHtml([null, ...children], parent)}</p>`;
       },
 
-      note: (children, attrs, doc, parent) => {
+      note: (children, attrs /* doc, parent */) => {
         const { n: footnoteIndex, "xml:id": footnoteId } = attrs;
         return `<sup id="${footnoteId}:ref"><a href="#${footnoteId}">${footnoteIndex}</a></sup>`;
       },
@@ -49,6 +49,12 @@ class TeiDoc extends JsonMlDoc {
           [null, ...children],
           parent
         )}</span>`;
+      },
+
+      name: (children, attrs, doc, parent) => {
+        return `<span data-type="${attrs.type}" data-role="${
+          attrs.role
+        }">${doc.toHtml([null, ...children], parent)}</span>`;
       },
 
       div: (children, attrs, doc, parent) => {
@@ -77,7 +83,7 @@ class TeiDoc extends JsonMlDoc {
         return `<header>${doc.toHtml([null, ...children], parent)}</header>`;
       },
 
-      figure: (children, attrs, doc, parent) => {
+      figure: (children, attrs, doc /* parent */) => {
         const graphic = children.find(elem => elem[0] === "graphic");
         const head = children.find(elem => elem[0] === "head");
         return `\
@@ -106,6 +112,9 @@ class TeiDoc extends JsonMlDoc {
       },
 
       quote: (children, attrs, doc, parent) => {
+        if (attrs.rend && attrs.rend === "inline") {
+          return `“${doc.toHtml([null, ...children], parent)}”`;
+        }
         return `<blockquote>${doc.toHtml(
           [null, ...children],
           parent
@@ -132,29 +141,31 @@ class TeiDoc extends JsonMlDoc {
 
   getFrontmatter() {
     return {
-      title: this.getFirstTextContent("titleStmt/title"),
-      author: this.getFirstTextContent("titleStmt/author")
+      title: this.getFirstTextContent("titleStmt/title") || "",
+      author: this.getFirstTextContent("titleStmt/author") || ""
     };
   }
 
   getTitleHtml() {
-    return TeiDoc.markupChinese(this.toHtml(this.getElemByPath("titlePart")));
+    const titleElem = this.getElemByPath("titlePart");
+    return titleElem ? TeiDoc.markupChinese(this.toHtml(titleElem)) : "";
   }
 
   getAbstractHtml() {
-    return TeiDoc.markupChinese(
-      this.toHtml(this.getElemByPath("div[@type='abstract']"))
-    );
+    const abstractElem = this.getElemByPath("div[@type='abstract']");
+    return abstractElem ? TeiDoc.markupChinese(this.toHtml(abstractElem)) : "";
   }
 
+  // eslint-disable-next-line class-methods-use-this
   getKeywords() {
-    // pass
+    // TODO: add this method :)
   }
 
   getArticleBodyHtml() {
-    return TeiDoc.markupChinese(
-      this.toHtml(this.getElemByPath("div[@type='articleBody']"))
-    );
+    const bodyElem = this.getElemByPath("div[@type='articleBody']");
+    return bodyElem
+      ? TeiDoc.markupChinese(this.toHtml(bodyElem))
+      : TeiDoc.markupChinese(this.toHtml(this.getElemByPath("body")));
   }
 
   getFootnotesHtml() {
@@ -191,4 +202,4 @@ class TeiDoc extends JsonMlDoc {
   }
 }
 
-module.exports = { TeiDoc };
+export default TeiDoc;

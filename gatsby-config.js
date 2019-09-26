@@ -34,6 +34,7 @@ module.exports = {
     `gatsby-transformer-tei`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-react-svg`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -43,7 +44,7 @@ module.exports = {
         background_color: `#508084`,
         theme_color: `#508084`,
         display: `minimal-ui`,
-        icon: `src/images/apilcs_trsp_202x202.png` // This path is relative to the root of the site.
+        icon: `src/images/apils_logo.min.svg` // This path is relative to the root of the site.
       }
     },
     {
