@@ -64,7 +64,11 @@ class ProofingPage extends React.Component {
 
   onNewFile = event => {
     const teiFile = event.target.files[0];
-    this.setState({ teiFile, loading: true }, () => this.readTeiFile());
+    if (teiFile) {
+      this.setState({ teiFile, loading: true }, () => this.readTeiFile());
+    } else {
+      this.reset();
+    }
   };
 
   onNerSubmit = event => {
@@ -79,7 +83,7 @@ class ProofingPage extends React.Component {
 
   onRenderClick = (/* event */) => this.readTeiFile();
 
-  onClearClick = (/* event */) => this.setState({ teiNode: null });
+  onClearClick = (/* event */) => this.reset();
 
   getMarkedUpTei(model, include) {
     const { teiFile } = this.state;
@@ -88,6 +92,16 @@ class ProofingPage extends React.Component {
         this.setState({ teiXml: response.data }, () => this.makeTeiNode());
       }
     );
+  }
+
+  reset() {
+    this.setState({
+      teiFile: null,
+      teiXml: null,
+      teiNode: null,
+      loading: false
+    });
+    document.querySelector("input[name='input-file']").value = null;
   }
 
   makeTeiNode() {
@@ -167,7 +181,8 @@ class ProofingPage extends React.Component {
                   <fieldset>
                     <legend>Model</legend>
                     <Tooltip
-                      tipContent="English multi-task CNN trained on OntoNotes v5."
+                      placement="right"
+                      tipContent="English multi-task CNN trained on OntoNotes v5 (~160mb RAM on server)."
                       tipStyles={controlsTipStyles}>
                       <label htmlFor="en_core_web_sm">
                         <input
@@ -181,7 +196,8 @@ class ProofingPage extends React.Component {
                       </label>
                     </Tooltip>
                     <Tooltip
-                      tipContent="English multi-task CNN trained on OntoNotes v5, with GloVe vectors trained on Common Crawl."
+                      placement="right"
+                      tipContent="English multi-task CNN trained on OntoNotes v5, with GloVe vectors trained on Common Crawl. (~1.4Gb RAM on server)."
                       tipStyles={controlsTipStyles}>
                       <label htmlFor="en_core_web_lg">
                         <input
