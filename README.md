@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="APILS" src="https://raw.githubusercontent.com/apilcs/prototyping/master/src/images/apils_logo.min.svg" width="202" />
+  <img alt="APILS" src="https://raw.githubusercontent.com/apilcs/website/master/src/images/apils_logo.min.svg?sanitize=true" width="202" />
 </p>
 <h1 align="center">
   Asia-Pacific Island and Littoral Studies
