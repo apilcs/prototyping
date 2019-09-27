@@ -3,12 +3,14 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const LoadingSpinnerContainer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  align-items: center;
   background: rgba(0, 0, 0, 0.6);
+  bottom: 0;
+  display: flex;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
   z-index: 9;
 `;
 
