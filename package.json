@@ -7,7 +7,7 @@
   "keywords": ["apils"],
   "license": "MIT",
   "scripts": {
-    "build": "node -r esm ./node_modules/.bin/gatsby build",
+    "build": "rm -rf .cache && node -r esm ./node_modules/.bin/gatsby build",
     "deploy:gh-pages": "gh-pages -d public -b master -r https://github.com/apilcs/apilcs.github.io",
     "develop": "node -r esm ./node_modules/.bin/gatsby develop",
     "format": "prettier --write *.{js,json} src/**/*.{js,json}",
