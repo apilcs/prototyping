@@ -34,7 +34,7 @@ const Container = styled.div`
 `;
 
 const Header = styled.header`
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
   border-bottom: 1px solid ${({ theme }) => theme.colors.main};
   display: flex;
   padding-bottom: ${({ theme }) => theme.contentOverhang};

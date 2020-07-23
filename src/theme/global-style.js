@@ -2,7 +2,6 @@
 //       the option to disable it is explicitly invoked.
 
 import { createGlobalStyle } from "styled-components";
-import background from "./WaterPlain0008_1_270.jpg";
 
 export default createGlobalStyle`
 
@@ -17,7 +16,7 @@ export default createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
-    background: url(${background});
+    background: cadetblue;
 
     &::before {
       box-shadow: 0 0 10px rgba(0,0,0,.8);
