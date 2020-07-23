@@ -169,6 +169,11 @@ const Layout = ({ children, intl }) => {
                         {intl.formatMessage({ id: "nav.submissions" })}
                       </Link>
                     </li>
+                    <li>
+                      <Link to="/article/" activeClassName="active">
+                        {intl.formatMessage({ id: "nav.article" })}
+                      </Link>
+                    </li>
                   </ul>
                 </Naivgation>
                 <LanguageSwitcher />
